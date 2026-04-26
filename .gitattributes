@@ -1,4 +1,5 @@
 package-lock.json linguist-generated=true
-notebooklm/*.md linguist-documentation=false
-modules/**/*.md linguist-detectable=true
 *.md linguist-detectable=true
+*.md linguist-documentation=false
+modules/**/*.md linguist-detectable=true
+notebooklm/**/*.md linguist-detectable=true
