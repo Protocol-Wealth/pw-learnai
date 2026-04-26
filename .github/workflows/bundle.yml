@@ -1,0 +1,34 @@
+name: Bundle NotebookLM sources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'modules/**'
+      - 'scripts/bundle-notebooklm.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate bundles
+        run: node scripts/bundle-notebooklm.js
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add notebooklm/
+          if git diff --staged --quiet; then
+            echo "No changes to bundles."
+          else
+            git commit -m "chore: regenerate NotebookLM bundles [skip ci]"
+            git push
+          fi
