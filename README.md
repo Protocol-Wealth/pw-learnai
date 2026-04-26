@@ -78,14 +78,20 @@ cat modules/01-*/module.md modules/02-*/module.md modules/03-*/module.md > my-st
 
 ### With the interactive components
 
-Components in `components/interactive/` are standalone React pieces. Run them locally:
+**Use them in your browser** — no install required:
+
+→ **https://protocol-wealth.github.io/pw-learnai/**
+
+The five tools (disruption diagnostic, advantage matrix, pre-mortem, assumption ranker, prompt evaluator) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
+
+Or run them locally:
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Or copy any `.jsx` file into your own project. They are deliberately written as single-file components with no private dependencies.
+Or copy any `.jsx` file in `components/interactive/` into your own project. They are deliberately written as single-file components with no private dependencies.
 
 ### As a remix target
 
