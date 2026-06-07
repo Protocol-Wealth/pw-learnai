@@ -47,7 +47,17 @@ Each module is self-contained. Start anywhere.
 | 04 | [Building Decision-Support Artifacts](modules/04-decision-artifacts/module.md) | How do you build a tool that actually gets used? |
 | 10 | [Prompt Engineering for Operators](modules/10-prompt-engineering/module.md) | What separates a durable prompt from a lucky one? |
 | 11 | [Evaluation Design for AI Systems](modules/11-evaluation-design/module.md) | How do you know your AI system is getting better, not just different? |
-| 12 | [AI-Assisted Coding in Practice](modules/12-ai-coding-practice/module.md) | How do you ship real software with AI without creating maintenance debt? |
+| 12 | [AI-Assisted Coding in Practice](modules/12-ai-coding-practice/module.md) | How do you use Codex CLI, Claude Code, and coding agents without creating maintenance debt? |
+
+## Protocol Wealth OSS Labs
+
+The labs connect the learning library to Protocol Wealth's open-source starting points.
+
+| Lab | Source repo | Core question |
+|-----|-------------|---------------|
+| [Nexus Core Lab](labs/protocol-wealth-oss/nexus-core-lab.md) | [`Protocol-Wealth/nexus-core`](https://github.com/Protocol-Wealth/nexus-core) | How do MCP tools expose public, read-only financial analysis without carrying client identity? |
+| [PWOS Core Lab](labs/protocol-wealth-oss/pwos-core-lab.md) | [`Protocol-Wealth/pwos-core`](https://github.com/Protocol-Wealth/pwos-core) | How do PII boundaries, audit trails, and confirmation gates become structural controls? |
+| [PWPlan Core Lab](labs/protocol-wealth-oss/pwplan-core-lab.md) | [`Protocol-Wealth/pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core) | How do you make a planning compute plane PII-free by construction? |
 
 ## How to use this library
 
@@ -76,13 +86,48 @@ Or roll your own bundle:
 cat modules/01-*/module.md modules/02-*/module.md modules/03-*/module.md > my-strategy-bundle.md
 ```
 
+### With Codex CLI or Claude Code
+
+Module 12 is now written around practical terminal workflows for Codex CLI and Claude Code. This repo also includes lightweight agent guidance files:
+
+- `AGENTS.md` for Codex and other agents that read the emerging shared convention
+- `CLAUDE.md` for Claude Code, importing `AGENTS.md` so guidance stays in one place
+
+Useful starting prompts:
+
+```bash
+codex "Read AGENTS.md and summarize how to update a module safely."
+claude --permission-mode plan
+```
+
+Useful OSS lab prompts:
+
+```bash
+codex "Read labs/protocol-wealth-oss/README.md and propose the smallest safe lab enhancement."
+claude --permission-mode plan "Read the PWOS Core lab and propose a client-only confirmation-gate simulator improvement."
+```
+
+### PR hygiene across the OSS surface
+
+Audit open PRs across `pw-learnai`, `nexus-core`, `pwos-core`, and `pwplan-core`:
+
+```bash
+npm run pr:audit
+```
+
+Merge only PRs classified as clean, non-draft, check-passing, and not review-blocked:
+
+```bash
+npm run pr:mergeable
+```
+
 ### With the interactive components
 
 **Use them in your browser** — no install required:
 
 → **https://protocol-wealth.github.io/pw-learnai/**
 
-The five tools (disruption diagnostic, advantage matrix, pre-mortem, assumption ranker, prompt evaluator) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
+The ten tools (MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, disruption diagnostic, advantage matrix, pre-mortem, assumption ranker) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
 
 Or run them locally:
 
@@ -106,6 +151,7 @@ pw-learnai/
 │       ├── module.md           # The content
 │       ├── exercises.md        # Applied work
 │       └── references.md       # Sources and further reading
+├── labs/               # Applied OSS labs connected to Protocol Wealth repos
 ├── components/
 │   ├── interactive/    # Single-file React tools (diagnostics, calculators)
 │   └── ui/             # Shared primitives (buttons, cards)

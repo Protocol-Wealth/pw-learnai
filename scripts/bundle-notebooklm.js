@@ -10,12 +10,13 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const MODULES_DIR = path.join(ROOT, 'modules')
+const LABS_DIR = path.join(ROOT, 'labs')
 const OUT_DIR = path.join(ROOT, 'notebooklm')
 
 const BUNDLES = {
   'all-modules.md': {
-    title: 'pw-learnai — Complete Library',
-    description: 'All twelve modules. Use as a single source for an AI notebook covering the full library.',
+    title: 'pw-learnai — Core Curriculum',
+    description: 'All twelve numbered modules. Use as a single source for an AI notebook covering the core curriculum.',
     modules: '*'
   },
   'strategy-bundle.md': {
@@ -37,6 +38,11 @@ const BUNDLES = {
     title: 'pw-learnai — AI Focus',
     description: 'For someone who only wants the AI-specific modules.',
     modules: ['02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice']
+  },
+  'protocol-wealth-oss-labs.md': {
+    title: 'pw-learnai — Protocol Wealth OSS Labs',
+    description: 'Applied labs connecting pw-learnai to nexus-core, pwos-core, and pwplan-core.',
+    labs: ['protocol-wealth-oss/README.md', 'protocol-wealth-oss/nexus-core-lab.md', 'protocol-wealth-oss/pwos-core-lab.md', 'protocol-wealth-oss/pwplan-core-lab.md']
   }
 }
 
@@ -59,8 +65,15 @@ function listAllModules() {
     .sort()
 }
 
+function readLab(relPath) {
+  const fp = path.join(LABS_DIR, relPath)
+  if (!fs.existsSync(fp)) return null
+  return fs.readFileSync(fp, 'utf8')
+}
+
 function buildBundle(name, spec) {
   const moduleSlugs = spec.modules === '*' ? listAllModules() : spec.modules
+  const labFiles = spec.labs || []
   const header = [
     `# ${spec.title}`,
     '',
@@ -70,25 +83,37 @@ function buildBundle(name, spec) {
     `License: MIT`,
     `Generated: ${new Date().toISOString().slice(0, 10)}`,
     '',
-    `## Modules included`,
+    moduleSlugs ? `## Modules included` : `## Labs included`,
     '',
-    ...moduleSlugs.map(s => `- ${s}`),
+    ...(moduleSlugs ? moduleSlugs.map(s => `- ${s}`) : labFiles.map(s => `- ${s}`)),
     '',
     '---',
     ''
   ].join('\n')
 
   const body = moduleSlugs
-    .map(slug => {
-      const content = readModule(slug)
-      if (!content) {
-        console.warn(`  [skip] ${slug} (not found)`)
-        return null
-      }
-      return `\n\n# ============================================\n# ${slug}\n# ============================================\n\n${content}`
-    })
-    .filter(Boolean)
-    .join('\n')
+    ? moduleSlugs
+      .map(slug => {
+        const content = readModule(slug)
+        if (!content) {
+          console.warn(`  [skip] ${slug} (not found)`)
+          return null
+        }
+        return `\n\n# ============================================\n# ${slug}\n# ============================================\n\n${content}`
+      })
+      .filter(Boolean)
+      .join('\n')
+    : labFiles
+      .map(relPath => {
+        const content = readLab(relPath)
+        if (!content) {
+          console.warn(`  [skip] ${relPath} (not found)`)
+          return null
+        }
+        return `\n\n# ============================================\n# ${relPath}\n# ============================================\n\n${content}`
+      })
+      .filter(Boolean)
+      .join('\n')
 
   return header + body
 }

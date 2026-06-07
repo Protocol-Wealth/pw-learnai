@@ -6,7 +6,7 @@ Pre-assembled markdown files. Upload any of these as a source in NotebookLM, Cla
 
 ### `all-modules.md`
 
-All twelve modules. Use as a single source for an AI notebook covering the full library.
+All twelve numbered modules. Use as a single source for an AI notebook covering the core curriculum.
 
 ### `strategy-bundle.md`
 
@@ -23,6 +23,10 @@ Decision artifacts, prompt engineering, evaluation design, AI-assisted coding.
 ### `ai-deep-dive.md`
 
 For someone who only wants the AI-specific modules.
+
+### `protocol-wealth-oss-labs.md`
+
+Applied labs connecting pw-learnai to nexus-core, pwos-core, and pwplan-core.
 
 
 ## Regenerating

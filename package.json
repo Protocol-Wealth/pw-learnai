@@ -8,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "bundle": "node scripts/bundle-notebooklm.js"
+    "bundle": "node scripts/bundle-notebooklm.js",
+    "pr:audit": "node scripts/audit-mergeable-prs.mjs",
+    "pr:mergeable": "node scripts/audit-mergeable-prs.mjs --merge"
   },
   "dependencies": {
     "lucide-react": "^0.400.0",

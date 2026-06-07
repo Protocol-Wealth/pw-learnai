@@ -1,10 +1,10 @@
-# pw-learnai — Complete Library
+# pw-learnai — Core Curriculum
 
-> All twelve modules. Use as a single source for an AI notebook covering the full library.
+> All twelve numbered modules. Use as a single source for an AI notebook covering the core curriculum.
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-04-26
+Generated: 2026-06-07
 
 ## Modules included
 
@@ -2587,130 +2587,239 @@ For AI systems in regulated contexts (finance, healthcare, legal), evaluation of
 # 12-ai-coding-practice
 # ============================================
 
-# 12 — AI-Assisted Coding in Practice
+# 12 - AI-Assisted Coding in Practice
 
-How to ship real software with AI without creating maintenance debt.
+How to ship real software with Codex CLI, Claude Code, and similar coding agents without creating maintenance debt.
 
 ## The claim
 
-AI-assisted coding works. The productivity gain is real. It is also asymmetric — the gain accrues to writing code, while the cost accrues to maintaining it. Teams that do not adapt their practices to this asymmetry produce more code, faster, with longer-term maintenance debt that eventually outweighs the early productivity gain. The practices that maintain the gain over time are specific and not the same as the practices for human-written code.
+AI coding agents are no longer just autocomplete. The useful mental model is a junior engineer with a terminal, a large working memory, uneven judgment, and the ability to make changes much faster than you can review them. The durable productivity gain comes from operating that agent deliberately: persistent project instructions, narrow tasks, explicit permissions, tests-first verification, and a second review pass before the work lands.
+
+Teams that treat CLI agents as magic implementation engines create hidden debt. Teams that treat them as repo operators with a clear operating model get leverage without giving up engineering control.
 
 ## Why this matters
 
-Most AI coding workflows look productive in the first month and break in the sixth. The breakage is silent — the codebase grows, tests grow, but the time required to make changes grows faster than the team expected. The team blames the codebase getting bigger and adds more developers. The underlying problem is that AI-generated code carries a different debt profile than human-written code, and the team did not adapt to it. This module is about adapting.
+The modern coding-agent workflow has moved from "generate this function" to "inspect the repo, edit files, run tests, explain the diff, and open a PR." That shift changes the risk profile. A tool that can read and write a repository, run shell commands, use external tools through MCP, and continue work across sessions is useful precisely because it has enough agency to cause damage.
+
+The answer is not to avoid the tools. The answer is to define how they operate.
 
 ## The idea
 
-Six practices. Each addresses a specific way AI-assisted coding goes wrong over time.
+Use a four-loop operating model:
 
-### Practice 1: Read every line you commit
+1. Prepare the repo context.
+2. Choose the right execution mode.
+3. Frame the task tightly.
+4. Verify the diff before it ships.
 
-The single most important practice. AI generates code at a speed that exceeds your ability to review it carefully if you are not deliberate. The temptation is to skim, accept, and move on. The cost is paid later when a bug or design issue ships that you would have caught with a careful read.
+The specific commands change. The operating model does not.
+
+### Loop 1: Prepare the repo context
+
+Every agentic coding session starts better when the tool can read durable project guidance before you type the task.
+
+For Codex CLI, use `AGENTS.md`. Put repository conventions, build commands, test commands, forbidden patterns, review expectations, and content style rules in the file. Codex discovers `AGENTS.md` files from the repo root down to the working directory, so nested directories can carry more specific guidance.
+
+For Claude Code, use `CLAUDE.md`. If your repo already has `AGENTS.md`, create a short `CLAUDE.md` that imports it:
+
+```md
+@AGENTS.md
+
+## Claude Code
+
+- Use plan mode for large changes before editing files.
+- Keep generated edits narrow and run the documented verification command.
+```
+
+Use these files for facts the agent should always know:
+
+- Package manager and build commands
+- Test commands and expected verification steps
+- Architecture boundaries and naming conventions
+- Files or directories that require extra care
+- Documentation style rules
+- Review expectations before committing
+
+Do not put long API references or one-off procedures in always-loaded context. Put those in linked docs, skills, or task prompts so they load only when needed.
+
+### Loop 2: Choose the right execution mode
+
+Different agent modes solve different problems.
+
+| Need | Codex CLI pattern | Claude Code pattern |
+|------|-------------------|---------------------|
+| Pair on a change interactively | `codex` | `claude` |
+| Ask for a read-only investigation | `codex --sandbox read-only` or explicit prompt constraints | `claude --permission-mode plan` |
+| Run a scripted task | `codex exec "task"` | `claude -p "task"` |
+| Continue prior work | `codex resume` or `codex exec resume --last` | `claude --continue` or `claude --resume` |
+| Review a local diff | `/review` inside Codex | Ask Claude to review the diff, or use a review-focused subagent |
+| Keep broad research out of the main context | Ask for subagents when enabled | Ask Claude to use a subagent |
+| Work in parallel without edit collisions | Codex cloud tasks or separate worktrees | `claude --worktree <name>` or separate worktrees |
+| Connect external systems | `codex mcp` or `config.toml` MCP servers | `claude mcp` or project/user MCP settings |
+
+The safest default for implementation work is local, interactive, workspace-scoped editing. Use non-interactive automation only when the task is well specified and the environment is controlled.
+
+### Loop 3: Frame the task tightly
+
+A good CLI-agent task prompt has six parts:
+
+1. **Outcome.** What should be true when the task is done.
+2. **Scope.** Which files, modules, or workflows are in bounds.
+3. **Constraints.** What must not change.
+4. **Verification.** Which command, test, or manual check proves the result.
+5. **Risk focus.** What failure modes the agent should watch for.
+6. **Completion format.** What summary you want back.
+
+Template:
+
+```text
+Goal: <specific user-visible outcome>
+
+Scope:
+- In bounds: <files, modules, or flows>
+- Out of bounds: <files, APIs, refactors, dependencies>
+
+Constraints:
+- Preserve <public behavior, data shape, style rule>
+- Do not <known risky action>
+
+Verification:
+- Run <command>
+- If that fails, report the failing command and likely cause before trying broad fixes
+
+Review focus:
+- Check <security, accessibility, migration, regression, stale data>
+
+Finish with:
+- Files changed
+- Verification result
+- Remaining risk
+```
+
+Bad prompt:
+
+```text
+Improve the frontend and update the AI coding module.
+```
+
+Better prompt:
+
+```text
+Goal: Update module 12 so it teaches practical Codex CLI and Claude Code workflows as of June 2026.
+
+Scope:
+- Edit modules/12-ai-coding-practice/module.md, exercises.md, and references.md.
+- If useful, add one React tool under components/interactive/.
+- Regenerate notebook bundles.
+
+Constraints:
+- Keep the tone consistent with the existing modules.
+- Do not add a backend, telemetry, or paid API dependency.
+- Prefer official OpenAI and Anthropic docs for current tool behavior.
+
+Verification:
+- Run npm run build.
+- Check git diff for generated bundle changes.
+
+Finish with:
+- Content changes
+- Frontend changes
+- Build result
+```
+
+### Loop 4: Verify the diff before it ships
+
+AI coding agents are strongest when verification is explicit and weakest when "it looks right" is treated as enough.
 
 The discipline:
 
-- Treat AI output the way you would treat a junior developer's pull request
-- Read every line, including the ones that look right
-- Ask whether each line is doing what you actually want, not just what looks reasonable
-- Reject generated code that is plausible but not what the situation requires
+- Read every file changed by the agent.
+- Run the tests or build yourself, or watch the agent run them and inspect the output.
+- Ask for a review pass focused on regressions, not praise.
+- Use a second agent as reviewer when the change is risky. For example, have Codex implement and Claude review, or have Claude implement and Codex review.
+- Keep the final commit human-owned. The human is accountable for the code, even when the agent wrote it.
 
-This is slower than auto-accepting suggestions. It is faster than debugging the alternative.
+## Using Codex CLI well
 
-### Practice 2: Constrain the context
+Codex CLI is strongest when you want a terminal-first collaborator that can inspect a local repository, edit files, run commands, review diffs, use MCP tools, and continue work across sessions.
 
-AI coding tools work better with smaller, more specific contexts than with larger, more general ones. A prompt that says "modify this function to handle the new edge case" works better than a prompt that says "improve the error handling across the codebase."
+High-leverage patterns:
 
-The pattern:
+- **Interactive implementation:** run `codex` from the repository root, describe the target behavior, then review plans, commands, and diffs as they happen.
+- **Explicit permissions:** use `/permissions` during a session, or launch with `--sandbox read-only`, `--sandbox workspace-write`, and `--ask-for-approval on-request` depending on the task.
+- **Local review:** use `/review` before committing. Ask for findings ordered by severity, with file and line references.
+- **Non-interactive scripts:** use `codex exec` for bounded automation such as summarizing logs, drafting release notes, or triaging test failures. For edit-capable runs, set the sandbox explicitly.
+- **Persistent repo guidance:** keep `AGENTS.md` current. When Codex repeats a mistake, update the file rather than retyping the correction every session.
+- **MCP for live tools:** connect documentation, GitHub, browser, Figma, Sentry, or other systems through MCP when the agent needs authorized external context.
+- **Cloud/offloaded work:** use Codex cloud tasks for work that can run away from your active terminal, then inspect and apply the result locally.
 
-- Identify the specific change required
-- Provide the specific code being modified
-- State the specific constraints (tests must pass, the public API does not change, the modification is local)
-- Avoid asking the tool to make decisions that you have not made
+Guardrails:
 
-The cost of not constraining: the tool makes design decisions implicitly, often inconsistently with the rest of the codebase, and the inconsistency accumulates over time.
+- Avoid `--dangerously-bypass-approvals-and-sandbox` except inside an externally isolated environment.
+- Do not pass broad secrets into the environment for tasks that run repo-controlled scripts.
+- Keep `codex exec` prompts narrow. Non-interactive agents should not be asked to make open-ended architecture decisions without a review stage.
 
-### Practice 3: Maintain test discipline
+## Using Claude Code well
 
-AI generates plausible-looking tests as easily as it generates plausible-looking code. Plausible tests that do not actually verify the behavior are worse than no tests, because they create false confidence.
+Claude Code is strongest when you want an agent that can operate across the whole project, preserve project memory through `CLAUDE.md`, plan before editing, delegate research to subagents, and run parallel work in worktrees.
 
-The discipline:
+High-leverage patterns:
 
-- Write the test first, by hand, for the specific behavior the change is supposed to produce
-- Use AI to generate the implementation that passes the test
-- Read the implementation carefully to ensure it passes the test for the right reasons, not by accident
-- Use AI to generate additional tests after the implementation works, but verify each one tests something meaningful
+- **Plan before editing:** use `claude --permission-mode plan` for broad changes. Claude reads files and proposes a plan before making edits.
+- **Project memory:** maintain `CLAUDE.md` for project conventions. If the repo also supports other agents, import `AGENTS.md` instead of duplicating guidance.
+- **Subagents for noisy research:** ask Claude to use a subagent when investigation would flood the main conversation with file reads, logs, or search results.
+- **Worktrees for parallelism:** use `claude --worktree <name>` when one session should edit a branch while another session works elsewhere.
+- **Non-interactive output:** use `claude -p "task"` when you want stdout-friendly output for scripts, CI, or batch processing.
+- **MCP and hooks:** use MCP for external systems and hooks for actions that must run on specific events, such as blocking protected edits or running checks after file changes.
+- **Resume long work:** use `claude --continue`, `claude --resume`, or `/resume` when a task spans multiple sittings.
 
-The reverse — generate the implementation, then ask AI to write tests for it — produces tests that pass tautologically because they were written to match the implementation rather than the requirement.
+Guardrails:
 
-### Practice 4: Refactor on a schedule
+- Treat `CLAUDE.md` as context, not enforcement. If an action must be blocked, use permissions or hooks.
+- Keep always-loaded memory concise. Move long reference material into skills or linked docs.
+- Do not let multiple Claude sessions edit the same worktree at the same time.
+- Avoid permission bypass modes unless the environment is isolated and disposable.
 
-AI-generated code converges toward median patterns. It is rarely as clean as the best human-written code in the codebase. Without periodic refactoring, the codebase drifts toward median quality.
+## Combining Codex and Claude
 
-The discipline:
+The best two-agent workflow is not "let both write code at once." It is role separation.
 
-- Schedule refactoring sessions
-- During refactoring, identify the patterns that have accumulated and consolidate them
-- Use AI to assist the refactoring (with the same read-every-line discipline)
-- Resist the temptation to skip refactoring because "the tests pass and it works"
+Useful combinations:
 
-Without refactoring, the codebase grows in ways that make the next change harder. Eventually a change that should take an afternoon takes a week.
+- **Plan comparison:** ask Codex and Claude for independent plans, then choose one.
+- **Implement/review:** one agent implements; the other reviews the diff for regressions.
+- **Research/execute:** one agent researches a confusing subsystem; the other implements using the research summary.
+- **Frontend/design check:** one agent edits UI; the other reviews accessibility, layout, copy, and build behavior.
+- **Stale-docs check:** one agent updates content from official docs; the other searches for unsupported claims and stale references.
 
-### Practice 5: Maintain the team's underlying skill
+Rules:
 
-The most insidious failure mode. Junior developers who only ever interact with the codebase through AI never develop the underlying intuition for what good code looks like. They become operators of the AI rather than engineers. When the AI fails subtly, they cannot detect it.
-
-The discipline:
-
-- Junior developers do regular work without AI assistance to maintain the underlying skill
-- Pair programming with senior developers continues, with explicit attention to the reasoning behind code choices
-- Code reviews focus on understanding, not just on mechanical quality
-- Promotion criteria include demonstrated underlying competence, not just shipping velocity
-
-This is hard to enforce because the short-term productivity cost is real. The long-term cost of not enforcing it is a team that cannot debug its own systems.
-
-### Practice 6: Document for humans, not for the AI
-
-AI does not need documentation — it can read the code. Human team members do. As AI handles more of the writing, the temptation is to skip documentation because the AI does not need it.
-
-The discipline:
-
-- Documentation explains why, not what (the code shows what)
-- Architectural decisions are recorded with context, alternatives considered, and trade-offs accepted
-- Onboarding documentation is maintained so that new team members can build mental models without depending on AI to explain the codebase
-- Comments mark surprising or non-obvious code, including code where the AI made a choice that is not the most natural choice
-
-A codebase that only the AI can navigate is a codebase that has become structurally dependent on a vendor.
-
-## The honest accounting
-
-AI-assisted coding produces three kinds of gains:
-
-- **Real and durable.** Generating boilerplate, writing tests for code you already understand, exploring unfamiliar APIs, refactoring code at the line level.
-- **Real but conditional.** Speeding up implementation when the design is already clear and the team has the discipline to read the output carefully.
-- **Apparent but not durable.** Speed at the cost of understanding, where the team is shipping faster than it is learning.
-
-Most teams capture the first kind without effort, the second kind with the practices in this module, and the third kind by accident. The third kind is the problem — it looks like productivity gain in week one and shows up as maintenance debt in month six.
-
-The honest measure of AI coding productivity is not lines of code shipped. It is the rate of feature delivery sustained over multiple quarters with the same team. Teams that measure the right thing make the right trade-offs.
+- One writer per worktree.
+- One explicit verification command.
+- One human owner for the final diff.
 
 ## Common failure modes
 
-- **Auto-accepting suggestions.** Speed without understanding. Builds maintenance debt invisibly.
-- **Generating tests for already-written code.** Tautological tests that do not catch real bugs.
-- **Letting junior developers operate the AI without understanding.** Talent pipeline problem that surfaces years later.
-- **Skipping refactoring because the tests pass.** Codebase quality drifts; future changes get harder.
-- **Documenting only what the AI needs.** The codebase becomes navigable only with AI assistance.
-- **Measuring the wrong thing.** Lines shipped instead of features delivered, weeks of velocity instead of quarters of velocity.
+- **Auto-accepting edits.** The agent wrote quickly; the human reviewed slowly or not at all.
+- **Prompting without scope.** The agent makes design decisions the team never agreed to.
+- **Skipping persistent guidance.** The same corrections get typed in every session instead of captured in `AGENTS.md` or `CLAUDE.md`.
+- **Using non-interactive mode for vague work.** A scriptable agent is best for bounded tasks, not ambiguous product judgment.
+- **Letting context bloat.** The main session fills with logs, file dumps, and search results that should have gone to a subagent or separate run.
+- **Two agents editing one branch.** Parallelism becomes merge conflict and behavioral drift.
+- **Trusting generated tests.** Tests written after the implementation often verify the implementation rather than the requirement.
+- **Measuring lines shipped.** The real measure is sustained feature delivery with stable maintenance cost.
 
 ## What this module does not cover
 
-- The specific tools and their workflows (changes too fast; current vendors include Claude Code, Cursor, GitHub Copilot, and others)
-- The mechanics of code review for AI-generated PRs (similar to human PRs with extra attention to design consistency)
-- The security implications of AI-generated code (real but specialized; see security-focused references)
+- Detailed pricing, entitlement, and model availability for specific vendors. Those change too quickly.
+- Security review for AI-generated code in regulated systems. The practices here reduce risk but do not replace secure development lifecycle controls.
+- Full CI/CD automation patterns. Start with local interactive use, then automate only the workflows that have become boring and repeatable.
 
 ## Try this
 
 See [exercises.md](exercises.md).
+
+The interactive version is in `components/interactive/AgenticCodingPlaybook.jsx`.
 
 ## Further reading
 
@@ -2719,102 +2828,213 @@ See [references.md](references.md).
 
 ---
 
-# 12 — Exercises
+# 12 - Exercises
 
-## Exercise 1: Audit a recent AI-generated PR
+## Exercise 1: Create the agent brief
 
-Pick a PR from the last 30 days that included AI-generated code. Review it line by line.
+Write the project guidance file your coding agents should read before doing work.
 
-| Section | Was it read carefully when committed? | Is it doing what was actually wanted? | Any subtle issues? |
-|---------|---------------------------------------|--------------------------------------|--------------------|
-| | | | |
+For Codex CLI, use `AGENTS.md`. For Claude Code, use `CLAUDE.md`, or import the same guidance with `@AGENTS.md`.
 
-If the answer to "read carefully" is no, the PR was a near miss. Adjust the team's review discipline.
+Include only durable guidance:
 
-## Exercise 2: The test discipline check
+| Section | What belongs here |
+|---------|-------------------|
+| Build and test commands | The exact commands an agent should run before finishing |
+| Project structure | Where important code, docs, tests, and generated files live |
+| Coding standards | Conventions that are not obvious from nearby code |
+| Protected areas | Files, APIs, schemas, or workflows that require extra review |
+| Review expectations | What the agent should check before saying the task is done |
 
-For your last five features that included AI-generated code, ask:
+Keep the first version under 150 lines. If it becomes longer, move reference material into linked docs or skills.
 
-- Were the tests written before the implementation?
-- Do the tests verify the requirement, or do they verify the implementation?
-- If you removed the implementation and reimplemented from scratch, would the tests still be meaningful?
+## Exercise 2: Run a Codex CLI task with tight scope
 
-Tests that fail the third question are tautological. Replace them.
+Pick a small change you can verify in under 20 minutes.
 
-## Exercise 3: Schedule refactoring
+Write a Codex prompt using the module template:
 
-Pick a date for the next quarterly refactoring session. Two days, no feature work.
+```text
+Goal:
 
-In advance:
-- Identify the three areas of the codebase where AI-generated patterns have accumulated
-- Identify the consolidations that would simplify those areas
-- Plan the refactoring with the same discipline as feature work — write tests, make small changes, validate
+Scope:
+- In bounds:
+- Out of bounds:
 
-Without the schedule, refactoring does not happen. With it, the codebase does not drift.
+Constraints:
 
-## Exercise 4: AI-free skill maintenance
+Verification:
 
-For each engineer on the team, identify one task they should do this month without AI assistance to maintain the underlying skill.
+Review focus:
 
-| Engineer | Task | Estimated time |
-|----------|------|----------------|
-| | | |
+Finish with:
+```
 
-The cost is real. The benefit is a team that can still debug its own systems in five years.
+Run it interactively:
 
-## Exercise 5: Velocity over quarters
+```bash
+codex
+```
 
-Track your team's feature delivery rate over the last four quarters. Compare to AI tooling adoption.
+After the agent finishes, record:
 
-| Quarter | Features shipped | AI tooling in use | Engineer count | Features per engineer |
-|---------|------------------|-------------------|----------------|----------------------|
-| Q-3 | | | | |
-| Q-2 | | | | |
-| Q-1 | | | | |
-| Current | | | | |
+| Question | Answer |
+|----------|--------|
+| What files changed? | |
+| What command verified the work? | |
+| What did you reject or revise? | |
+| What should move into `AGENTS.md` for next time? | |
 
-If features per engineer is rising, the AI gain is real and sustained. If it is flat or falling despite increased AI tooling, the gain is being absorbed by maintenance debt. Adjust practices.
+## Exercise 3: Use Claude Code plan mode
+
+Pick a change with enough ambiguity that you should review the plan before edits.
+
+Start Claude in plan mode:
+
+```bash
+claude --permission-mode plan
+```
+
+Ask for a plan, not implementation. Approve edits only after the plan names the files, risk, and verification command.
+
+Review the plan:
+
+| Check | Pass/fail | Notes |
+|-------|-----------|-------|
+| Names specific files or modules | | |
+| States what will not change | | |
+| Includes verification command | | |
+| Identifies the riskiest assumption | | |
+| Keeps unrelated refactors out | | |
+
+If the plan is vague, revise the prompt before allowing edits.
+
+## Exercise 4: Compare two agents before implementation
+
+Use Codex and Claude as independent planners for the same task. Do not let both edit files.
+
+Ask each:
+
+```text
+Read the relevant files and propose a plan for <task>. Do not edit. Include files touched, risks, and verification.
+```
+
+Compare:
+
+| Dimension | Codex plan | Claude plan | Decision |
+|-----------|------------|-------------|----------|
+| Simpler scope | | | |
+| Better risk identification | | | |
+| Better verification plan | | | |
+| Better fit with repo style | | | |
+
+Choose one implementer. Use the other agent as reviewer after the diff exists.
+
+## Exercise 5: Identify an automation candidate
+
+Find one workflow that is repeated, bounded, and low-judgment enough for non-interactive CLI use.
+
+Good candidates:
+
+- Summarize CI logs
+- Draft release notes from commits
+- Check documentation for stale links
+- Produce a PR review checklist from a diff
+- Triage lint or test output before a human fixes it
+
+Bad candidates:
+
+- Redesign the architecture
+- Rewrite a subsystem
+- Decide product behavior
+- Modify security-sensitive code without human review
+
+Write the non-interactive command you would use:
+
+```bash
+# Codex
+codex exec "<bounded task>"
+
+# Claude
+claude -p "<bounded task>"
+```
+
+Define the safety boundary:
+
+| Boundary | Decision |
+|----------|----------|
+| Read-only or edit-capable? | |
+| What input is piped in? | |
+| What output is expected? | |
+| What secrets are withheld? | |
+| Who reviews the result? | |
+
+## Exercise 6: Quarterly stale-tool audit
+
+Once a quarter, audit the agent setup.
+
+| Item | Current state | Change needed |
+|------|---------------|---------------|
+| Codex CLI version and key workflows | | |
+| Claude Code version and key workflows | | |
+| `AGENTS.md` accuracy | | |
+| `CLAUDE.md` accuracy | | |
+| MCP servers still needed | | |
+| Hooks or permissions still appropriate | | |
+| Non-interactive scripts still bounded | | |
+
+The goal is not to chase every new feature. The goal is to remove stale assumptions before they become hidden process debt.
 
 ---
 
+
 ---
 
-# 12 — References
+# 12 - References
 
-## Primary sources
+Tool-specific guidance reviewed on 2026-06-07. Re-check vendor docs before turning these notes into policy or automation.
 
-- **Anthropic.** *Claude Code documentation* (claude.com/code) and the prompting guide. Vendor-specific but the patterns transfer to other AI coding tools.
-- **GitHub.** *GitHub Copilot documentation and research*. The 2022-2024 productivity studies are reasonable empirical work, with the caveat that GitHub has obvious incentive to find positive results.
-- **METR.** Various studies on AI impact on software engineering tasks. More skeptical, more rigorous.
+## Current CLI documentation
+
+- **OpenAI.** [Codex CLI features](https://developers.openai.com/codex/cli/features). Current guide to interactive mode, resume, review, MCP, web search, cloud tasks, slash commands, and other CLI workflows.
+- **OpenAI.** [Codex CLI command reference](https://developers.openai.com/codex/cli/reference). Flag and command reference, including sandboxing, approvals, `codex exec`, `codex mcp`, `codex cloud`, `codex doctor`, and related commands.
+- **OpenAI.** [Codex non-interactive mode](https://developers.openai.com/codex/noninteractive). Best source for `codex exec`, JSONL output, schemas, CI use, and automation safety.
+- **OpenAI.** [Custom instructions with AGENTS.md](https://developers.openai.com/codex/guides/agents-md). How Codex discovers persistent repo guidance.
+- **OpenAI.** [Codex Model Context Protocol](https://developers.openai.com/codex/mcp). How to connect Codex to MCP servers and external tools.
+- **Anthropic.** [Claude Code getting started](https://code.claude.com/docs/en/getting-started). Current installation, platform, update, and authentication guidance.
+- **Anthropic.** [Claude Code CLI reference](https://code.claude.com/docs/en/cli-usage). Commands and flags, including `claude -p`, MCP, plugins, and permission prompt tooling.
+- **Anthropic.** [Claude Code common workflows](https://code.claude.com/docs/en/common-workflows). Practical patterns for resuming sessions, worktrees, plan mode, subagents, and non-interactive scripts.
+- **Anthropic.** [How Claude remembers your project](https://code.claude.com/docs/en/memory). `CLAUDE.md`, auto memory, project guidance, imports, and troubleshooting.
+- **Anthropic.** [Extend Claude Code](https://code.claude.com/docs/en/features-overview). When to use `CLAUDE.md`, skills, MCP, subagents, hooks, plugins, and related extension points.
+- **Anthropic.** [Create custom subagents](https://code.claude.com/docs/en/subagents). Subagent isolation, configuration, permissions, skills, and examples.
+- **Anthropic.** [Configure permissions](https://code.claude.com/docs/en/permissions). Permissions, hooks, additional directories, and sandboxing interactions.
 
 ## On code review for AI-generated code
 
-- **Google's "Engineering Practices Documentation"** (eng-practices.dev) on code review. Pre-AI but the principles transfer; AI-generated code needs the same scrutiny as human code, with extra attention to design consistency.
-- **Various engineering blog posts** from teams using AI coding at scale. Stripe, Shopify, Anthropic itself. Useful for understanding what works at production volume.
+- **Google.** [Engineering Practices Documentation](https://google.github.io/eng-practices/). Pre-AI code review guidance that still applies: correctness, design, complexity, tests, and maintainability.
+- **OpenAI and Anthropic tool docs.** Both vendors now expose review, permission, and persistent-instruction workflows. Read these as operational controls, not as substitutes for human code ownership.
 
 ## On test discipline
 
-- **Beck, Kent.** *Test-Driven Development* (2002). The original argument for tests-first. AI-assisted coding makes the discipline more important, not less.
-- **Martin, Robert.** *Clean Code* (2008). Older but the chapter on tests is directly applicable to evaluating AI-generated test quality.
+- **Beck, Kent.** *Test-Driven Development* (2002). The original tests-first argument. AI-assisted coding makes the discipline more important, not less.
+- **Martin, Robert.** *Clean Code* (2008). Older, but the chapters on tests and maintainability remain useful when reviewing generated code.
 
-## On the productivity question
+## On productivity evidence
 
-- **Various empirical studies** on AI coding productivity. The results are mixed and methodologically contested. Read with care:
-  - GitHub's Copilot studies (favorable, GitHub-funded)
-  - METR's studies (more nuanced, sometimes negative)
-  - DORA's State of DevOps Report (annual, includes AI sections)
-- The honest read of the evidence: AI coding helps for some tasks, hurts for others, and the net effect depends heavily on the team's discipline.
+- **GitHub.** Copilot documentation and productivity research. Useful but read with the obvious vendor incentive in mind.
+- **METR.** Studies on AI impact on software engineering tasks. More skeptical and useful as a counterweight to vendor claims.
+- **DORA.** State of DevOps reports. Useful for reading AI-tool adoption through the lens of delivery, quality, and organizational performance rather than lines of code.
 
-## On the deskilling concern
+## On automation and deskilling
 
-- **Bainbridge, Lisanne.** "Ironies of Automation" (1983). The classic paper on automation and human skill. Originally about process control; ports directly to AI coding.
-- **Various pieces** by senior engineers worried about the long-term effect on the talent pipeline. The concern is legitimate; it is also possible to design around. The practices in this module address the design.
+- **Bainbridge, Lisanne.** "Ironies of Automation" (1983). The classic paper on automation and human skill. The argument ports directly to AI coding.
+- **Engineering management postmortems and team writeups.** Prioritize writeups with concrete workflow details: review gates, test strategy, onboarding effects, and maintenance cost.
 
 ## On security
 
-- **OWASP guidance** on AI-generated code security. Brief, useful starting point.
-- **Various papers** on vulnerabilities in AI-generated code (most notably Snyk and similar vendors' analyses). The gist: AI generates plausible-looking but vulnerable code at meaningful rates, especially for security-sensitive patterns. Read AI security output with skepticism.
+- **OWASP.** [Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/). Good checklist for prompt injection, excessive agency, data leakage, and unsafe output handling.
+- **Snyk and similar security research.** Useful for examples of vulnerable generated code. Treat vendor security studies as directional unless the methodology is public.
 
 ## A note on the moving landscape
 
-The tools in this space change every 3-6 months. Specific tool guidance dates fast. The practices in this module are tool-agnostic on purpose. When the tool changes, the practices still apply.
+Specific CLI features change quickly. The durable practice is not memorizing a command catalog. The durable practice is maintaining a repo-level agent brief, choosing the right execution mode, constraining the task, and verifying the diff.

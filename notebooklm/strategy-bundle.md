@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-04-26
+Generated: 2026-06-07
 
 ## Modules included
 
