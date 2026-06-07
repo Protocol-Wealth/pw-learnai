@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'modules/**'
+      - 'labs/**'
       - 'scripts/bundle-notebooklm.js'
   workflow_dispatch:
 

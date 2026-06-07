@@ -1,5 +1,8 @@
 node_modules
 dist
+public/modules/
+public/labs/
+public/notebooklm/
 .env
 .env.local
 .DS_Store
