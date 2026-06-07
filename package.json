@@ -5,8 +5,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "sync:public": "node scripts/sync-public-content.mjs",
+    "predev": "node scripts/sync-public-content.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/sync-public-content.mjs",
     "build": "vite build",
+    "prepreview": "node scripts/sync-public-content.mjs",
     "preview": "vite preview",
     "bundle": "node scripts/bundle-notebooklm.js",
     "pr:audit": "node scripts/audit-mergeable-prs.mjs",
