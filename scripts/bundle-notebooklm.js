@@ -31,8 +31,8 @@ const BUNDLES = {
   },
   'practice-bundle.md': {
     title: 'pw-learnai — Practice (AI tools, prompts, evals, coding)',
-    description: 'Decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.',
-    modules: ['04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
+    description: 'Getting started with AI coding, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.',
+    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
   },
   'ai-deep-dive.md': {
     title: 'pw-learnai — AI Focus',

@@ -20,7 +20,13 @@ Pick the modules you want. Ignore the rest. Nothing here assumes you take them i
 
 ## Module index
 
-Each module is self-contained. Start anywhere.
+Each module is self-contained. Start anywhere — but if you are new to coding with AI, start at Module 00.
+
+### Start here
+
+| # | Module | Core question |
+|---|--------|---------------|
+| 00 | [Start Here: Your First AI Coding Session](modules/00-getting-started/module.md) | What is the shortest path from never having coded with AI to a real change you understand — and what next? |
 
 ### Strategy and judgment
 

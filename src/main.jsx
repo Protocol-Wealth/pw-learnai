@@ -136,6 +136,12 @@ const TOOLS = [
 
 const MODULE_GROUPS = [
   {
+    title: 'Start Here',
+    modules: [
+      ['00', 'Your First AI Coding Session', 'modules/00-getting-started/module.md'],
+    ],
+  },
+  {
     title: 'Strategy and Judgment',
     modules: [
       ['01', 'Reading Disruption', 'modules/01-reading-disruption/module.md'],
@@ -235,7 +241,7 @@ function App() {
           </div>
           <div className="grid grid-cols-3 gap-3 text-sm">
             <div className="border-l border-emerald-400 pl-3">
-              <div className="text-2xl font-semibold">13</div>
+              <div className="text-2xl font-semibold">14</div>
               <div className="text-zinc-300">Modules</div>
             </div>
             <div className="border-l border-amber-400 pl-3">
