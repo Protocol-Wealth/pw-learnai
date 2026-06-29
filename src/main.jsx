@@ -19,6 +19,7 @@ import McpToolCallPlanner from '../components/interactive/McpToolCallPlanner.jsx
 import PiiGuardSimulator from '../components/interactive/PiiGuardSimulator.jsx'
 import PlanningContractValidator from '../components/interactive/PlanningContractValidator.jsx'
 import PromptEvaluator from '../components/interactive/PromptEvaluator.jsx'
+import AgentInstructionsAuditor from '../components/interactive/AgentInstructionsAuditor.jsx'
 
 const TOOLS = [
   {
@@ -70,6 +71,16 @@ const TOOLS = [
     href: 'modules/12-ai-coding-practice/module.md',
     description: 'Compose bounded Codex CLI and Claude Code tasks with scope, permissions, and verification.',
     tags: ['Codex CLI', 'Claude Code', 'Review'],
+  },
+  {
+    id: 'agent-instructions',
+    name: 'Agent Instructions Auditor',
+    module: '13',
+    category: 'Practice',
+    component: AgentInstructionsAuditor,
+    href: 'modules/13-agent-instructions/module.md',
+    description: 'Score a pasted CLAUDE.md / AGENTS.md in your browser, then copy a deep-audit prompt for your repo.',
+    tags: ['CLAUDE.md', 'AGENTS.md', 'Coding agents'],
   },
   {
     id: 'prompt',
@@ -149,6 +160,7 @@ const MODULE_GROUPS = [
       ['10', 'Prompt Engineering for Operators', 'modules/10-prompt-engineering/module.md'],
       ['11', 'Evaluation Design for AI Systems', 'modules/11-evaluation-design/module.md'],
       ['12', 'AI-Assisted Coding in Practice', 'modules/12-ai-coding-practice/module.md'],
+      ['13', 'Designing Agent Instructions', 'modules/13-agent-instructions/module.md'],
     ],
   },
   {
@@ -223,7 +235,7 @@ function App() {
           </div>
           <div className="grid grid-cols-3 gap-3 text-sm">
             <div className="border-l border-emerald-400 pl-3">
-              <div className="text-2xl font-semibold">12</div>
+              <div className="text-2xl font-semibold">13</div>
               <div className="text-zinc-300">Modules</div>
             </div>
             <div className="border-l border-amber-400 pl-3">

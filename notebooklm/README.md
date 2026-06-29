@@ -6,7 +6,7 @@ Pre-assembled markdown files. Upload any of these as a source in NotebookLM, Cla
 
 ### `all-modules.md`
 
-All twelve numbered modules. Use as a single source for an AI notebook covering the core curriculum.
+All numbered modules. Use as a single source for an AI notebook covering the core curriculum.
 
 ### `strategy-bundle.md`
 
@@ -18,7 +18,7 @@ Organizational design for continuous change, disciplined experimentation, stakeh
 
 ### `practice-bundle.md`
 
-Decision artifacts, prompt engineering, evaluation design, AI-assisted coding.
+Decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.
 
 ### `ai-deep-dive.md`
 

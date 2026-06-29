@@ -48,6 +48,7 @@ Each module is self-contained. Start anywhere.
 | 10 | [Prompt Engineering for Operators](modules/10-prompt-engineering/module.md) | What separates a durable prompt from a lucky one? |
 | 11 | [Evaluation Design for AI Systems](modules/11-evaluation-design/module.md) | How do you know your AI system is getting better, not just different? |
 | 12 | [AI-Assisted Coding in Practice](modules/12-ai-coding-practice/module.md) | How do you use Codex CLI, Claude Code, and coding agents without creating maintenance debt? |
+| 13 | [Designing Agent Instructions](modules/13-agent-instructions/module.md) | What makes a CLAUDE.md / AGENTS.md one a coding agent actually follows, not decoration? |
 
 ## Protocol Wealth OSS Labs
 
@@ -127,7 +128,7 @@ npm run pr:mergeable
 
 → **https://protocol-wealth.github.io/pw-learnai/**
 
-The ten tools (MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, disruption diagnostic, advantage matrix, pre-mortem, assumption ranker) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
+The interactive tools (MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, agent instructions auditor, disruption diagnostic, advantage matrix, pre-mortem, assumption ranker) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
 
 Or run them locally:
 

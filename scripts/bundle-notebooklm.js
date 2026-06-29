@@ -16,7 +16,7 @@ const OUT_DIR = path.join(ROOT, 'notebooklm')
 const BUNDLES = {
   'all-modules.md': {
     title: 'pw-learnai — Core Curriculum',
-    description: 'All twelve numbered modules. Use as a single source for an AI notebook covering the core curriculum.',
+    description: 'All numbered modules. Use as a single source for an AI notebook covering the core curriculum.',
     modules: '*'
   },
   'strategy-bundle.md': {
@@ -31,13 +31,13 @@ const BUNDLES = {
   },
   'practice-bundle.md': {
     title: 'pw-learnai — Practice (AI tools, prompts, evals, coding)',
-    description: 'Decision artifacts, prompt engineering, evaluation design, AI-assisted coding.',
-    modules: ['04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice']
+    description: 'Decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.',
+    modules: ['04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
   },
   'ai-deep-dive.md': {
     title: 'pw-learnai — AI Focus',
     description: 'For someone who only wants the AI-specific modules.',
-    modules: ['02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice']
+    modules: ['02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
   },
   'protocol-wealth-oss-labs.md': {
     title: 'pw-learnai — Protocol Wealth OSS Labs',
