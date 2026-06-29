@@ -18,7 +18,7 @@ Organizational design for continuous change, disciplined experimentation, stakeh
 
 ### `practice-bundle.md`
 
-Decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.
+Getting started with AI coding, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.
 
 ### `ai-deep-dive.md`
 
