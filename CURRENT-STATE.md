@@ -6,10 +6,10 @@ Last reviewed: 2026-06-30.
 
 - Live site: https://protocol-wealth.github.io/pw-learnai/
 - Default branch: `main`
-- Latest deployed commit verified in this session: `bfd00b637e26c97840c46201503e8fa5c3c3eb2a`
-- Latest completed deploy workflow: `Deploy to GitHub Pages` run `28415375952`
-- Latest completed CodeQL run on `main`: `28415375711`
-- Latest completed bundle workflow on `main`: `28415375930`
+- Closeout baseline commit verified before state-doc publishing: `bfd00b637e26c97840c46201503e8fa5c3c3eb2a`
+- Closeout baseline deploy workflow: `Deploy to GitHub Pages` run `28415375952`
+- Closeout baseline CodeQL run on `main`: `28415375711`
+- Closeout baseline bundle workflow on `main`: `28415375930`
 
 ## What is live
 
@@ -19,6 +19,7 @@ Last reviewed: 2026-06-30.
 - Module 00 explains why Markdown is useful for durable instructions and why HTML is useful for immediate visual browser feedback.
 - Module 14 introduces Data.gov, the National Archives Catalog API, OAI-PMH, source notes, and safe public-data habits.
 - NotebookLM bundles include the starter and public-data paths.
+- Root markdown docs are copied into the static Pages artifact by `scripts/sync-public-content.mjs`.
 - Browser tools remain client-only: no login, telemetry, backend, external API calls, or secrets.
 
 ## Verification
@@ -40,6 +41,11 @@ Additional checks:
   - `/pw-learnai/modules/14-working-with-public-data/module.md`
   - `/pw-learnai/notebooklm/starter-bundle.md`
   - `/pw-learnai/notebooklm/data-bundle.md`
+- After root-doc publishing, also verify:
+  - `/pw-learnai/CHANGELOG.md`
+  - `/pw-learnai/CURRENT-STATE.md`
+  - `/pw-learnai/NEXT-PROMPT.md`
+  - `/pw-learnai/ROADMAP.md`
 
 ## Known constraints
 

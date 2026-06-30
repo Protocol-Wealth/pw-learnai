@@ -3,6 +3,7 @@ dist
 public/modules/
 public/labs/
 public/notebooklm/
+public/*.md
 .env
 .env.local
 .DS_Store
