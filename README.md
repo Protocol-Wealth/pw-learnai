@@ -46,6 +46,13 @@ The live site now starts with a visual first-hour walkthrough before sending any
 
 For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bundle.md). It combines the beginner path, prompt engineering, agentic coding, agent instructions, evaluation design, and public-data source discipline.
 
+## Project state
+
+- [CHANGELOG.md](CHANGELOG.md) records shipped changes.
+- [CURRENT-STATE.md](CURRENT-STATE.md) records what is live and last verified.
+- [NEXT-PROMPT.md](NEXT-PROMPT.md) gives the next agent a safe starting prompt.
+- [ROADMAP.md](ROADMAP.md) lists focused follow-up work.
+
 ## Module index
 
 Each module is self-contained. Start with `00` if you are new to repository-based agent work, or jump to the track that matches your problem.
