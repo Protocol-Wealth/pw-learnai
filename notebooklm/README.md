@@ -4,6 +4,10 @@ Pre-assembled markdown files. Upload any of these as a source in NotebookLM, Cla
 
 ## Available bundles
 
+### `starter-bundle.md`
+
+A beginner path from prompt literacy to GitHub, coding agents, repo state files, public data sources, and safe first deployments.
+
 ### `all-modules.md`
 
 All numbered modules. Use as a single source for an AI notebook covering the core curriculum.
@@ -18,11 +22,15 @@ Organizational design for continuous change, disciplined experimentation, stakeh
 
 ### `practice-bundle.md`
 
-Decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.
+Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, and public-data source discipline.
 
 ### `ai-deep-dive.md`
 
 For someone who only wants the AI-specific modules.
+
+### `data-bundle.md`
+
+Public dataset discovery, National Archives Catalog API constraints, OAI-PMH metadata harvesting, and source-note discipline before implementation.
 
 ### `protocol-wealth-oss-labs.md`
 

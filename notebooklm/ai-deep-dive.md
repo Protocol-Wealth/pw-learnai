@@ -4,10 +4,11 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-06-29
+Generated: 2026-06-30
 
 ## Modules included
 
+- 00-getting-started
 - 02-ai-advantage-matrix
 - 03-ai-value-destruction
 - 09-ai-judgment
@@ -17,6 +18,332 @@ Generated: 2026-06-29
 - 13-agent-instructions
 
 ---
+
+
+# ============================================
+# 00-getting-started
+# ============================================
+
+# 00 - Getting Started as an AI Operator
+
+How to move from "I know ChatGPT prompts" to "I can use coding agents, GitHub, data sources, and deployment services without making a mess."
+
+## The claim
+
+The next step after prompt literacy is not learning every framework. It is learning an operating loop:
+
+1. Put work in a repository.
+2. Give the agent durable project instructions.
+3. Ask for small, reviewable changes.
+4. Run the documented check.
+5. Update the state files that let the next session continue.
+
+If a beginner can do that loop, they can learn Codex, Claude Code, Antigravity, or the next coding agent without restarting from zero.
+
+## Choose your level
+
+Use level before tool choice:
+
+| Level | You are here if | Next step |
+|-------|-----------------|-----------|
+| Beginner | You know ChatGPT or Claude prompts, but GitHub, local files, and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and complete one harmless read-only task |
+| Intermediate | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
+| Advanced | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
+
+## The four-stage path
+
+### Stage 1: GitHub and local files
+
+Create a GitHub account, enable two-factor authentication, and install either GitHub Desktop or Git plus a code editor. A prompt-only user needs one new mental model here: GitHub is the public or private record of the project, while the local folder is where the agent reads, edits, and runs checks.
+
+Minimum outcome:
+
+- You can clone a repository.
+- You can see changed files before committing.
+- You can make a branch.
+- You can open a pull request or at least push a branch for review.
+
+Do not start by memorizing every Git command. Start by understanding the diff: what changed, why it changed, and whether the check passed.
+
+### Stage 2: One desktop agent, then one CLI
+
+Pick one visual surface first. Codex app, Claude Code desktop, a Claude Code IDE extension, or Antigravity can help a beginner see files, diffs, and running tasks without living in the terminal all day.
+
+Then add one terminal surface. Codex CLI and Claude Code CLI are where the loop becomes precise: the agent can inspect the repository, edit files, run commands, resume prior work, and report exactly what it verified.
+
+The useful order:
+
+1. Desktop or IDE agent for confidence with diffs.
+2. CLI agent for repeatable repo work.
+3. MCP only after you know which external tool or data source the agent needs.
+4. Cloud or background tasks only after the local workflow is boring.
+
+The danger is skipping straight from chat prompts to autonomous background tasks. Do local, reviewable work first.
+
+### Stage 3: Repository memory and agent scaffolding
+
+An agent does better when the repository explains itself. A small scaffold is enough:
+
+```text
+README.md          - what this project is and how to run it
+AGENTS.md          - commands, constraints, and review rules for coding agents
+CLAUDE.md          - Claude-specific import or notes, often just @AGENTS.md
+CURRENT-STATE.md   - what exists now and what was last verified
+CHANGELOG.md       - dated history of meaningful changes
+NEXT-PROMPT.md     - the best starting prompt for the next session
+ROADMAP.md         - prioritized future work
+```
+
+Keep durable instructions in `AGENTS.md` or `CLAUDE.md`. Keep learned context in memory or state files. Keep secrets out of both.
+
+A useful `AGENTS.md` line names a command, path, or invariant:
+
+```md
+After frontend changes, run `pnpm build`. Do not run `vite` directly because the sync hooks will be skipped.
+```
+
+A weak line sounds true in every repository:
+
+```md
+Write clean code and follow best practices.
+```
+
+### Stage 4: Data and deployment
+
+Once the local loop works, add real data carefully.
+
+Use public data sources first:
+
+- Data.gov for dataset discovery. Its catalog API returns metadata and links, not always the dataset payload itself.
+- National Archives Catalog API for archival descriptions, digital-object metadata, OCR text, and public contributions in JSON. It uses API keys and publishes rate limits, so never commit the key.
+- OAI-PMH repositories when you need harvestable metadata. Learn the verbs: `Identify`, `ListMetadataFormats`, `ListRecords`, `GetRecord`, and `ListSets`.
+
+Use hosted infrastructure only when the project actually needs it:
+
+- Static site: GitHub Pages or another static host.
+- Small web service: Cloud Run or Fly.io.
+- Database: Neon Postgres or a managed Postgres attached to your host.
+- Regulated or sensitive system: bring in identity, audit, retention, network boundaries, and a human review process before data enters the system.
+
+For beginners, the first hosted system should not contain private data. Ship a public, fake-data demo before touching anything sensitive.
+
+## The beginner-safe operating loop
+
+Use this loop for every real task:
+
+1. Open the repo and read `README.md`, `AGENTS.md`, and `CURRENT-STATE.md`.
+2. Write a task prompt with outcome, scope, constraints, verification, and finish format.
+3. Let the agent inspect before editing.
+4. Keep the change small enough to review.
+5. Run the documented check.
+6. Read the diff.
+7. Update `CHANGELOG.md`, `CURRENT-STATE.md`, or `NEXT-PROMPT.md` when the state changed.
+
+Example prompt:
+
+```text
+Goal: Add a beginner setup section to the homepage.
+
+Scope:
+- Edit only src/main.jsx and README.md.
+
+Constraints:
+- Keep the site client-only.
+- Do not add a backend, telemetry, or new dependency.
+- Preserve existing module links.
+
+Verification:
+- Run pnpm build.
+
+Finish with:
+- Files changed
+- Build result
+- Anything not verified
+```
+
+## What to avoid
+
+- Do not paste secrets, API keys, private client data, or private documents into a public repo or public chat.
+- Do not let two agents edit the same worktree at the same time.
+- Do not ask an agent to "improve everything." Name the file, behavior, and check.
+- Do not treat memory as enforcement. If a rule must always apply, put it in project instructions or a mechanical check.
+- Do not deploy before you know how to roll back.
+
+## What this module does not cover
+
+- Deep Git internals.
+- Production security engineering.
+- Vendor pricing.
+- Complete cloud architecture.
+- Legal or compliance advice.
+
+The point is to get someone safely from prompts to a working repo loop. The advanced material comes after that loop is stable.
+
+
+---
+
+# Exercises - Getting Started as an AI Operator
+
+## Exercise 1: Create the minimum GitHub setup
+
+Deliverable: a screenshot or written checklist showing:
+
+- GitHub account created.
+- Email verified.
+- Two-factor authentication enabled.
+- GitHub Desktop or Git installed.
+- One local repository cloned.
+- One branch created.
+- One changed file visible in a diff.
+
+Stop before committing if you do not understand the diff.
+
+## Exercise 2: Install one desktop surface and one CLI surface
+
+Deliverable: a short `SETUP-NOTES.md` in a practice repo:
+
+```md
+# Setup Notes
+
+Desktop or IDE agent:
+- Tool:
+- Installed on:
+- First repo opened:
+
+CLI agent:
+- Tool:
+- Command that confirmed it works:
+
+First safe task:
+- Prompt:
+- Files read:
+- Files changed:
+- Verification command:
+```
+
+Use a harmless task such as "summarize this repository" before asking for edits.
+
+## Exercise 3: Write the scaffold
+
+Deliverable: add these files to a practice repository:
+
+- `AGENTS.md`
+- `CLAUDE.md`
+- `CURRENT-STATE.md`
+- `CHANGELOG.md`
+- `NEXT-PROMPT.md`
+- `ROADMAP.md`
+
+Each file can be short. The test is whether a new agent session can start from them without you re-explaining the project.
+
+Minimum `AGENTS.md`:
+
+```md
+# AGENTS.md
+
+## Commands
+
+- Build: `<command>`
+- Test: `<command or "none">`
+
+## Rules
+
+- Keep changes scoped to the requested files.
+- Never commit secrets or real private data.
+- After code changes, run the documented check and report the result.
+```
+
+## Exercise 4: Convert a chat prompt into a coding-agent task
+
+Start with this weak prompt:
+
+```text
+Make this better.
+```
+
+Rewrite it with:
+
+- outcome
+- scope
+- constraints
+- verification
+- review focus
+- completion format
+
+Then run the improved prompt in a read-only or plan mode first. Save the plan in `NEXT-PROMPT.md` if it is reusable.
+
+## Exercise 5: Data source reconnaissance
+
+Deliverable: `DATA-SOURCE-NOTES.md` with three sections:
+
+1. Data.gov: find one dataset, record the catalog URL, the publisher, the license or access note, and the actual data URL if one exists.
+2. National Archives Catalog API: read the API terms, record whether your use needs a read-only key, and name the rate limit.
+3. OAI-PMH: run or inspect `Identify`, `ListMetadataFormats`, and `ListRecords` examples from a public repository such as Copernicus.
+
+Do not write a scraper. The goal is to understand metadata, attribution, pagination, and limits before code exists.
+
+## Exercise 6: Choose an infrastructure target
+
+Deliverable: a one-page decision note:
+
+| Need | Default choice | Why |
+|------|----------------|-----|
+| Static educational site | GitHub Pages | No server or secrets |
+| Small HTTP service | Cloud Run or Fly.io | Simple container deployment |
+| Postgres database | Neon or managed Postgres | Avoid self-managing backups first |
+| Sensitive workflow | Private architecture review first | Identity, audit, retention, access control |
+
+Add a "not yet" section naming what you will not deploy until the local repo loop is reliable.
+
+
+---
+
+# References - Getting Started as an AI Operator
+
+Reviewed: 2026-06-30.
+
+## GitHub and Git
+
+- GitHub Docs, "Creating an account on GitHub" - https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github
+- GitHub Docs, "Set up Git" - https://docs.github.com/en/get-started/git-basics/set-up-git
+- GitHub Docs, "GitHub Desktop documentation" - https://docs.github.com/en/desktop
+
+## Coding agents
+
+- OpenAI Developers, "Codex app" - https://developers.openai.com/codex/app
+- OpenAI Developers, "Codex CLI" - https://developers.openai.com/codex/cli
+- OpenAI Developers, "Custom instructions with AGENTS.md" - https://developers.openai.com/codex/guides/agents-md
+- OpenAI Developers, "Model Context Protocol" - https://developers.openai.com/codex/mcp
+- OpenAI Developers, "Memories" - https://developers.openai.com/codex/memories
+- Claude Code Docs, "Overview" - https://code.claude.com/docs/en/overview
+- Claude Code Docs, "How Claude remembers your project" - https://code.claude.com/docs/en/memory
+- Claude Code Docs, "Connect Claude Code to tools via MCP" - https://code.claude.com/docs/en/mcp
+- Claude download page - https://claude.com/download
+- Google Antigravity product site - https://antigravity.google/
+- Model Context Protocol, "What is MCP?" - https://modelcontextprotocol.io/docs/getting-started/intro
+
+## Data sources
+
+- Data.gov, "APIs" - https://data.gov/developers/apis/
+- National Archives, "API for the National Archives Catalog" - https://www.archives.gov/research/catalog/help/api
+- Open Archives Initiative, "The Open Archives Initiative Protocol for Metadata Harvesting" - https://www.openarchives.org/OAI/openarchivesprotocol.html
+- Atmospheric Chemistry and Physics, "XML harvesting & OAI-PMH" - https://www.atmospheric-chemistry-and-physics.net/about/xml_harvesting_and_oai-pmh.html
+
+## Infrastructure
+
+- Google Cloud, "What is Cloud Run?" - https://cloud.google.com/run/docs/overview/what-is-cloud-run
+- Google Cloud, "Compute Engine overview" - https://cloud.google.com/compute/docs/overview
+- Fly.io Docs - https://fly.io/docs/
+- Neon Docs, "Introduction" - https://neon.com/docs/introduction
+
+## Protocol Wealth OSS surfaces
+
+- Nexus Core live OpenAPI schema - https://nexusmcp.site/openapi.json
+- Nexus Core MCP setup guide - https://nexusmcp.site/mcp-guide
+- Protocol-Wealth/nexus-core - https://github.com/Protocol-Wealth/nexus-core
+- Protocol-Wealth/pwos-core - https://github.com/Protocol-Wealth/pwos-core
+- Protocol-Wealth/pwplan-core - https://github.com/Protocol-Wealth/pwplan-core
+
 
 
 # ============================================

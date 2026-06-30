@@ -18,9 +18,38 @@ Pick the modules you want. Ignore the rest. Nothing here assumes you take them i
 - Not a product. Nothing here sells Protocol Wealth services.
 - Not a complete map of the field. It is a library of the ideas we have found useful and wish we had encountered earlier.
 
+## Start here
+
+If you only know ChatGPT or Claude prompts, start with [00 - Getting Started as an AI Operator](modules/00-getting-started/module.md).
+
+The first routing decision is level, not tool:
+
+| Level | Use this when | Next step |
+|-------|---------------|-----------|
+| Beginner | You know ChatGPT or Claude prompts, but repositories and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and use the Setup Path Builder |
+| Intermediate | You can work in a repo and need repeatable agent practice | Add `AGENTS.md`, `CLAUDE.md`, state files, CLI-agent prompts, and a documented verification loop |
+| Advanced | You are connecting data, MCP, cloud, or regulated workflow patterns | Write public-data source notes, study the OSS labs, and deploy only after the local loop is stable |
+
+The full beginner path is deliberately practical:
+
+1. Get a GitHub account, enable 2FA, and learn to read a diff.
+2. Install one desktop or IDE agent such as Codex app, Claude Code, or Antigravity.
+3. Add one CLI agent such as Codex CLI or Claude Code CLI.
+4. Put durable repo guidance in `AGENTS.md` and `CLAUDE.md`.
+5. Keep `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and `ROADMAP.md` aligned as work changes.
+6. Learn public data sources with read-only examples before writing harvesters or deploying services.
+
+For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bundle.md). It combines the beginner path, prompt engineering, agentic coding, agent instructions, evaluation design, and public-data source discipline.
+
 ## Module index
 
-Each module is self-contained. Start anywhere.
+Each module is self-contained. Start with `00` if you are new to repository-based agent work, or jump to the track that matches your problem.
+
+### Getting started
+
+| # | Module | Core question |
+|---|--------|---------------|
+| 00 | [Getting Started as an AI Operator](modules/00-getting-started/module.md) | How do you move from prompt literacy to GitHub, coding agents, repo state files, public data, and safe first deployment? |
 
 ### Strategy and judgment
 
@@ -50,15 +79,21 @@ Each module is self-contained. Start anywhere.
 | 12 | [AI-Assisted Coding in Practice](modules/12-ai-coding-practice/module.md) | How do you use Codex CLI, Claude Code, and coding agents without creating maintenance debt? |
 | 13 | [Designing Agent Instructions](modules/13-agent-instructions/module.md) | What makes a CLAUDE.md / AGENTS.md one a coding agent actually follows, not decoration? |
 
+### Working with data
+
+| # | Module | Core question |
+|---|--------|---------------|
+| 14 | [Working with Public Data](modules/14-working-with-public-data/module.md) | How do you use Data.gov, archival APIs, and OAI-PMH without confusing metadata with production-ready data? |
+
 ## Protocol Wealth OSS Labs
 
 The labs connect the learning library to Protocol Wealth's open-source starting points.
 
 | Lab | Source repo | Core question |
 |-----|-------------|---------------|
-| [Nexus Core Lab](labs/protocol-wealth-oss/nexus-core-lab.md) | [`Protocol-Wealth/nexus-core`](https://github.com/Protocol-Wealth/nexus-core) | How do MCP tools expose public, read-only financial analysis without carrying client identity? |
-| [PWOS Core Lab](labs/protocol-wealth-oss/pwos-core-lab.md) | [`Protocol-Wealth/pwos-core`](https://github.com/Protocol-Wealth/pwos-core) | How do PII boundaries, audit trails, and confirmation gates become structural controls? |
-| [PWPlan Core Lab](labs/protocol-wealth-oss/pwplan-core-lab.md) | [`Protocol-Wealth/pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core) | How do you make a planning compute plane PII-free by construction? |
+| [Nexus Core Lab](labs/protocol-wealth-oss/nexus-core-lab.md) | [`Protocol-Wealth/nexus-core`](https://github.com/Protocol-Wealth/nexus-core) | How do MCP tools expose public, read-only financial analysis, planning tools, and on-chain analytics without carrying client identity? |
+| [PWOS Core Lab](labs/protocol-wealth-oss/pwos-core-lab.md) | [`Protocol-Wealth/pwos-core`](https://github.com/Protocol-Wealth/pwos-core) | How do PII boundaries, audit trails, confirmation gates, tool tiers, and compliance primitives become structural controls? |
+| [PWPlan Core Lab](labs/protocol-wealth-oss/pwplan-core-lab.md) | [`Protocol-Wealth/pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core) | How does a thin planning UI expose 16 tools while keeping the compute contract PII-free by construction? |
 
 ## How to use this library
 
@@ -78,6 +113,12 @@ The `notebooklm/` directory contains pre-assembled bundles — concatenated mark
 ```bash
 # Upload any file from notebooklm/ as a NotebookLM source
 ls notebooklm/
+```
+
+Recommended first upload:
+
+```text
+notebooklm/starter-bundle.md
 ```
 
 Or roll your own bundle:
@@ -128,7 +169,7 @@ npm run pr:mergeable
 
 → **https://protocol-wealth.github.io/pw-learnai/**
 
-The interactive tools (MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, agent instructions auditor, disruption diagnostic, advantage matrix, pre-mortem, assumption ranker) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
+The interactive tools (setup path builder, MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, agent instructions auditor, disruption diagnostic, advantage matrix, pre-mortem, assumption ranker) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
 
 Or run them locally:
 

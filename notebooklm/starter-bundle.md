@@ -1,6 +1,6 @@
-# pw-learnai — Practice (AI tools, prompts, evals, coding)
+# pw-learnai — Starter Path
 
-> Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, and public-data source discipline.
+> A beginner path from prompt literacy to GitHub, coding agents, repo state files, public data sources, and safe first deployments.
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
@@ -9,11 +9,10 @@ Generated: 2026-06-30
 ## Modules included
 
 - 00-getting-started
-- 04-decision-artifacts
 - 10-prompt-engineering
-- 11-evaluation-design
 - 12-ai-coding-practice
 - 13-agent-instructions
+- 11-evaluation-design
 - 14-working-with-public-data
 
 ---
@@ -346,217 +345,6 @@ Reviewed: 2026-06-30.
 
 
 # ============================================
-# 04-decision-artifacts
-# ============================================
-
-# 04 — Building Decision-Support Artifacts
-
-How to build a tool that actually gets used.
-
-## The claim
-
-Most internal tools are built to make the builder feel productive, not to be used. The ones that get used share a specific design pattern: they reduce a real decision the user makes regularly to a structured set of inputs, give a defensible output, and respect the user's existing workflow rather than fighting it. Decision-support artifacts that do not meet all three criteria do not get used, regardless of how clever they are.
-
-## Why this matters
-
-The deliverable for most AI strategy work is a tool. A rubric, a worksheet, a calculator, a piece of working software. The tools that compound are the ones that survive past the first month — that the user reaches for again, that get refined as the user's understanding deepens, that the user shares with colleagues without prompting. This module is about how to build for that outcome rather than the launch-and-forget alternative.
-
-## The idea
-
-A decision-support artifact is a tool that takes a recurring decision the user is already making and provides structure, evidence, or computation that improves the decision. The keywords are *recurring* (one-time decisions do not need tools) and *the user is already making* (you are not adding work, you are improving work that already exists).
-
-### The three tests an artifact must pass
-
-**Test 1: Real decision.** The user actually makes this decision. Regularly. Currently. Today. Not "would benefit from making" — *is making*.
-
-If you cannot name three times in the past month the user made the decision, the artifact does not have a job.
-
-**Test 2: Defensible output.** The artifact's output can be defended to a skeptic. The reasoning is transparent. The inputs are documented. The user can show the work.
-
-Black-box outputs (especially from AI) fail this test in stakes-bearing decisions. The user will not stake their reputation on output they cannot explain.
-
-**Test 3: Workflow respect.** The artifact fits the user's existing workflow. It does not require switching tools, learning new conventions, or remembering to check it. The friction of using it is lower than the friction of not using it.
-
-A spreadsheet that lives in the same folder where the user already works beats an elegant web app that requires a separate login.
-
-### The four artifact types
-
-Most decision-support artifacts are one of four things:
-
-**Rubrics.** A structured list of criteria with scoring guidance. Used for evaluating something against a standard. Example: a vendor selection rubric, a hiring rubric, a code review rubric.
-
-**Diagnostics.** A structured set of questions whose answers map to a recommendation. Used for classification or triage. Example: the disruption diagnostic in Module 01, a Quadrant classifier from Module 02.
-
-**Calculators.** A structured set of inputs and a computational output. Used when the user has all the inputs but the math is non-trivial. Example: NPV with sensitivity analysis, expected-value of an experiment, sample size calculation.
-
-**Decision trees.** A branching structure that walks the user through dependent choices. Used for decisions with strong path-dependence. Example: an incident response tree, a regulatory-applicability decision tree.
-
-These types compose. A complex artifact might have a diagnostic up front, a calculator in the middle, and a rubric at the end. But each component should be classifiable as one of the four — if a component is not, it is probably doing two things and should be split.
-
-### Design principles
-
-**Start with the decision, not the tool.** Write the decision in one sentence. "Should we deploy this AI tool to production?" "Which vendor should we contract for X?" "Is this candidate qualified for the role?" If you cannot write the decision in one sentence, you do not understand it well enough to build for it.
-
-**Build the paper version first.** Before any code, before any spreadsheet, write the artifact on paper. The user fills it in by hand. If it does not work on paper, no amount of software will save it. If it works on paper, the software is now a convenience layer.
-
-**Optimize for the second use, not the first.** First-use experience is dominated by novelty. Second-use experience is dominated by the question "is this worth my time again?" Design the second use. The artifact should remember context, suggest defaults from prior runs, surface inconsistencies the user did not flag last time.
-
-**Make the inputs cheap, the output rich.** The cost-benefit ratio of a tool is measured in input minutes versus output value. A 30-second input that yields a defensible recommendation gets used. A 30-minute input that yields a probability score does not, regardless of how good the probability score is.
-
-**Show the reasoning.** The output is not just the recommendation — it is the recommendation plus the reasoning, in a form the user can copy into a memo or email without rewriting. If the user has to translate the output to use it, you have built a draft, not a tool.
-
-### Anti-patterns
-
-- **The dashboard.** A wall of metrics with no recommendation. Looks impressive in screenshots. Does not help anyone make any decision.
-- **The conversational AI wrapper.** A chat interface where the user has to figure out what to ask. The user does not know what to ask, which is why they need the tool.
-- **The configuration tool.** An artifact with so many knobs that the user has to learn the artifact before they can use it. The configuration burden destroys the time savings.
-- **The certainty inflator.** Output formatted as authoritative without indicating uncertainty. The user trusts it more than they should, and one bad recommendation destroys trust in the entire tool.
-- **The lock-in.** A tool that creates work to use even after it is no longer useful. The user cannot stop using it without losing data, which means they grow to resent it.
-
-## Worked example: a vendor selection rubric for AI tooling
-
-A real decision in a small firm: which AI vendor to contract for a specific use case. The decision is recurring (multiple vendor evaluations per year), the user is already making it (often poorly, by gut feel), and the failure mode is consequential (Module 03 patterns).
-
-**Decision in one sentence:** Should we contract Vendor X for use case Y?
-
-**Artifact type:** Rubric, scored across six dimensions.
-
-**Inputs (rubric criteria, scored 1-5):**
-1. Capability fit — does the tool actually solve the problem we have?
-2. Data governance — does the contract protect proprietary inputs from training use?
-3. Reliability track record — uptime, latency, incident history.
-4. Integration cost — engineering hours to deploy and maintain.
-5. Total cost — annual license plus integration plus opportunity cost of internal time.
-6. Switching cost if it does not work out — how locked in are we?
-
-**Output:** Total score, individual category scores, written recommendation, and a one-paragraph justification the user can paste into a memo.
-
-**Workflow respect:** Lives as a spreadsheet template in the same folder as the rest of the firm's vendor evaluation work. No login. No new tool. The user fills in scores and a justification cell auto-populates.
-
-**Defensibility:** The criteria are public. The scores are documented. A skeptic asking "why did we pick Vendor X" gets a complete answer in 30 seconds.
-
-**Why this works:** Cheap input (15-30 minutes per vendor). Rich output (a defensible recommendation plus a paste-ready justification). Lives in the user's existing workflow. Scales — adding new vendors is filling in another column.
-
-## Common failure modes
-
-- **Building the tool the user said they wanted instead of the tool they will use.** Users frequently request features that test poorly in actual use. The discipline is to ask what decision the tool helps with, then build the minimum that serves the decision.
-- **Confusing the artifact with the framework.** A framework is the underlying logic; an artifact is a packaging of the framework into something usable. Many builders ship the framework as a blog post and call it a tool.
-- **Skipping the paper version.** If the paper version is bad, the software version is a polished bad thing.
-- **Optimizing for the build, not the deploy.** The tool is not done when it works. It is done when the user has used it three times and reached for it without prompting.
-- **Treating "the user finds it useful" as the same as "the user uses it."** Stated preference and revealed preference diverge. Track usage, not satisfaction.
-
-## What this module does not cover
-
-- The technical implementation of any specific artifact (use the right tool — spreadsheet, web app, internal tool platform — for the job)
-- How to evaluate AI-generated outputs in artifacts (see Module 11)
-- How to test whether a planned artifact will actually be used (see Module 07 on experimentation)
-- How to handle artifacts that operate on regulated data (jurisdiction-specific, get counsel)
-
-## Try this
-
-See [exercises.md](exercises.md) for the artifact design template and a usage tracking template.
-
-## Further reading
-
-See [references.md](references.md).
-
-
----
-
-# 04 — Exercises
-
-## Exercise 1: The decision in one sentence
-
-Pick a tool you want to build, or one you have built that does not get used. Write the decision the tool supports in one sentence, in this exact form:
-
-> "When [trigger condition], the user must decide whether/which/how [decision], and [success looks like]."
-
-Examples:
-- "When a vendor pitches us, the user must decide whether to enter formal evaluation, and success looks like a defensible go/no-go answer in 20 minutes."
-- "When a candidate completes a take-home, the user must decide whether to advance them to onsite, and success looks like a calibrated yes/no with documented reasoning."
-
-If you cannot write this sentence cleanly, the tool does not yet have a job. Stop building until the sentence works.
-
-## Exercise 2: The frequency check
-
-For your decision, list the last three times someone in your organization made it.
-
-| When | Who | What did they decide | How long did it take |
-|------|-----|----------------------|---------------------|
-| | | | |
-| | | | |
-| | | | |
-
-If you cannot list three instances in the past 90 days, the decision is not recurring enough to justify a tool. Build a checklist instead.
-
-## Exercise 3: The paper version
-
-Before any software, build the artifact on paper. Literal paper, or a single sheet in a spreadsheet.
-
-Have one user fill it in for one real instance of the decision. Watch them work. Note:
-
-- Where do they pause?
-- Which inputs do they have to look up vs already know?
-- What do they do with the output?
-- Would they reach for it next time?
-
-Revise the paper version until those four answers are satisfactory. Only then build the software.
-
-## Exercise 4: Usage instrumentation
-
-For any artifact you ship, track three numbers from week 1:
-
-1. **Usage count.** How many times has it been used?
-2. **Time per use.** Median minutes from open to close.
-3. **Outcome use.** How often does the output of the artifact actually appear in a downstream artifact (memo, decision document, email)?
-
-The third number is the real measure. An artifact that gets opened but whose output goes nowhere is failing. The user will stop opening it within a month.
-
-## Exercise 5: The retirement criteria
-
-Write the conditions under which you would retire the artifact:
-
-- If usage drops below ___ per month
-- If the underlying decision changes such that the artifact no longer fits
-- If a vendor product or upstream tool absorbs the function
-
-Tools that do not have retirement criteria accumulate. The accumulation is itself a cost — every tool the user has to remember exists is friction against using the right one.
-
-
----
-
-# 04 — References
-
-## On tool design
-
-- **Norman, Don.** *The Design of Everyday Things* (1988, revised 2013). The foundational text on affordances, signifiers, and the cost of cognitive load. Reads as well now as it did in 1988.
-- **Krug, Steve.** *Don't Make Me Think* (2000, revised 2014). Aimed at web design but the principles apply to any tool. Short. Worth the afternoon.
-- **Tufte, Edward.** *The Visual Display of Quantitative Information* (1983) and *Envisioning Information* (1990). For artifacts where the output is data. The chartjunk-vs-signal discipline applies broadly.
-
-## On decision support specifically
-
-- **Russo, J. Edward, and Paul J. H. Schoemaker.** *Decision Traps* (1989). The ten most common decision-making errors and how structured tools can mitigate them.
-- **Kahneman, Daniel, Olivier Sibony, and Cass Sunstein.** *Noise: A Flaw in Human Judgment* (2021). The case for structured decision-making in organizational contexts. The mechanical aggregation arguments directly support rubric-based artifacts.
-- **Klein, Gary.** *Sources of Power* (1998). On expert decision-making in real-world conditions. Useful for understanding when an artifact helps and when it gets in the way.
-
-## On adoption
-
-- **Rogers, Everett.** *Diffusion of Innovations* (1962, fifth edition 2003). The canonical work on how new things get adopted. The five attributes (relative advantage, compatibility, complexity, trialability, observability) are a useful design check for any tool.
-- **Sull, Donald, and Kathleen Eisenhardt.** *Simple Rules* (2015). Argues that the most effective decision tools are very small sets of rules, not comprehensive frameworks. The argument is overstated but the corrective is useful.
-
-## On the failure of internal tools
-
-- **Various postmortems** from internal tools at large companies, where available. The common pattern: the tool was built by people who did not have to use it, for use cases the builders described rather than observed.
-
-## Practical templates
-
-- **Anthropic's prompt library** for AI artifacts (claude.ai/anthropic-cookbook). Good baseline patterns when the artifact involves an LLM.
-- **Notion, Airtable, and similar** template galleries. Often more useful than they look, especially for the rubric and diagnostic types.
-- **Spreadsheets.** The most underrated decision-support tool in the world. Most artifacts could be a spreadsheet. Fight the temptation to build software.
-
-
-
-# ============================================
 # 10-prompt-engineering
 # ============================================
 
@@ -792,206 +580,6 @@ Add the missing negative instructions and test that they do not regress legitima
 
 - **Various critics** have argued that elaborate prompt engineering is a band-aid over models that should be more capable by default. The argument is partially correct — vendor improvements have absorbed many techniques into default behavior. The implication is to keep prompts as simple as the task allows and add structure only when needed.
 - **Fine-tuning vs prompting.** For tasks done at high volume with consistent format, fine-tuning beats elaborate prompting. The crossover point is roughly 1000+ similar tasks per month with consistent input/output structure. Below that, prompting is more flexible and cheaper to iterate.
-
-
-
-# ============================================
-# 11-evaluation-design
-# ============================================
-
-# 11 — Evaluation Design for AI Systems
-
-How to know your AI system is getting better, not just different.
-
-## The claim
-
-Most teams ship AI systems without an evaluation harness, then ship changes without measuring whether the changes improve anything. The result is a system that drifts in quality without anyone noticing, where confidence in output rises with familiarity rather than evidence. Evaluation is the discipline that breaks the drift. It is unglamorous. It is the difference between an AI system that compounds in usefulness and one that quietly degrades.
-
-## Why this matters
-
-The asymmetry: bad outputs from an AI system cost the consumer of the output, not the producer. Inside the firm, an output that gets accepted because it looks right but is subtly wrong costs the customer who acts on it. Outside the firm, the cost shows up as customer churn, regulatory exposure, or one viral screenshot of an embarrassing failure. None of these costs accrue to the engineer who shipped the change. Without evaluation, the producer gets the benefit and the consumer gets the cost.
-
-## The idea
-
-Three layers of evaluation. Each addresses a different question.
-
-### Layer 1: Does this output meet the standard?
-
-Per-output evaluation. For a given input, did the system produce an acceptable output?
-
-The standard depends on the task. For classification, it is whether the label is correct. For generation, it is whether the output is faithful to the input, factually accurate, and appropriate to the context. For decision support, it is whether the recommendation is defensible.
-
-The evaluation method depends on the task too. Classification tasks have ground-truth labels — measure accuracy directly. Generation tasks rarely have a single right answer — use rubric-based human review or model-as-judge with a clear rubric. Decision support is in between — usually requires expert review against a written standard.
-
-The thing to avoid: vibes-based evaluation. "It looks good" is not a measurement. The team has no way to detect quality drift if the only check is impression. Build a written rubric. Apply it consistently. Record the scores.
-
-### Layer 2: Does the system perform across inputs?
-
-System-level evaluation. Across a representative set of inputs, what is the system's overall performance?
-
-The representative set matters. A test set of 20 happy-path examples does not reveal anything about edge cases or failure modes. The discipline:
-
-- **Happy path.** Typical, expected inputs. 30-50% of the test set.
-- **Edge cases.** Unusual inputs, ambiguous inputs, inputs at the boundaries of intended scope. 20-30% of the test set.
-- **Adversarial cases.** Inputs designed to break the system, including prompt injection attempts, off-topic content, and inputs containing sensitive material the system should refuse. 15-25% of the test set.
-- **Out-of-distribution.** Inputs the system was not designed to handle, where the correct behavior is graceful refusal or escalation. 10-20% of the test set.
-
-A test set without adversarial and out-of-distribution cases tests only that the system handles the work it was designed for. It does not test what happens when the system encounters anything else, which is where most production failures occur.
-
-### Layer 3: Does the system improve over time?
-
-Longitudinal evaluation. Run the same test set against the system periodically. Compare across runs.
-
-The signals to watch:
-
-- **Regression.** A test that previously passed now fails. Either the system changed (vendor pushed a model update, prompt was modified, downstream code changed) or the test was flaky. Investigate before moving on.
-- **Drift in the gray zone.** Tests that scored 4/5 last quarter score 3/5 this quarter. No individual change is alarming; the trend is. Investigate the source.
-- **Gradient of failure.** Where the system fails, are the failures clustered? A pattern of failures on a specific input type indicates a fixable issue. Random failures indicate noise that may not be addressable.
-
-Without longitudinal evaluation, vendor model changes are invisible to the operator until customers complain. With it, the operator detects the change in days and can roll back or adapt before customers see it.
-
-## Building the evaluation harness
-
-Practical guidance for getting started.
-
-**Start small.** A 20-input test set with a simple rubric, run weekly, beats no test set. Add inputs as you encounter new failure modes in production.
-
-**Document what each test exists to verify.** A test without a stated purpose is hard to maintain. When the system behavior changes, the team needs to know whether the change is a regression or an intended improvement.
-
-**Automate where possible, but not at the cost of quality.** Automated metrics (BLEU, ROUGE, exact match) work for narrow tasks. Most operator-relevant tasks need human review or model-as-judge with explicit rubrics. Automation here often measures the wrong thing.
-
-**Separate the evaluation from the developer.** The person who built the prompt should not be the only person evaluating it. Unintended biases creep in. Have a separate reviewer or rotate evaluation responsibility across the team.
-
-**Treat the test set as a living document.** When production produces a failure that the test set did not catch, add it to the test set. Over time the test set encodes the team's understanding of the failure modes.
-
-### Model-as-judge: useful but limited
-
-Using one model to evaluate another model's output is widely practiced and useful within limits.
-
-**Where it works:** structured tasks with clear rubrics — classification, format compliance, presence of required elements. The judge model can apply the rubric consistently and at scale.
-
-**Where it does not work:** open-ended quality judgments without strong rubrics, judgments that require domain expertise the judge does not have, judgments where the judge and the producer share the same biases.
-
-**Discipline when using:** the rubric the judge applies must be specific. "Is this answer high-quality?" produces noise. "Does this answer cite the relevant policy section?" produces signal. The more specific the rubric, the more reliable the judgment.
-
-## Common failure modes
-
-- **Shipping without evaluation.** The most common failure mode. The team trusts demo results. Production failures are discovered by customers.
-- **Evaluation theater.** A test set exists. It is not run regularly. The team is confident in quality without evidence.
-- **Vibes-based grading.** Outputs are evaluated by impression. Quality drifts because impressions are not consistent across raters or across time.
-- **Test set written by the prompt author.** The author tests the cases the author thought of. The cases the author did not think of go untested until production.
-- **Ignoring drift.** Quality changes between runs are dismissed as noise. By the time the trend is undeniable, the system has degraded substantially.
-- **Confusing fluency with accuracy.** AI outputs sound confident regardless of whether they are correct. Evaluation must check accuracy specifically, not let fluency substitute for it.
-
-## What this module does not cover
-
-- The technical mechanics of building automated test infrastructure (separate engineering domain)
-- The statistical analysis of evaluation results at scale (when test sets are large enough for it; most operator test sets are not)
-- Red-teaming as a specialized discipline (adjacent but distinct; see references)
-
-## Try this
-
-See [exercises.md](exercises.md).
-
-## Further reading
-
-See [references.md](references.md).
-
-
----
-
-# 11 — Exercises
-
-## Exercise 1: Build a 20-input test set
-
-For an AI system you operate (or plan to operate), build a test set with the four input categories.
-
-| # | Input | Category (happy / edge / adversarial / OOD) | Expected output category | Why this test exists |
-|---|-------|---------------------------------------------|--------------------------|---------------------|
-| 1 | | | | |
-| ... | | | | |
-| 20 | | | | |
-
-If "why this test exists" is "general coverage," you have not thought about what each test verifies. Be specific.
-
-## Exercise 2: Write the rubric
-
-For your AI system's output, write the rubric that defines acceptable.
-
-| Dimension | What 5/5 looks like | What 3/5 looks like | What 1/5 looks like |
-|-----------|--------------------|--------------------|---------------------|
-| | | | |
-
-A rubric without specific anchor points is unreliable. The exercise is the specificity.
-
-## Exercise 3: Run the harness
-
-Execute the test set against your current system. Score each output against the rubric. Record:
-
-- Total score
-- Per-input scores
-- Failures (specific inputs and what went wrong)
-- Notes (anything that surprised you)
-
-Save the results with a date stamp. This is the baseline.
-
-## Exercise 4: Re-run after a change
-
-When you make any change to the system (prompt change, vendor change, downstream code change), re-run the harness. Compare results.
-
-| Test # | Previous score | New score | Change | Investigate? |
-|--------|---------------|-----------|--------|--------------|
-| | | | | |
-
-Any score that drops by 1+ points is investigated. Either the change is a regression or the test was flaky. Either way, the team learns something.
-
-## Exercise 5: Quarterly review
-
-Once a quarter, run the harness with no system changes. Compare against prior quarters.
-
-If scores have shifted with no system changes, the vendor's model has shifted. Decide:
-- Roll back to a pinned model version (where supported)
-- Adjust the prompt to compensate for the model change
-- Accept the new behavior if the shift is positive
-- Switch vendors if the shift is negative and the vendor cannot be pinned
-
-The discipline is to make this an explicit decision rather than an ambient drift.
-
----
-
----
-
-# 11 — References
-
-## Primary sources
-
-- **Hamel Husain, Isaac Flath, Eugene Yan, Bryan Bischof, Jason Liu, Charles Frye.** "What We Learned from a Year of Building with LLMs" (2024). The clearest practical treatment of LLM evaluation in production. Read this first.
-- **Eugene Yan.** Various essays at eugeneyan.com on evaluation patterns. Practical, technical, free.
-- **Chip Huyen.** *Designing Machine Learning Systems* (2022) and her blog. Treats evaluation as part of the system design problem rather than a separate concern.
-
-## On model-as-judge
-
-- **Zheng, Lianmin, et al.** "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena" (2023). The empirical case for model-as-judge, with honest treatment of where it falls down.
-- **Various follow-on papers** on rubric-based evaluation. The pattern is converging: specific rubrics work, vague rubrics produce noise.
-
-## On test set design
-
-- **Northcutt, Curtis, et al.** "Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks" (2021). Empirical demonstration that even widely-used benchmarks have systematic errors. Useful for calibrating skepticism about your own test set.
-- **Various works on stress-testing and adversarial evaluation.** AI safety community has done substantial work here. METR and similar evaluation organizations publish methodology.
-
-## On red-teaming
-
-- **Anthropic, OpenAI, Google.** Vendor red-teaming documentation. Vendor-specific but the patterns transfer.
-- **AI Village at DEF CON.** Annual public red-teaming work. Useful for understanding what real adversarial testing looks like.
-
-## On the limits of evaluation
-
-- **The replication crisis literature** (Ioannidis 2005, "Why Most Published Research Findings Are False"). Not specific to AI but the discipline is relevant — beware of evaluation results that confirm what the team wanted to find.
-- **Various critiques of LLM benchmarks** (BIG-bench, MMLU, others). The benchmarks are useful but increasingly gamed; vendor performance on benchmarks does not translate cleanly to operator-relevant tasks.
-
-## A note on regulatory evaluation
-
-For AI systems in regulated contexts (finance, healthcare, legal), evaluation often must meet specific standards. The relevant frameworks (NIST AI RMF, EU AI Act for those affected, sector-specific guidance) are evolving. Build the harness to a standard that is defensible in audit, not just to a standard the team likes.
 
 
 
@@ -1637,6 +1225,206 @@ and fill exact URLs and a reviewed date rather than relying on memory.
   reviewed: __________]
 - Companion tool in this repo: components/interactive/AgentInstructionsAuditor.jsx.
 - Companion prompt in this repo: modules/13-agent-instructions/deep-audit-prompt.md.
+
+
+
+# ============================================
+# 11-evaluation-design
+# ============================================
+
+# 11 — Evaluation Design for AI Systems
+
+How to know your AI system is getting better, not just different.
+
+## The claim
+
+Most teams ship AI systems without an evaluation harness, then ship changes without measuring whether the changes improve anything. The result is a system that drifts in quality without anyone noticing, where confidence in output rises with familiarity rather than evidence. Evaluation is the discipline that breaks the drift. It is unglamorous. It is the difference between an AI system that compounds in usefulness and one that quietly degrades.
+
+## Why this matters
+
+The asymmetry: bad outputs from an AI system cost the consumer of the output, not the producer. Inside the firm, an output that gets accepted because it looks right but is subtly wrong costs the customer who acts on it. Outside the firm, the cost shows up as customer churn, regulatory exposure, or one viral screenshot of an embarrassing failure. None of these costs accrue to the engineer who shipped the change. Without evaluation, the producer gets the benefit and the consumer gets the cost.
+
+## The idea
+
+Three layers of evaluation. Each addresses a different question.
+
+### Layer 1: Does this output meet the standard?
+
+Per-output evaluation. For a given input, did the system produce an acceptable output?
+
+The standard depends on the task. For classification, it is whether the label is correct. For generation, it is whether the output is faithful to the input, factually accurate, and appropriate to the context. For decision support, it is whether the recommendation is defensible.
+
+The evaluation method depends on the task too. Classification tasks have ground-truth labels — measure accuracy directly. Generation tasks rarely have a single right answer — use rubric-based human review or model-as-judge with a clear rubric. Decision support is in between — usually requires expert review against a written standard.
+
+The thing to avoid: vibes-based evaluation. "It looks good" is not a measurement. The team has no way to detect quality drift if the only check is impression. Build a written rubric. Apply it consistently. Record the scores.
+
+### Layer 2: Does the system perform across inputs?
+
+System-level evaluation. Across a representative set of inputs, what is the system's overall performance?
+
+The representative set matters. A test set of 20 happy-path examples does not reveal anything about edge cases or failure modes. The discipline:
+
+- **Happy path.** Typical, expected inputs. 30-50% of the test set.
+- **Edge cases.** Unusual inputs, ambiguous inputs, inputs at the boundaries of intended scope. 20-30% of the test set.
+- **Adversarial cases.** Inputs designed to break the system, including prompt injection attempts, off-topic content, and inputs containing sensitive material the system should refuse. 15-25% of the test set.
+- **Out-of-distribution.** Inputs the system was not designed to handle, where the correct behavior is graceful refusal or escalation. 10-20% of the test set.
+
+A test set without adversarial and out-of-distribution cases tests only that the system handles the work it was designed for. It does not test what happens when the system encounters anything else, which is where most production failures occur.
+
+### Layer 3: Does the system improve over time?
+
+Longitudinal evaluation. Run the same test set against the system periodically. Compare across runs.
+
+The signals to watch:
+
+- **Regression.** A test that previously passed now fails. Either the system changed (vendor pushed a model update, prompt was modified, downstream code changed) or the test was flaky. Investigate before moving on.
+- **Drift in the gray zone.** Tests that scored 4/5 last quarter score 3/5 this quarter. No individual change is alarming; the trend is. Investigate the source.
+- **Gradient of failure.** Where the system fails, are the failures clustered? A pattern of failures on a specific input type indicates a fixable issue. Random failures indicate noise that may not be addressable.
+
+Without longitudinal evaluation, vendor model changes are invisible to the operator until customers complain. With it, the operator detects the change in days and can roll back or adapt before customers see it.
+
+## Building the evaluation harness
+
+Practical guidance for getting started.
+
+**Start small.** A 20-input test set with a simple rubric, run weekly, beats no test set. Add inputs as you encounter new failure modes in production.
+
+**Document what each test exists to verify.** A test without a stated purpose is hard to maintain. When the system behavior changes, the team needs to know whether the change is a regression or an intended improvement.
+
+**Automate where possible, but not at the cost of quality.** Automated metrics (BLEU, ROUGE, exact match) work for narrow tasks. Most operator-relevant tasks need human review or model-as-judge with explicit rubrics. Automation here often measures the wrong thing.
+
+**Separate the evaluation from the developer.** The person who built the prompt should not be the only person evaluating it. Unintended biases creep in. Have a separate reviewer or rotate evaluation responsibility across the team.
+
+**Treat the test set as a living document.** When production produces a failure that the test set did not catch, add it to the test set. Over time the test set encodes the team's understanding of the failure modes.
+
+### Model-as-judge: useful but limited
+
+Using one model to evaluate another model's output is widely practiced and useful within limits.
+
+**Where it works:** structured tasks with clear rubrics — classification, format compliance, presence of required elements. The judge model can apply the rubric consistently and at scale.
+
+**Where it does not work:** open-ended quality judgments without strong rubrics, judgments that require domain expertise the judge does not have, judgments where the judge and the producer share the same biases.
+
+**Discipline when using:** the rubric the judge applies must be specific. "Is this answer high-quality?" produces noise. "Does this answer cite the relevant policy section?" produces signal. The more specific the rubric, the more reliable the judgment.
+
+## Common failure modes
+
+- **Shipping without evaluation.** The most common failure mode. The team trusts demo results. Production failures are discovered by customers.
+- **Evaluation theater.** A test set exists. It is not run regularly. The team is confident in quality without evidence.
+- **Vibes-based grading.** Outputs are evaluated by impression. Quality drifts because impressions are not consistent across raters or across time.
+- **Test set written by the prompt author.** The author tests the cases the author thought of. The cases the author did not think of go untested until production.
+- **Ignoring drift.** Quality changes between runs are dismissed as noise. By the time the trend is undeniable, the system has degraded substantially.
+- **Confusing fluency with accuracy.** AI outputs sound confident regardless of whether they are correct. Evaluation must check accuracy specifically, not let fluency substitute for it.
+
+## What this module does not cover
+
+- The technical mechanics of building automated test infrastructure (separate engineering domain)
+- The statistical analysis of evaluation results at scale (when test sets are large enough for it; most operator test sets are not)
+- Red-teaming as a specialized discipline (adjacent but distinct; see references)
+
+## Try this
+
+See [exercises.md](exercises.md).
+
+## Further reading
+
+See [references.md](references.md).
+
+
+---
+
+# 11 — Exercises
+
+## Exercise 1: Build a 20-input test set
+
+For an AI system you operate (or plan to operate), build a test set with the four input categories.
+
+| # | Input | Category (happy / edge / adversarial / OOD) | Expected output category | Why this test exists |
+|---|-------|---------------------------------------------|--------------------------|---------------------|
+| 1 | | | | |
+| ... | | | | |
+| 20 | | | | |
+
+If "why this test exists" is "general coverage," you have not thought about what each test verifies. Be specific.
+
+## Exercise 2: Write the rubric
+
+For your AI system's output, write the rubric that defines acceptable.
+
+| Dimension | What 5/5 looks like | What 3/5 looks like | What 1/5 looks like |
+|-----------|--------------------|--------------------|---------------------|
+| | | | |
+
+A rubric without specific anchor points is unreliable. The exercise is the specificity.
+
+## Exercise 3: Run the harness
+
+Execute the test set against your current system. Score each output against the rubric. Record:
+
+- Total score
+- Per-input scores
+- Failures (specific inputs and what went wrong)
+- Notes (anything that surprised you)
+
+Save the results with a date stamp. This is the baseline.
+
+## Exercise 4: Re-run after a change
+
+When you make any change to the system (prompt change, vendor change, downstream code change), re-run the harness. Compare results.
+
+| Test # | Previous score | New score | Change | Investigate? |
+|--------|---------------|-----------|--------|--------------|
+| | | | | |
+
+Any score that drops by 1+ points is investigated. Either the change is a regression or the test was flaky. Either way, the team learns something.
+
+## Exercise 5: Quarterly review
+
+Once a quarter, run the harness with no system changes. Compare against prior quarters.
+
+If scores have shifted with no system changes, the vendor's model has shifted. Decide:
+- Roll back to a pinned model version (where supported)
+- Adjust the prompt to compensate for the model change
+- Accept the new behavior if the shift is positive
+- Switch vendors if the shift is negative and the vendor cannot be pinned
+
+The discipline is to make this an explicit decision rather than an ambient drift.
+
+---
+
+---
+
+# 11 — References
+
+## Primary sources
+
+- **Hamel Husain, Isaac Flath, Eugene Yan, Bryan Bischof, Jason Liu, Charles Frye.** "What We Learned from a Year of Building with LLMs" (2024). The clearest practical treatment of LLM evaluation in production. Read this first.
+- **Eugene Yan.** Various essays at eugeneyan.com on evaluation patterns. Practical, technical, free.
+- **Chip Huyen.** *Designing Machine Learning Systems* (2022) and her blog. Treats evaluation as part of the system design problem rather than a separate concern.
+
+## On model-as-judge
+
+- **Zheng, Lianmin, et al.** "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena" (2023). The empirical case for model-as-judge, with honest treatment of where it falls down.
+- **Various follow-on papers** on rubric-based evaluation. The pattern is converging: specific rubrics work, vague rubrics produce noise.
+
+## On test set design
+
+- **Northcutt, Curtis, et al.** "Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks" (2021). Empirical demonstration that even widely-used benchmarks have systematic errors. Useful for calibrating skepticism about your own test set.
+- **Various works on stress-testing and adversarial evaluation.** AI safety community has done substantial work here. METR and similar evaluation organizations publish methodology.
+
+## On red-teaming
+
+- **Anthropic, OpenAI, Google.** Vendor red-teaming documentation. Vendor-specific but the patterns transfer.
+- **AI Village at DEF CON.** Annual public red-teaming work. Useful for understanding what real adversarial testing looks like.
+
+## On the limits of evaluation
+
+- **The replication crisis literature** (Ioannidis 2005, "Why Most Published Research Findings Are False"). Not specific to AI but the discipline is relevant — beware of evaluation results that confirm what the team wanted to find.
+- **Various critiques of LLM benchmarks** (BIG-bench, MMLU, others). The benchmarks are useful but increasingly gamed; vendor performance on benchmarks does not translate cleanly to operator-relevant tasks.
+
+## A note on regulatory evaluation
+
+For AI systems in regulated contexts (finance, healthcare, legal), evaluation often must meet specific standards. The relevant frameworks (NIST AI RMF, EU AI Act for those affected, sector-specific guidance) are evolving. Build the harness to a standard that is defensible in audit, not just to a standard the team likes.
 
 
 
