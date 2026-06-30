@@ -14,6 +14,7 @@ All notable changes to `pw-learnai` are recorded here.
 - Added `notebooklm/starter-bundle.md` and `notebooklm/data-bundle.md`.
 - Added local Tailwind/PostCSS config so the site no longer depends on the Tailwind CDN at runtime.
 - Added root state files: `CURRENT-STATE.md`, `NEXT-PROMPT.md`, and `ROADMAP.md`.
+- Added root markdown publishing for README, changelog, state, next prompt, roadmap, and agent-instruction files.
 
 ### Changed
 
@@ -22,6 +23,7 @@ All notable changes to `pw-learnai` are recorded here.
 - Updated Protocol Wealth OSS labs with current Nexus, PWOS Core, and PWPlan Core public-surface notes reviewed on 2026-06-30.
 - Regenerated NotebookLM bundles after module and lab updates.
 - Updated GitHub Actions Pages workflow to run on Node 22 and current action runtimes.
+- Updated `scripts/sync-public-content.mjs` so root markdown docs are included in the GitHub Pages artifact.
 
 ### Verified
 

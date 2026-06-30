@@ -5,6 +5,16 @@ const ROOT = process.cwd()
 const PUBLIC_DIR = path.join(ROOT, 'public')
 
 const CONTENT_DIRS = ['modules', 'labs', 'notebooklm']
+const ROOT_MARKDOWN_FILES = [
+  'README.md',
+  'CHANGELOG.md',
+  'CURRENT-STATE.md',
+  'NEXT-PROMPT.md',
+  'ROADMAP.md',
+  'AGENTS.md',
+  'CLAUDE.md',
+  'CONTRIBUTING.md',
+]
 
 function copyDirectory(name) {
   const source = path.join(ROOT, name)
@@ -27,4 +37,11 @@ for (const directory of CONTENT_DIRS) {
   copyDirectory(directory)
 }
 
-console.log(`Synced ${CONTENT_DIRS.join(', ')} into public/.`)
+for (const filename of ROOT_MARKDOWN_FILES) {
+  const source = path.join(ROOT, filename)
+  if (fs.existsSync(source)) {
+    fs.copyFileSync(source, path.join(PUBLIC_DIR, filename))
+  }
+}
+
+console.log(`Synced ${CONTENT_DIRS.join(', ')} and root markdown docs into public/.`)
