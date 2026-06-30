@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-06-29
+Generated: 2026-06-30
 
 ## Labs included
 
@@ -31,22 +31,35 @@ These labs are not production implementation guides. They are learning bridges:
 3. Inspect the open-source starting point.
 4. Adapt the pattern with Codex CLI or Claude Code.
 
+Reviewed against the public OSS surfaces on 2026-06-30.
+
 ## Lab index
 
 | Lab | Repo | Learning target | Browser tool |
 |-----|------|-----------------|--------------|
-| [Nexus Core Lab](nexus-core-lab.md) | [`Protocol-Wealth/nexus-core`](https://github.com/Protocol-Wealth/nexus-core) | MCP tool orchestration, public read-only financial analysis, graceful degradation | MCP Tool Planner |
-| [PWOS Core Lab](pwos-core-lab.md) | [`Protocol-Wealth/pwos-core`](https://github.com/Protocol-Wealth/pwos-core) | PII boundaries, audit trails, confirmation gates, compliance primitives | PII Guard Simulator, Confirmation Gate Simulator |
-| [PWPlan Core Lab](pwplan-core-lab.md) | [`Protocol-Wealth/pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core) | PII-free planning contracts, de-identified compute planes, contract tripwires | Planning Contract Validator |
+| [Nexus Core Lab](nexus-core-lab.md) | [`Protocol-Wealth/nexus-core`](https://github.com/Protocol-Wealth/nexus-core) | MCP tool orchestration, public read-only analytics, PII-free planning dispatch, graceful degradation | MCP Tool Planner |
+| [PWOS Core Lab](pwos-core-lab.md) | [`Protocol-Wealth/pwos-core`](https://github.com/Protocol-Wealth/pwos-core) | PII boundaries, audit trails, confirmation gates, tool tiers, compliance primitives | PII Guard Simulator, Confirmation Gate Simulator |
+| [PWPlan Core Lab](pwplan-core-lab.md) | [`Protocol-Wealth/pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core) | PII-free planning contracts, 16-tool planning UI, de-identified compute planes, contract tripwires | Planning Contract Validator |
 
 ## Ecosystem map
 
 | Repo | Role |
 |------|------|
 | `pw-learnai` | Learning front door: modules, exercises, browser-only tools, AI notebook bundles |
-| `nexus-core` | Public read-only MCP and REST financial analysis engine |
-| `pwos-core` | Compliance-first AI OS primitives for regulated advisory workflows |
-| `pwplan-core` | Privacy-by-construction planning UI and PII-free contract pattern |
+| `nexus-core` | Public read-only MCP and REST analytics engine: regime, market, economic, options, planning, on-chain, LP, vault, Solana, benchmark, and meta surfaces |
+| `pwos-core` | Compliance-first AI OS primitives for regulated advisory workflows: PII guard, audit log, MCP tool tiers, confirmation gates, auth, webhooks, cache keys, GCP helpers, ledger, holdings, CRM, documents, workflow, and on-chain SDK |
+| `pwplan-core` | Privacy-by-construction planning UI: 16 planning tools over a PII-free contract that can target public Nexus or a private authenticated plane |
+
+## Beginner route
+
+If you are onboarding someone who only knows chat prompts, send them through this sequence:
+
+1. [Getting Started as an AI Operator](../../modules/00-getting-started/module.md)
+2. [AI-Assisted Coding in Practice](../../modules/12-ai-coding-practice/module.md)
+3. [Designing Agent Instructions](../../modules/13-agent-instructions/module.md)
+4. [Working with Public Data](../../modules/14-working-with-public-data/module.md)
+5. This labs overview
+6. One lab, chosen by what they want to learn: public data (`nexus-core`), compliance primitives (`pwos-core`), or PII-free planning (`pwplan-core`)
 
 ## Agentic implementation loop
 
@@ -98,6 +111,8 @@ How to use a public, read-only MCP engine as a starting point for AI-assisted fi
 
 Nexus Core is a public, read-only, regime-adaptive financial-analysis engine. It exposes the same underlying computation through REST endpoints and MCP tools, so an AI client can call financial analysis capabilities without implementing the financial domain logic itself.
 
+Reviewed against [`nexusmcp.site/openapi.json`](https://nexusmcp.site/openapi.json) and the public MCP guide on 2026-06-30.
+
 ## What to learn
 
 The durable pattern is not "financial API." The durable pattern is a bounded tool surface:
@@ -107,6 +122,7 @@ The durable pattern is not "financial API." The durable pattern is a bounded too
 - Graceful degradation when optional provider keys are absent
 - Shared engine logic behind REST and MCP
 - Tool contracts that can be consumed by Claude, Codex, ChatGPT, or other MCP-compatible clients
+- A PII-free planning dispatch surface where open demos send age, balances, allocations, assumptions, and other de-identified variables rather than names, dates of birth, emails, phones, addresses, or account identities
 
 That combination lets agents call useful tools while the trust boundary remains narrow.
 
@@ -121,6 +137,23 @@ External providers
 ```
 
 The important design choice is that REST and MCP call the same engine. That prevents two subtly different versions of the same financial logic from drifting apart.
+
+## Current public surface
+
+The current public schema exposes these capability areas:
+
+| Area | What to teach |
+|------|---------------|
+| Regime | Current macro regime classification and raw signal readings |
+| Market | Quotes and OHLCV history for stocks, ETFs, indices, and crypto |
+| Economic | FRED series lookup |
+| Scoring | Educational EMF 8-check durability scoring over public fundamentals |
+| Options | Black-Scholes price and Greeks, covered-call, cash-secured-put, collar, crypto options, option books, and scenario stress |
+| Planning | PII-free retirement-planning tool discovery and dispatch |
+| On-chain | Anonymous wallet, native-chain balance, Solana token price, vault discovery, LP analytics, and benchmark return series |
+| Meta | Health and provider usage stats without keys or client data |
+
+The hosted landing page still highlights the simple entrypoints (`/api/regime`, `/api/market/quote/{symbol}`, `/api/economic/{series_id}`, and `/mcp`), but the OpenAPI schema is the current source of truth for the broader surface.
 
 ## Browser exercise
 
@@ -145,10 +178,34 @@ Read the Nexus Core lab and the nexus-core README. Propose one browser-only lear
 ## Implementation starting points
 
 - `GET /api/regime` for regime classification
+- `GET /api/regime/signals` for raw signal readings
 - `GET /api/score/{ticker}` for EMF durability scoring
 - `GET /api/market/quote/{symbol}` for market quotes
+- `GET /api/market/history/{symbol}` for OHLCV history
+- `GET /api/economic/{series_id}` for FRED series
+- `GET /api/options/price` and `/api/options/overlay/*` for educational options analytics
+- `GET /api/options/crypto/*` and `POST /api/options/crypto/*/book/*` for Deribit-backed crypto-option illustrations
+- `GET /api/wallet/{address}`, `/api/chain/*`, `/api/vaults`, `/api/solana/*`, `/api/lp/*`, and `/api/benchmarks*` for public on-chain and benchmark analytics
 - `POST /mcp` for MCP-over-HTTP
-- Planning tools exposed through `/mcp/tools`
+- `GET /mcp/tools` for planning contract discovery
+- `POST /mcp/tools/{tool_id}` for PII-free planning tool dispatch
+
+## Hosted MCP setup
+
+The hosted endpoint is:
+
+```text
+https://nexusmcp.site/mcp/
+```
+
+Current public guide examples:
+
+```bash
+claude mcp add --transport http nexus-core https://nexusmcp.site/mcp/
+codex mcp add nexus --url https://nexusmcp.site/mcp
+```
+
+`pw-learnai` must not call this endpoint from its browser tools. Use it as a source to teach tool boundaries, not as a live dependency inside this site.
 
 ## Review checklist
 
@@ -159,6 +216,7 @@ Read the Nexus Core lab and the nexus-core README. Propose one browser-only lear
 | Missing provider data has a graceful fallback | |
 | REST and MCP semantics are described consistently | |
 | Output says educational, not investment advice | |
+| Live endpoints are not called by `pw-learnai` browser tools | |
 
 ## What this lab does not do
 
@@ -182,6 +240,8 @@ How to teach compliance-first AI primitives without turning compliance into a sl
 
 PWOS Core is an open-source extraction of compliance-first primitives for regulated advisory workflows. Its value is not a single feature. Its value is the shape: PII boundaries, audit trails, confirmation gates, access tiers, webhook verification, retention-aware records, and AI guardrails that fail closed.
 
+Reviewed against the public `pwos-core` README on 2026-06-30.
+
 ## What to learn
 
 Most AI governance fails because it depends on a person remembering to do the right thing at every call site. PWOS Core pushes the control into reusable primitives:
@@ -193,8 +253,23 @@ Most AI governance fails because it depends on a person remembering to do the ri
 - Tool access tiers
 - Webhook verification and idempotency
 - Security headers and cache-key PII rejection
+- Auth, scoped agent tokens, and role guards
+- GCP helpers that refuse silent password fallback and support structured frontend error reports
+- Ledger, holdings, CRM, email archive, document generation, workflow, and on-chain SDK primitives
 
 The lesson for `pw-learnai`: teach the boundary, not the brand.
+
+## Current package map
+
+| Area | Packages and primitives to study |
+|------|----------------------------------|
+| Compliance + audit | `pii-guard`, `audit-log`, `mcp-tools`, `compliance` |
+| AI safety | `ai-guardrails` with workspace assertions, model resolver, cache-marker PII checks, and content-free audit rows |
+| Auth + access | `auth`, `webhooks`, `cache-keys`, `security-headers`, `gcp-helpers` |
+| Financial data | `ledger`, `holdings`, `crm`, `email-archive` |
+| Operations | `workflow-engine`, `document-gen`, `onchain-sdk` |
+
+The important adoption rule is that these packages are primitives. They enable a regulated posture; they do not by themselves make a deployment compliant.
 
 ## Canonical patterns to study
 
@@ -206,6 +281,9 @@ The lesson for `pw-learnai`: teach the boundary, not the brand.
 | PII egress canary | Last-mile LLM calls need independent tripwires |
 | Confirmation gate | Write tools need payload-bound human approval |
 | Three-tier agent memory | Client, advisor, and firm memory have different scopes |
+| Cache-key PII rejection | Caches should reject identity-shaped keys by construction |
+| GCP helper posture | Cloud SQL auth and secret loading should fail closed, not silently fall back |
+| Ledger and holdings invariants | Financial records need append-only events, checkpoints, and reverse-only correction |
 
 ## Browser exercises
 
@@ -239,6 +317,7 @@ Read the PWOS Core lab and the pwos-core canonical patterns. Build a client-only
 | Write action requires explicit approval | |
 | Payload drift after approval is detected | |
 | Audit concept is content-free, not raw prompt storage | |
+| Package primitive is not described as complete compliance | |
 
 ## What this lab does not do
 
@@ -263,6 +342,8 @@ How to separate a planning UI from identity by making the contract PII-free by c
 
 PWPlan Core is a thin planning UI. The open-source contract accepts de-identified planning variables such as age, balances, allocations, filing status, and derived assumptions. It has no fields for name, date of birth, SSN, email, phone, or address.
 
+Reviewed against the public `pwplan-core` README on 2026-06-30.
+
 ## What to learn
 
 The core pattern is a PII-free compute plane:
@@ -272,8 +353,34 @@ The core pattern is a PII-free compute plane:
 - The public/open path can target a PII-free engine.
 - The private production path can map identity behind authentication before making server-to-server calls.
 - A structural tripwire rejects identity-shaped keys before dispatch.
+- The open reference path can call the public Nexus planning gateway directly because the payload is de-identified and PII-free.
 
 This is stronger than "remember not to paste PII." The contract makes identity impossible to express unless someone changes the schema.
+
+## Current planning tools
+
+The current contract covers 16 tools:
+
+| Tool | Purpose |
+|------|---------|
+| `monte_carlo_decumulation` | Path simulation with tax-aware spend-down |
+| `glide_path` | Target equity weight by age |
+| `tax_aware_withdrawal` | Per-year withdrawal ordering and RMD |
+| `roth_conversion` | Convert-now vs. leave-pre-tax comparison |
+| `sequence_of_returns_stress` | Ordering effect on a fixed return set |
+| `rmd` | Required minimum distribution |
+| `tax_bracket_headroom` | Marginal bracket and Roth-fill headroom |
+| `social_security_claiming` | Benefit by claim age and breakeven ages |
+| `regime_conditioned_swr` | Safe-withdrawal-rate adjustment by live regime |
+| `correlation_matrix` | Real-data return correlations |
+| `regime_return_generator` | Live regime, transition matrix, and path cache key |
+| `portfolio_xray` | Regime-aware structural diagnostics |
+| `fire` | FIRE and Coast-FIRE number plus years to independence |
+| `risk_metrics` | Sharpe, Sortino, drawdown, and VaR for return series |
+| `rebalance` | Drift and self-financing trades to target weights |
+| `capital_market_assumptions` | Real returns, volatility, lambda, and correlations |
+
+`capital_market_assumptions` is surfaced as a Monte Carlo control rather than a standalone planning tab in the current UI.
 
 ## Contract invariant
 
@@ -316,6 +423,7 @@ Read the PWPlan Core lab and the planning contract. Build a validator for one pl
 | The examples use fake or de-identified data | |
 | Output explains the trust boundary | |
 | No live planning API call is made from `pw-learnai` | |
+| Tool list is treated as contract-driven, not hardcoded forever | |
 
 ## What this lab does not do
 

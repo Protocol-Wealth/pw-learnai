@@ -14,6 +14,11 @@ const LABS_DIR = path.join(ROOT, 'labs')
 const OUT_DIR = path.join(ROOT, 'notebooklm')
 
 const BUNDLES = {
+  'starter-bundle.md': {
+    title: 'pw-learnai — Starter Path',
+    description: 'A beginner path from prompt literacy to GitHub, coding agents, repo state files, public data sources, and safe first deployments.',
+    modules: ['00-getting-started', '10-prompt-engineering', '12-ai-coding-practice', '13-agent-instructions', '11-evaluation-design', '14-working-with-public-data']
+  },
   'all-modules.md': {
     title: 'pw-learnai — Core Curriculum',
     description: 'All numbered modules. Use as a single source for an AI notebook covering the core curriculum.',
@@ -31,13 +36,18 @@ const BUNDLES = {
   },
   'practice-bundle.md': {
     title: 'pw-learnai — Practice (AI tools, prompts, evals, coding)',
-    description: 'Decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design.',
-    modules: ['04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
+    description: 'Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, and public-data source discipline.',
+    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '14-working-with-public-data']
   },
   'ai-deep-dive.md': {
     title: 'pw-learnai — AI Focus',
     description: 'For someone who only wants the AI-specific modules.',
-    modules: ['02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
+    modules: ['00-getting-started', '02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
+  },
+  'data-bundle.md': {
+    title: 'pw-learnai — Working with Public Data',
+    description: 'Public dataset discovery, National Archives Catalog API constraints, OAI-PMH metadata harvesting, and source-note discipline before implementation.',
+    modules: ['14-working-with-public-data', '00-getting-started', '11-evaluation-design', '12-ai-coding-practice']
   },
   'protocol-wealth-oss-labs.md': {
     title: 'pw-learnai — Protocol Wealth OSS Labs',
