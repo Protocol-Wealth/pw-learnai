@@ -21,6 +21,12 @@ Deliverable: a short `SETUP-NOTES.md` in a practice repo:
 ```md
 # Setup Notes
 
+Agent path:
+- Claude:
+- Codex:
+- Using both?:
+- Which tool is allowed to edit first:
+
 Desktop or IDE agent:
 - Tool:
 - Installed on:
@@ -39,7 +45,30 @@ First safe task:
 
 Use a harmless task such as "summarize this repository" before asking for edits.
 
-## Exercise 3: Write the scaffold
+## Exercise 3: Make one Markdown file and one HTML file
+
+Deliverable: two files in a practice folder:
+
+```text
+README.md
+first-page.html
+```
+
+`README.md` should answer:
+
+- What is this folder?
+- What command or manual check proves it still works?
+- Which agent are you using first: Claude, Codex, or both?
+
+`first-page.html` should be a tiny visible page that opens in a browser. It does not need a framework, backend, login, database, or deployment.
+
+Ask Claude or Codex for a read-only review before asking it to edit:
+
+```text
+Read README.md and first-page.html. Explain what this practice folder does and propose one tiny improvement. Do not edit files yet.
+```
+
+## Exercise 4: Write the scaffold
 
 Deliverable: add these files to a practice repository:
 
@@ -69,7 +98,7 @@ Minimum `AGENTS.md`:
 - After code changes, run the documented check and report the result.
 ```
 
-## Exercise 4: Convert a chat prompt into a coding-agent task
+## Exercise 5: Convert a chat prompt into a coding-agent task
 
 Start with this weak prompt:
 
@@ -88,7 +117,7 @@ Rewrite it with:
 
 Then run the improved prompt in a read-only or plan mode first. Save the plan in `NEXT-PROMPT.md` if it is reusable.
 
-## Exercise 5: Data source reconnaissance
+## Exercise 6: Data source reconnaissance
 
 Deliverable: `DATA-SOURCE-NOTES.md` with three sections:
 
@@ -98,7 +127,7 @@ Deliverable: `DATA-SOURCE-NOTES.md` with three sections:
 
 Do not write a scraper. The goal is to understand metadata, attribution, pagination, and limits before code exists.
 
-## Exercise 6: Choose an infrastructure target
+## Exercise 7: Choose an infrastructure target
 
 Deliverable: a one-page decision note:
 

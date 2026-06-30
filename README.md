@@ -39,6 +39,11 @@ The full beginner path is deliberately practical:
 5. Keep `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and `ROADMAP.md` aligned as work changes.
 6. Learn public data sources with read-only examples before writing harvesters or deploying services.
 
+The live site now starts with a visual first-hour walkthrough before sending anyone into raw markdown. The first file pair is simple:
+
+- `README.md` or `SETUP-NOTES.md` for instructions, notes, and agent-readable context.
+- `first-page.html` or `index.html` for a visible browser artifact with no backend required.
+
 For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bundle.md). It combines the beginner path, prompt engineering, agentic coding, agent instructions, evaluation design, and public-data source discipline.
 
 ## Module index

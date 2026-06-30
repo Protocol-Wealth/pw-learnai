@@ -4,6 +4,7 @@ import {
   BookOpen,
   BrainCircuit,
   CheckCircle2,
+  Code2,
   Database,
   ExternalLink,
   FileText,
@@ -208,6 +209,54 @@ const LEVEL_PATHS = [
   },
 ]
 
+const FIRST_HOUR_STEPS = [
+  {
+    title: 'Create the project home',
+    icon: Github,
+    action: 'Create GitHub, enable 2FA, and clone one practice repo or starter folder.',
+    output: 'You have one place where files, changes, and history live.',
+  },
+  {
+    title: 'Choose Claude, Codex, or both',
+    icon: BrainCircuit,
+    action: 'Use Claude for deep explanation and planning, Codex for coding and verification, or both with one writer at a time.',
+    output: 'You know which agent is doing analysis and which one is allowed to edit.',
+  },
+  {
+    title: 'Make two starter files',
+    icon: FileText,
+    action: 'Use Markdown for instructions and HTML for visual practice.',
+    output: 'You have `README.md` for the project and `first-page.html` for something visible.',
+  },
+  {
+    title: 'Ask for a read-only tour',
+    icon: Terminal,
+    action: 'Ask the agent to explain the folder and propose one tiny next step before editing anything.',
+    output: 'You get a plan you can understand before files change.',
+  },
+  {
+    title: 'Change one thing and check it',
+    icon: CheckCircle2,
+    action: 'Let the agent make one small change, then inspect the diff and run the documented check.',
+    output: 'You finish with changed files, verification, and a next step.',
+  },
+]
+
+const STARTER_FILE_GUIDES = [
+  {
+    kind: 'Markdown',
+    icon: FileText,
+    examples: 'README.md, SETUP-NOTES.md, AGENTS.md',
+    why: 'Markdown is plain text that GitHub renders nicely. It is easy for humans and agents to read, easy to diff, and ideal for instructions, checklists, and project memory.',
+  },
+  {
+    kind: 'HTML',
+    icon: Code2,
+    examples: 'first-page.html, index.html',
+    why: 'HTML is also just a file. A beginner can open it in a browser and see a visual result without a backend, database, login, telemetry, or deployment.',
+  },
+]
+
 const LEARNING_PATHS = [
   {
     id: 'getting-started',
@@ -391,6 +440,7 @@ function App() {
             <p className="text-sm text-slate-600">Applied AI strategy, coding-agent practice, and browser-only learning tools.</p>
           </div>
           <nav className="flex flex-wrap gap-2 text-sm" aria-label="Primary">
+            <a href="#first-hour" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">First Hour</a>
             <a href="#levels" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Levels</a>
             <a href="#coding-agents" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Coding Agents</a>
             <a href="#best-practices" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Best Practices</a>
@@ -415,11 +465,19 @@ function App() {
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <a
-                href="modules/00-getting-started/module.md"
+                href="#first-hour"
                 className="inline-flex min-h-11 items-center gap-2 rounded-md bg-slate-950 px-4 text-sm font-semibold text-white hover:bg-slate-800"
               >
-                <BookOpen className="h-4 w-4" aria-hidden="true" />
-                Read Getting Started
+                <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                Start the first hour
+              </a>
+              <a
+                href="#tools"
+                onClick={() => setSelected('setup-path')}
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-emerald-700 bg-white px-4 text-sm font-semibold text-emerald-800 hover:bg-emerald-50"
+              >
+                <BrainCircuit className="h-4 w-4" aria-hidden="true" />
+                Choose Claude / Codex
               </a>
               <a
                 href="https://github.com/Protocol-Wealth/pw-learnai"
@@ -449,6 +507,54 @@ function App() {
       </section>
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <section id="first-hour" className="mb-10 space-y-5" aria-labelledby="first-hour-heading">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 id="first-hour-heading" className="text-2xl font-semibold text-slate-950">First Hour Walkthrough</h2>
+              <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">
+                This is the visual route for someone starting from chat prompts. It starts with files they can see, then adds Claude or Codex only after the folder has a clear job.
+              </p>
+            </div>
+            <a href="#tools" onClick={() => setSelected('setup-path')} className="inline-flex min-h-10 items-center gap-2 rounded-md bg-emerald-700 px-3 text-sm font-medium text-white hover:bg-emerald-800">
+              <Wrench className="h-4 w-4" aria-hidden="true" />
+              Build my setup path
+            </a>
+          </div>
+
+          <div className="grid gap-3 lg:grid-cols-5">
+            {FIRST_HOUR_STEPS.map((step, index) => {
+              const Icon = step.icon
+              return (
+                <article key={step.title} className="relative rounded-lg border border-slate-200 bg-white p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-950 text-sm font-semibold text-white">{index + 1}</div>
+                    <Icon className="h-5 w-5 text-emerald-700" aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-4 text-sm font-semibold text-slate-950">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{step.action}</p>
+                  <p className="mt-3 border-t border-slate-100 pt-3 text-xs font-medium leading-5 text-slate-700">{step.output}</p>
+                </article>
+              )
+            })}
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-2">
+            {STARTER_FILE_GUIDES.map(item => {
+              const Icon = item.icon
+              return (
+                <article key={item.kind} className="rounded-lg border border-slate-200 bg-white p-5">
+                  <div className="flex items-center gap-2">
+                    <Icon className="h-5 w-5 text-sky-700" aria-hidden="true" />
+                    <h3 className="text-base font-semibold text-slate-950">{item.kind} files</h3>
+                  </div>
+                  <div className="mt-3 rounded-md bg-slate-50 px-3 py-2 font-mono text-xs text-slate-700">{item.examples}</div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{item.why}</p>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
         <section id="levels" className="mb-10 space-y-4" aria-labelledby="levels-heading">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>

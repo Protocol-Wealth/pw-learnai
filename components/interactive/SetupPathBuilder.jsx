@@ -1,8 +1,11 @@
 import React, { useMemo, useState } from 'react'
 import {
+  Bot,
   CheckCircle2,
   Clipboard,
+  Code2,
   Database,
+  FileText,
   Github,
   Laptop,
   Server,
@@ -13,6 +16,19 @@ const OS_OPTIONS = [
   { id: 'mac', label: 'macOS' },
   { id: 'windows', label: 'Windows' },
   { id: 'linux', label: 'Linux' },
+]
+
+const AGENT_OPTIONS = [
+  {
+    id: 'codex',
+    label: 'Codex',
+    detail: 'Best first fit for repo edits, diffs, terminal checks, and coding tasks.',
+  },
+  {
+    id: 'claude',
+    label: 'Claude',
+    detail: 'Best first fit for deep analysis, planning, explanation, and Claude Code workflows.',
+  },
 ]
 
 const DATA_OPTIONS = [
@@ -41,6 +57,19 @@ const CLI_AGENT = {
   linux: 'Install one CLI agent and run it from the Git root with workspace-scoped permissions.',
 }
 
+function agentPlan(agents) {
+  const hasCodex = agents.includes('codex')
+  const hasClaude = agents.includes('claude')
+
+  if (hasCodex && hasClaude) {
+    return 'Use Claude for read-only analysis and planning, then Codex for the smallest repo edit and verification. Keep one tool as the writer at a time.'
+  }
+  if (hasClaude) {
+    return 'Use Claude or Claude Code for a read-only repo explanation first, then one scoped edit only after the plan is clear.'
+  }
+  return 'Use Codex for a read-only repo summary first, then one scoped edit with a named verification command.'
+}
+
 function buildActions(form) {
   const actions = []
 
@@ -49,6 +78,8 @@ function buildActions(form) {
   } else {
     actions.push('Clone one practice repository and make one small branch so you can inspect a diff.')
   }
+
+  actions.push(agentPlan(form.agents))
 
   if (!form.desktop) {
     actions.push(DESKTOP_AGENT[form.os])
@@ -62,7 +93,8 @@ function buildActions(form) {
     actions.push('Run one scoped CLI-agent task with outcome, scope, constraints, verification, and finish format.')
   }
 
-  actions.push('Add or review README.md, AGENTS.md, CLAUDE.md, CURRENT-STATE.md, CHANGELOG.md, NEXT-PROMPT.md, and ROADMAP.md.')
+  actions.push('Create README.md or SETUP-NOTES.md for instructions, then create first-page.html when you need a visual browser preview.')
+  actions.push('Add or review AGENTS.md, CLAUDE.md, CURRENT-STATE.md, CHANGELOG.md, NEXT-PROMPT.md, and ROADMAP.md once the repo loop works.')
 
   if (form.data === 'catalog') {
     actions.push('Pick one Data.gov dataset and record the catalog page, publisher, access notes, license notes, and actual data URL.')
@@ -84,18 +116,23 @@ function buildActions(form) {
     actions.push('Do not deploy yet; finish the local workflow and verification loop first.')
   }
 
-  return actions.slice(0, 7)
+  return actions.slice(0, 8)
 }
 
 function buildPrompt(form, actions) {
   const dataLabel = DATA_OPTIONS.find(option => option.id === form.data)?.label || 'Not yet'
   const deployLabel = DEPLOY_OPTIONS.find(option => option.id === form.deploy)?.label || 'No deploy'
+  const agentLabel = form.agents
+    .map(agent => AGENT_OPTIONS.find(option => option.id === agent)?.label)
+    .filter(Boolean)
+    .join(' and ')
 
   return [
     'Goal: Help me complete the next step in my AI-operator setup without making broad or risky changes.',
     '',
     'Current setup:',
     `- OS: ${OS_OPTIONS.find(option => option.id === form.os)?.label}`,
+    `- Preferred agent path: ${agentLabel}`,
     `- GitHub ready: ${form.github ? 'yes' : 'no'}`,
     `- Desktop/IDE agent ready: ${form.desktop ? 'yes' : 'no'}`,
     `- CLI agent ready: ${form.cli ? 'yes' : 'no'}`,
@@ -109,6 +146,7 @@ function buildPrompt(form, actions) {
     '- Keep work local and reviewable.',
     '- Do not use secrets, private data, paid APIs, telemetry, or a backend unless I explicitly ask.',
     '- If editing a repo, read README.md and AGENTS.md or CLAUDE.md before changing files.',
+    '- Use Markdown files for instructions and notes; use HTML files for visual browser practice.',
     '',
     'Verification:',
     '- Name the command or manual check that proves the step is complete.',
@@ -125,6 +163,7 @@ function buildPrompt(form, actions) {
 export default function SetupPathBuilder() {
   const [form, setForm] = useState({
     os: 'windows',
+    agents: ['codex', 'claude'],
     github: false,
     desktop: false,
     cli: false,
@@ -138,6 +177,19 @@ export default function SetupPathBuilder() {
 
   function update(field, value) {
     setForm(previous => ({ ...previous, [field]: value }))
+  }
+
+  function toggleAgent(agentId) {
+    setForm(previous => {
+      const hasAgent = previous.agents.includes(agentId)
+      if (hasAgent && previous.agents.length === 1) return previous
+      return {
+        ...previous,
+        agents: hasAgent
+          ? previous.agents.filter(agent => agent !== agentId)
+          : [...previous.agents, agentId],
+      }
+    })
   }
 
   async function copyPrompt() {
@@ -160,7 +212,7 @@ export default function SetupPathBuilder() {
           </div>
           <h2 className="mt-1 text-2xl font-semibold text-slate-950">Setup Path Builder</h2>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">
-            Turn a prompt-only starting point into the next concrete actions, then copy a bounded agent prompt.
+            Choose Claude, Codex, or both. Then turn a prompt-only starting point into concrete actions and a bounded first agent prompt.
           </p>
         </div>
         <div className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
@@ -192,6 +244,31 @@ export default function SetupPathBuilder() {
           </div>
 
           <div className="rounded-lg border border-slate-200 bg-white p-4">
+            <div className="text-sm font-semibold text-slate-900">Agent path</div>
+            <p className="mt-1 text-xs leading-5 text-slate-600">Pick at least one. Choose both when you want Claude for deeper analysis and Codex for coding work.</p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {AGENT_OPTIONS.map(option => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => toggleAgent(option.id)}
+                  className={`rounded-md border p-3 text-left ${
+                    form.agents.includes(option.id)
+                      ? 'border-sky-700 bg-sky-50'
+                      : 'border-slate-200 bg-white hover:border-slate-400'
+                  }`}
+                >
+                  <span className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                    <Bot className="h-4 w-4 text-sky-700" aria-hidden="true" />
+                    {option.label}
+                  </span>
+                  <span className="mt-1 block text-xs leading-5 text-slate-600">{option.detail}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-slate-200 bg-white p-4">
             <div className="text-sm font-semibold text-slate-900">Setup state</div>
             <div className="mt-3 space-y-3">
               {[
@@ -210,6 +287,26 @@ export default function SetupPathBuilder() {
                   <span>{label}</span>
                 </label>
               ))}
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-slate-200 bg-white p-4">
+            <div className="text-sm font-semibold text-slate-900">First files</div>
+            <div className="mt-3 grid gap-3">
+              <div className="flex gap-3 rounded-md border border-slate-200 p-3">
+                <FileText className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700" aria-hidden="true" />
+                <div>
+                  <div className="text-sm font-semibold text-slate-950">Markdown files</div>
+                  <p className="mt-1 text-xs leading-5 text-slate-600">Use `README.md`, `SETUP-NOTES.md`, and `AGENTS.md` for instructions, checklists, and agent memory that stays readable in GitHub.</p>
+                </div>
+              </div>
+              <div className="flex gap-3 rounded-md border border-slate-200 p-3">
+                <Code2 className="mt-0.5 h-4 w-4 shrink-0 text-violet-700" aria-hidden="true" />
+                <div>
+                  <div className="text-sm font-semibold text-slate-950">HTML files</div>
+                  <p className="mt-1 text-xs leading-5 text-slate-600">Use `first-page.html` or `index.html` when the beginner needs to see something in a browser without a backend.</p>
+                </div>
+              </div>
             </div>
           </div>
 

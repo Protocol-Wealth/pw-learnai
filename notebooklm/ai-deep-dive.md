@@ -50,6 +50,40 @@ Use level before tool choice:
 | Intermediate | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
 | Advanced | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
 
+## The first hour
+
+A beginner should see a short visual route before reading a long module:
+
+1. Create GitHub, enable 2FA, and open one practice repo or folder.
+2. Choose Claude, Codex, or both.
+3. Create one Markdown file for instructions.
+4. Create one HTML file for something visible in the browser.
+5. Ask for a read-only repo tour before any edits.
+6. Let the agent make one tiny change, then inspect the diff and run the check.
+
+The goal is not to learn every command. The goal is to learn that AI work becomes safer when it lives in files you can read, diff, open, and verify.
+
+## Why Markdown and HTML
+
+Markdown is useful because it is plain text that also renders nicely on GitHub. Use it for:
+
+- `README.md` to explain what the project is.
+- `SETUP-NOTES.md` to record what was installed and what worked.
+- `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
+- `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
+
+HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment.
+
+Use both:
+
+```text
+README.md        - what this project is and how to use it
+SETUP-NOTES.md   - what you installed and what worked
+first-page.html  - the first visible browser artifact
+```
+
+Markdown explains the work. HTML shows the work.
+
 ## The four-stage path
 
 ### Stage 1: GitHub and local files
@@ -205,6 +239,12 @@ Deliverable: a short `SETUP-NOTES.md` in a practice repo:
 ```md
 # Setup Notes
 
+Agent path:
+- Claude:
+- Codex:
+- Using both?:
+- Which tool is allowed to edit first:
+
 Desktop or IDE agent:
 - Tool:
 - Installed on:
@@ -223,7 +263,30 @@ First safe task:
 
 Use a harmless task such as "summarize this repository" before asking for edits.
 
-## Exercise 3: Write the scaffold
+## Exercise 3: Make one Markdown file and one HTML file
+
+Deliverable: two files in a practice folder:
+
+```text
+README.md
+first-page.html
+```
+
+`README.md` should answer:
+
+- What is this folder?
+- What command or manual check proves it still works?
+- Which agent are you using first: Claude, Codex, or both?
+
+`first-page.html` should be a tiny visible page that opens in a browser. It does not need a framework, backend, login, database, or deployment.
+
+Ask Claude or Codex for a read-only review before asking it to edit:
+
+```text
+Read README.md and first-page.html. Explain what this practice folder does and propose one tiny improvement. Do not edit files yet.
+```
+
+## Exercise 4: Write the scaffold
 
 Deliverable: add these files to a practice repository:
 
@@ -253,7 +316,7 @@ Minimum `AGENTS.md`:
 - After code changes, run the documented check and report the result.
 ```
 
-## Exercise 4: Convert a chat prompt into a coding-agent task
+## Exercise 5: Convert a chat prompt into a coding-agent task
 
 Start with this weak prompt:
 
@@ -272,7 +335,7 @@ Rewrite it with:
 
 Then run the improved prompt in a read-only or plan mode first. Save the plan in `NEXT-PROMPT.md` if it is reusable.
 
-## Exercise 5: Data source reconnaissance
+## Exercise 6: Data source reconnaissance
 
 Deliverable: `DATA-SOURCE-NOTES.md` with three sections:
 
@@ -282,7 +345,7 @@ Deliverable: `DATA-SOURCE-NOTES.md` with three sections:
 
 Do not write a scraper. The goal is to understand metadata, attribution, pagination, and limits before code exists.
 
-## Exercise 6: Choose an infrastructure target
+## Exercise 7: Choose an infrastructure target
 
 Deliverable: a one-page decision note:
 

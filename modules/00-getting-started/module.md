@@ -24,6 +24,40 @@ Use level before tool choice:
 | Intermediate | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
 | Advanced | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
 
+## The first hour
+
+A beginner should see a short visual route before reading a long module:
+
+1. Create GitHub, enable 2FA, and open one practice repo or folder.
+2. Choose Claude, Codex, or both.
+3. Create one Markdown file for instructions.
+4. Create one HTML file for something visible in the browser.
+5. Ask for a read-only repo tour before any edits.
+6. Let the agent make one tiny change, then inspect the diff and run the check.
+
+The goal is not to learn every command. The goal is to learn that AI work becomes safer when it lives in files you can read, diff, open, and verify.
+
+## Why Markdown and HTML
+
+Markdown is useful because it is plain text that also renders nicely on GitHub. Use it for:
+
+- `README.md` to explain what the project is.
+- `SETUP-NOTES.md` to record what was installed and what worked.
+- `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
+- `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
+
+HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment.
+
+Use both:
+
+```text
+README.md        - what this project is and how to use it
+SETUP-NOTES.md   - what you installed and what worked
+first-page.html  - the first visible browser artifact
+```
+
+Markdown explains the work. HTML shows the work.
+
 ## The four-stage path
 
 ### Stage 1: GitHub and local files
