@@ -38,6 +38,10 @@ All notable changes to `pw-learnai` are recorded here.
   - Deploy to GitHub Pages: `28552034480`
   - CodeQL: `28552034057`
   - Live Pages returned HTTP 200 for README, CURRENT-STATE, ROADMAP, NEXT-PROMPT, CLAUDE, and CHANGELOG.
+- PR [#23](https://github.com/Protocol-Wealth/pw-learnai/pull/23) merged; main workflows passed:
+  - Deploy to GitHub Pages: `28552548488`
+  - CodeQL: `28552547902`
+  - Live Pages returned HTTP 200 for CURRENT-STATE, NEXT-PROMPT, and CHANGELOG after correcting publish-state references.
 
 ## 2026-06-30
 

@@ -6,10 +6,16 @@ Last reviewed: 2026-07-01.
 
 - Live site: https://protocol-wealth.github.io/pw-learnai/
 - Default branch: `main`
-- Last verified published commit: `64ba173063cb5354d2bf7a9d5cece2b9fbd78e14`
+- Recent verified publish checkpoints:
+  - [#23](https://github.com/Protocol-Wealth/pw-learnai/pull/23): corrected publish-state references after PR #22.
+  - [#22](https://github.com/Protocol-Wealth/pw-learnai/pull/22): published documentation and issue-tracking state.
+  - [#13](https://github.com/Protocol-Wealth/pw-learnai/pull/13): published the audit cleanup and prompt asset move.
+- State-reference correction PR: [#23](https://github.com/Protocol-Wealth/pw-learnai/pull/23), merged 2026-07-01.
 - Documentation and issue-tracking PR: [#22](https://github.com/Protocol-Wealth/pw-learnai/pull/22), merged 2026-07-01.
-- Last verified app/audit publish commit: `9b7957e50a011ae1ae7da0e0a686511595b1b6fa`
 - Audit cleanup PR: [#13](https://github.com/Protocol-Wealth/pw-learnai/pull/13), merged 2026-07-01.
+- Main workflows after PR #23 passed:
+  - Deploy to GitHub Pages: `28552548488`
+  - CodeQL: `28552547902`
 - Main workflows after PR #22 passed:
   - Deploy to GitHub Pages: `28552034480`
   - CodeQL: `28552034057`
@@ -61,6 +67,10 @@ Additional checks:
 
 - Source scan found no runtime `fetch`, `XMLHttpRequest`, `axios`, Tailwind CDN, or live Nexus calls in `src`, `components`, or `index.html`.
 - First-party TypeScript scan found no `.ts`, `.tsx`, or `tsconfig*.json` outside ignored dependency/build directories.
+- Live Pages responses after PR #23 returned HTTP 200 for:
+  - `/pw-learnai/CURRENT-STATE.md`
+  - `/pw-learnai/NEXT-PROMPT.md`
+  - `/pw-learnai/CHANGELOG.md`
 - Live Pages responses after PR #22 returned HTTP 200 for:
   - `/pw-learnai/README.md`
   - `/pw-learnai/CURRENT-STATE.md`

@@ -8,8 +8,7 @@ Goal: Work one tracked pw-learnai issue without breaking the client-only site.
 Context:
 - Read AGENTS.md, CURRENT-STATE.md, CHANGELOG.md, README.md, and ROADMAP.md first.
 - The latest live site is https://protocol-wealth.github.io/pw-learnai/.
-- Current verified published commit is 64ba173063cb5354d2bf7a9d5cece2b9fbd78e14 from PR #22.
-- The last app/audit cleanup commit is 9b7957e50a011ae1ae7da0e0a686511595b1b6fa from PR #13.
+- Recent verified publish checkpoints are PR #23 for state-reference correction, PR #22 for issue-tracking docs, and PR #13 for the app/audit cleanup.
 - The homepage now has a visual First Hour walkthrough and a Setup Path Builder that supports Claude, Codex, or both.
 - Module 00 covers beginner setup, Markdown vs HTML, GitHub, coding agents, state files, public data, and safe deployment.
 - Module 14 covers public-data source discipline.
