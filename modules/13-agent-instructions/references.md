@@ -10,4 +10,4 @@ and fill exact URLs and a reviewed date rather than relying on memory.
 - AGENTS.md — the cross-tool agent-instructions convention. [verify current URL;
   reviewed: __________]
 - Companion tool in this repo: components/interactive/AgentInstructionsAuditor.jsx.
-- Companion prompt in this repo: modules/13-agent-instructions/deep-audit-prompt.md.
+- Companion prompt in this repo: prompts/agent-instructions-deep-audit.md.

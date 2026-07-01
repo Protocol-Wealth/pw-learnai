@@ -4,10 +4,13 @@ A modular, open-source library of ideas, frameworks, and interactive tools for a
 
 ## What this is
 
-A library of **self-contained modules** you can read, fork, remix, or drop into an AI notebook (NotebookLM, Claude Projects, ChatGPT custom GPTs) for your own learning. Each module is a pair:
+A library of **self-contained modules** you can read, fork, remix, or drop into an AI notebook (NotebookLM, Claude Projects, ChatGPT custom GPTs) for your own learning. Each module is a three-file directory:
 
-- A `module.md` file — the ideas in prose, with falsifiable claims, worked examples, and exercises
-- Optional `.jsx` interactive components — calculators, diagnostics, decision tools you can run locally or embed
+- A `module.md` file — the ideas in prose, with falsifiable claims and worked examples
+- An `exercises.md` file — applied work that produces a reviewable artifact
+- A `references.md` file — sources, reviewed-date notes, and further reading
+
+Interactive `.jsx` components live separately under `components/interactive/` so the module directories stay stable for bundling.
 
 Pick the modules you want. Ignore the rest. Nothing here assumes you take them in order.
 
@@ -166,13 +169,13 @@ claude --permission-mode plan "Read the PWOS Core lab and propose a client-only 
 Audit open PRs across `pw-learnai`, `nexus-core`, `pwos-core`, and `pwplan-core`:
 
 ```bash
-npm run pr:audit
+pnpm pr:audit
 ```
 
 Merge only PRs classified as clean, non-draft, check-passing, and not review-blocked:
 
 ```bash
-npm run pr:mergeable
+pnpm pr:mergeable
 ```
 
 ### With the interactive components
@@ -206,6 +209,7 @@ pw-learnai/
 │       ├── exercises.md        # Applied work
 │       └── references.md       # Sources and further reading
 ├── labs/               # Applied OSS labs connected to Protocol Wealth repos
+├── prompts/            # Standalone copyable prompts linked from modules/tools
 ├── components/
 │   ├── interactive/    # Single-file React tools (diagnostics, calculators)
 │   └── ui/             # Shared primitives (buttons, cards)

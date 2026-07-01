@@ -2,6 +2,29 @@
 
 All notable changes to `pw-learnai` are recorded here.
 
+## 2026-07-01
+
+### Changed
+
+- Moved the Module 13 deep-audit prompt out of `modules/13-agent-instructions/` and into `prompts/agent-instructions-deep-audit.md` so every module directory keeps the three-file contract.
+- Updated `scripts/sync-public-content.mjs` so standalone prompt markdown is copied into the static Pages artifact.
+- Updated `README.md` and `CLAUDE.md` to match the current module contract, pnpm commands, and handoff expectations.
+- Regenerated NotebookLM bundles after the Module 13 prompt-path change.
+
+### Removed
+
+- Removed unused `recharts` dependency and its transitive lockfile surface.
+
+### Verified
+
+- `pnpm install`
+- `pnpm bundle`
+- `pnpm build`
+- `git diff --check`
+- Module-directory contract check for exactly `module.md`, `exercises.md`, and `references.md`.
+- Executable app/script scan found no `fetch`, `XMLHttpRequest`, `axios`, telemetry beacons, env reads, or WebSocket/event-source runtime calls.
+- First-party TypeScript scan found no `.ts`, `.tsx`, or `tsconfig*.json` outside ignored dependency/build directories.
+
 ## 2026-06-30
 
 ### Added

@@ -3,6 +3,7 @@ dist
 public/modules/
 public/labs/
 public/notebooklm/
+public/prompts/
 public/*.md
 .env
 .env.local

@@ -52,7 +52,7 @@ CI auto-regenerates the NotebookLM bundles on push to `main` via `.github/workfl
 - Prefer single-file components under `components/interactive/` unless reuse clearly justifies shared primitives.
 - Preserve responsive behavior on mobile and desktop.
 - Use existing React, Vite, Tailwind, and `lucide-react` dependencies before adding new packages.
-- `recharts` is installed but currently unused. If a tool needs a chart, use `recharts` rather than adding a new charting library — or flag it for removal if no tool ever does.
+- Do not add a charting library unless a tool genuinely needs one; justify the dependency in the diff when you do.
 
 ## Review Expectations
 

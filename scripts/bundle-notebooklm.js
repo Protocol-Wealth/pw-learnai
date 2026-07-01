@@ -60,12 +60,18 @@ function readModule(slug) {
   const dir = path.join(MODULES_DIR, slug)
   if (!fs.existsSync(dir)) return null
   const files = ['module.md', 'exercises.md', 'references.md']
-  const sections = files
-    .map(f => {
-      const fp = path.join(dir, f)
-      return fs.existsSync(fp) ? fs.readFileSync(fp, 'utf8') : ''
-    })
-    .filter(Boolean)
+  const actualFiles = fs.readdirSync(dir)
+    .filter(entry => !entry.startsWith('.'))
+    .sort()
+  const expectedFiles = [...files].sort()
+
+  if (actualFiles.join('\n') !== expectedFiles.join('\n')) {
+    throw new Error(
+      `Module ${slug} must contain exactly ${expectedFiles.join(', ')}; found ${actualFiles.join(', ') || 'nothing'}.`
+    )
+  }
+
+  const sections = files.map(f => fs.readFileSync(path.join(dir, f), 'utf8'))
   return sections.join('\n\n---\n\n')
 }
 

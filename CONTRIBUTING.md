@@ -87,7 +87,7 @@ Pointer to references.md.
 
 Components live in `components/interactive/`. Guidelines:
 
-- **Single file.** One `.jsx` or `.tsx` file per component. No private imports from other component files. External libs (React, Tailwind utility classes, lucide-react icons, recharts) are fine.
+- **Single file.** One `.jsx` or `.tsx` file per component. No private imports from other component files. External libs already in `package.json` are fine; justify any new dependency in the PR.
 - **Self-contained state.** `useState` only. No global stores.
 - **Works on paper too.** Every interactive tool must have a paper equivalent described in the corresponding module. The tool is a convenience, not a prerequisite.
 - **No analytics, no telemetry, no external API calls.** This library ships static content.

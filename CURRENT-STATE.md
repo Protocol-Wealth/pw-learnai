@@ -1,15 +1,13 @@
 # Current State
 
-Last reviewed: 2026-06-30.
+Last reviewed: 2026-07-01.
 
 ## Live status
 
 - Live site: https://protocol-wealth.github.io/pw-learnai/
 - Default branch: `main`
-- Closeout baseline commit verified before state-doc publishing: `bfd00b637e26c97840c46201503e8fa5c3c3eb2a`
-- Closeout baseline deploy workflow: `Deploy to GitHub Pages` run `28415375952`
-- Closeout baseline CodeQL run on `main`: `28415375711`
-- Closeout baseline bundle workflow on `main`: `28415375930`
+- Last verified published commit before this local audit: `360076a2d583d3f762644d3cca1567f61e3bb365`
+- The 2026-07-01 audit edits are local until pushed and published; verify GitHub Pages after deployment.
 
 ## What is live
 
@@ -19,8 +17,16 @@ Last reviewed: 2026-06-30.
 - Module 00 explains why Markdown is useful for durable instructions and why HTML is useful for immediate visual browser feedback.
 - Module 14 introduces Data.gov, the National Archives Catalog API, OAI-PMH, source notes, and safe public-data habits.
 - NotebookLM bundles include the starter and public-data paths.
-- Root markdown docs are copied into the static Pages artifact by `scripts/sync-public-content.mjs`.
+- Root markdown docs and standalone prompts are copied into the static Pages artifact by `scripts/sync-public-content.mjs`.
 - Browser tools remain client-only: no login, telemetry, backend, external API calls, or secrets.
+
+## 2026-07-01 local audit updates
+
+- Module directories now satisfy the exact three-file contract: `module.md`, `exercises.md`, and `references.md`.
+- The Module 13 deep-audit prompt moved to `prompts/agent-instructions-deep-audit.md`.
+- `scripts/bundle-notebooklm.js` now fails fast if a module directory has missing or extra files.
+- Unused `recharts` dependency and transitive lockfile entries were removed.
+- `README.md`, `CLAUDE.md`, `AGENTS.md`, and `CONTRIBUTING.md` were refreshed to match current commands and dependency state.
 
 ## Verification
 
@@ -32,9 +38,19 @@ pnpm build
 git diff --check
 ```
 
+Commands run during the 2026-07-01 local audit:
+
+```bash
+pnpm install
+pnpm bundle
+pnpm build
+git diff --check
+```
+
 Additional checks:
 
 - Source scan found no runtime `fetch`, `XMLHttpRequest`, `axios`, Tailwind CDN, or live Nexus calls in `src`, `components`, or `index.html`.
+- First-party TypeScript scan found no `.ts`, `.tsx`, or `tsconfig*.json` outside ignored dependency/build directories.
 - Live Pages responses returned HTTP 200 for:
   - `/pw-learnai/`
   - `/pw-learnai/modules/00-getting-started/module.md`

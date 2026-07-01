@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-06-30
+Generated: 2026-07-01
 
 ## Modules included
 
@@ -1231,7 +1231,7 @@ Two complementary checks, and they catch different things:
   against the properties above — framing ratio, redundancy, hierarchy, anchors,
   circular criteria, specificity signals. It is instant and private (nothing leaves the
   page), but it can only see the text, not your repo.
-- The **deep-audit prompt** (modules/13-agent-instructions/deep-audit-prompt.md) runs in
+- The **deep-audit prompt** (prompts/agent-instructions-deep-audit.md) runs in
   your own Claude Code with filesystem access. It does the part the browser can't:
   validate every command and path against ground truth, then rewrite the file. Use it
   when you want correctness, not just shape.
@@ -1287,7 +1287,7 @@ and fill exact URLs and a reviewed date rather than relying on memory.
 - AGENTS.md — the cross-tool agent-instructions convention. [verify current URL;
   reviewed: __________]
 - Companion tool in this repo: components/interactive/AgentInstructionsAuditor.jsx.
-- Companion prompt in this repo: modules/13-agent-instructions/deep-audit-prompt.md.
+- Companion prompt in this repo: prompts/agent-instructions-deep-audit.md.
 
 
 

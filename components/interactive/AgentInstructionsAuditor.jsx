@@ -7,7 +7,7 @@ import { Check, Copy, AlertTriangle, FileWarning } from 'lucide-react'
 
 // The deep-audit prompt is the Copy target. It is the part this browser tool cannot do:
 // validate every command and path against a live repo. Kept verbatim with
-// modules/13-agent-instructions/deep-audit-prompt.md.
+// prompts/agent-instructions-deep-audit.md.
 const DEEP_AUDIT_PROMPT = `Run a diagnostic + improvement pass on this repo's CLAUDE.md/AGENTS.md. You have
 filesystem access; read the file yourself, validate it against repo ground truth, score
 it, then rewrite it. Autonomous run: state the plan once, then execute; only stop for a
@@ -20,12 +20,12 @@ co-equal; anchored with good/bad examples; non-circular; matched to how the agen
 PHASE 1 DISCOVER: locate root and nested instruction files; inventory every command,
 path, and rule they assert.
 PHASE 2 VALIDATE (the part static review can't do): for each checkable claim mark
-PASS/STALE/MISSING — do the commands match package.json/Makefile/CI? do referenced
+PASS/STALE/MISSING - do the commands match package.json/Makefile/CI? do referenced
 files/dirs/env vars exist? does the declared stack match dependencies/lockfiles? what
 major repo reality (tests, migrations, monorepo layout, codegen, deploy) is omitted?
 PHASE 3 DIAGNOSE: score each property 1-5 with a section/validation anchor; rank findings
 by impact; tag each KEEP/CUT/REWRITE.
-PHASE 4 REMEDIATE: rewrite in full — lead with a ranked spine; add/correct a project
+PHASE 4 REMEDIATE: rewrite in full - lead with a ranked spine; add/correct a project
 header from VERIFIED claims only; dedupe; cut generic philosophy the agent already knows;
 convert load-bearing prohibitions to positive imperatives; match the runtime; remove
 circular success criteria; recommend a nested file where a subdir warrants it.
@@ -33,7 +33,7 @@ PHASE 5 VERIFY: confirm no unvalidated command or path survives; report before/a
 count and net cut vs added.
 OUTPUT: PLAN; VALIDATION TABLE (claim | PASS/STALE/MISSING | evidence); SCORECARD; RANKED
 FINDINGS; REWRITTEN FILE (paste-ready); RESIDUAL GAPS marked [MISSING] or
-[DECISION NEEDED] — never invent facts to fill them.
+[DECISION NEEDED] - never invent facts to fill them.
 CONSTRAINTS: validate before rewrite; prefer cutting over adding; anchor every finding; a
 shorter file the agent follows beats a complete one it ignores.
 `

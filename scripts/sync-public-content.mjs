@@ -4,7 +4,7 @@ import path from 'node:path'
 const ROOT = process.cwd()
 const PUBLIC_DIR = path.join(ROOT, 'public')
 
-const CONTENT_DIRS = ['modules', 'labs', 'notebooklm']
+const CONTENT_DIRS = ['modules', 'labs', 'notebooklm', 'prompts']
 const ROOT_MARKDOWN_FILES = [
   'README.md',
   'CHANGELOG.md',
