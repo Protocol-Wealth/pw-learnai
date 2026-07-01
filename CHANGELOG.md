@@ -34,6 +34,10 @@ All notable changes to `pw-learnai` are recorded here.
   - Deploy to GitHub Pages: `28551553465`
   - CodeQL: `28551553142`
   - Live Pages returned HTTP 200 for the app, Module 13 markdown, changelog, starter bundle, and the new prompt asset.
+- PR [#22](https://github.com/Protocol-Wealth/pw-learnai/pull/22) merged; main workflows passed:
+  - Deploy to GitHub Pages: `28552034480`
+  - CodeQL: `28552034057`
+  - Live Pages returned HTTP 200 for README, CURRENT-STATE, ROADMAP, NEXT-PROMPT, CLAUDE, and CHANGELOG.
 
 ## 2026-06-30
 
