@@ -23,6 +23,12 @@
 
 CI auto-regenerates the NotebookLM bundles on push to `main` via `.github/workflows/bundle.yml`, but commit your local `pnpm bundle` output anyway so the diff under review is complete.
 
+## Issue Tracking
+
+- GitHub issues are the canonical tracker for outstanding roadmap and future build work.
+- Before starting roadmap work, check for an existing issue and keep the PR scoped to it.
+- If you add a roadmap item, create or update the matching GitHub issue in the same closeout.
+
 ## Authoring a module (contract)
 
 - A module is a directory `modules/NN-slug/` containing exactly three files: `module.md`, `exercises.md`, and `references.md`. `scripts/bundle-notebooklm.js` reads that triad and nothing else.

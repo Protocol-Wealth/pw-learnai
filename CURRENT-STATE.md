@@ -6,8 +6,12 @@ Last reviewed: 2026-07-01.
 
 - Live site: https://protocol-wealth.github.io/pw-learnai/
 - Default branch: `main`
-- Last verified published commit before this local audit: `360076a2d583d3f762644d3cca1567f61e3bb365`
-- The 2026-07-01 audit edits are local until pushed and published; verify GitHub Pages after deployment.
+- Last verified app/audit publish commit: `9b7957e50a011ae1ae7da0e0a686511595b1b6fa`
+- Audit cleanup PR: [#13](https://github.com/Protocol-Wealth/pw-learnai/pull/13), merged 2026-07-01.
+- Main workflows after PR #13 passed:
+  - Bundle NotebookLM sources: `28551553459`
+  - Deploy to GitHub Pages: `28551553465`
+  - CodeQL: `28551553142`
 
 ## What is live
 
@@ -20,13 +24,14 @@ Last reviewed: 2026-07-01.
 - Root markdown docs and standalone prompts are copied into the static Pages artifact by `scripts/sync-public-content.mjs`.
 - Browser tools remain client-only: no login, telemetry, backend, external API calls, or secrets.
 
-## 2026-07-01 local audit updates
+## 2026-07-01 audit updates
 
 - Module directories now satisfy the exact three-file contract: `module.md`, `exercises.md`, and `references.md`.
 - The Module 13 deep-audit prompt moved to `prompts/agent-instructions-deep-audit.md`.
 - `scripts/bundle-notebooklm.js` now fails fast if a module directory has missing or extra files.
 - Unused `recharts` dependency and transitive lockfile entries were removed.
 - `README.md`, `CLAUDE.md`, `AGENTS.md`, and `CONTRIBUTING.md` were refreshed to match current commands and dependency state.
+- GitHub issues [#14](https://github.com/Protocol-Wealth/pw-learnai/issues/14) through [#21](https://github.com/Protocol-Wealth/pw-learnai/issues/21) now track the open roadmap backlog.
 
 ## Verification
 
@@ -51,17 +56,23 @@ Additional checks:
 
 - Source scan found no runtime `fetch`, `XMLHttpRequest`, `axios`, Tailwind CDN, or live Nexus calls in `src`, `components`, or `index.html`.
 - First-party TypeScript scan found no `.ts`, `.tsx`, or `tsconfig*.json` outside ignored dependency/build directories.
-- Live Pages responses returned HTTP 200 for:
+- Live Pages responses after PR #13 returned HTTP 200 for:
   - `/pw-learnai/`
-  - `/pw-learnai/modules/00-getting-started/module.md`
-  - `/pw-learnai/modules/14-working-with-public-data/module.md`
-  - `/pw-learnai/notebooklm/starter-bundle.md`
-  - `/pw-learnai/notebooklm/data-bundle.md`
-- After root-doc publishing, also verify:
+  - `/pw-learnai/prompts/agent-instructions-deep-audit.md`
+  - `/pw-learnai/modules/13-agent-instructions/module.md`
   - `/pw-learnai/CHANGELOG.md`
-  - `/pw-learnai/CURRENT-STATE.md`
-  - `/pw-learnai/NEXT-PROMPT.md`
-  - `/pw-learnai/ROADMAP.md`
+  - `/pw-learnai/notebooklm/starter-bundle.md`
+
+## Open issue tracker
+
+- [#14](https://github.com/Protocol-Wealth/pw-learnai/issues/14): Add printable beginner checklist for `SETUP-NOTES.md`.
+- [#15](https://github.com/Protocol-Wealth/pw-learnai/issues/15): Add static `first-page.html` starter template.
+- [#16](https://github.com/Protocol-Wealth/pw-learnai/issues/16): Add visual diff-reading explainer for beginners.
+- [#17](https://github.com/Protocol-Wealth/pw-learnai/issues/17): Split Setup Path Builder prompts by agent workflow.
+- [#18](https://github.com/Protocol-Wealth/pw-learnai/issues/18): Add browser-only prompt-to-agent-task exercise.
+- [#19](https://github.com/Protocol-Wealth/pw-learnai/issues/19): Add browser-only public-data source-note builder.
+- [#20](https://github.com/Protocol-Wealth/pw-learnai/issues/20): Audit homepage accessibility and mobile polish.
+- [#21](https://github.com/Protocol-Wealth/pw-learnai/issues/21): Add operator-facing table of contents to starter bundle.
 
 ## Known constraints
 

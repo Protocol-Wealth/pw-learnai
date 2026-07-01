@@ -54,7 +54,8 @@ For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bun
 - [CHANGELOG.md](CHANGELOG.md) records shipped changes.
 - [CURRENT-STATE.md](CURRENT-STATE.md) records what is live and last verified.
 - [NEXT-PROMPT.md](NEXT-PROMPT.md) gives the next agent a safe starting prompt.
-- [ROADMAP.md](ROADMAP.md) lists focused follow-up work.
+- [ROADMAP.md](ROADMAP.md) lists focused follow-up work and links each active item to a GitHub issue.
+- [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues) are the canonical tracker for outstanding work; current backlog starts at issues [#14](https://github.com/Protocol-Wealth/pw-learnai/issues/14) through [#21](https://github.com/Protocol-Wealth/pw-learnai/issues/21).
 
 ## Module index
 
