@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-07-01
+Generated: 2026-07-03
 
 ## Modules included
 
@@ -14,6 +14,17 @@ Generated: 2026-07-01
 - 13-agent-instructions
 - 11-evaluation-design
 - 14-working-with-public-data
+
+## Operator table of contents
+
+Use this map when assigning the starter path, reviewing operator progress, or jumping directly to a module in an AI notebook.
+
+- [Getting Started](#00-getting-started) - Set up the operating loop: repository, durable state files, GitHub, tools, and safe handoff discipline.
+- [Prompt Engineering](#10-prompt-engineering) - Turn prompts into repeatable work artifacts with clear inputs, outputs, versioning, and evaluation hooks.
+- [AI Coding Practice](#12-ai-coding-practice) - Use coding agents deliberately: narrow tasks, explicit permissions, tests, review, and clean closeout.
+- [Agent Instructions](#13-agent-instructions) - Write repo instructions an agent can actually follow instead of decorative guidance.
+- [Evaluation Design](#11-evaluation-design) - Measure whether AI output is improving instead of just changing.
+- [Working with Public Data](#14-working-with-public-data) - Use public sources with provenance, source notes, and production-readiness discipline.
 
 ---
 

@@ -56,6 +56,33 @@ const BUNDLES = {
   }
 }
 
+const STARTER_TOC = {
+  '00-getting-started': {
+    title: 'Getting Started',
+    description: 'Set up the operating loop: repository, durable state files, GitHub, tools, and safe handoff discipline.'
+  },
+  '10-prompt-engineering': {
+    title: 'Prompt Engineering',
+    description: 'Turn prompts into repeatable work artifacts with clear inputs, outputs, versioning, and evaluation hooks.'
+  },
+  '12-ai-coding-practice': {
+    title: 'AI Coding Practice',
+    description: 'Use coding agents deliberately: narrow tasks, explicit permissions, tests, review, and clean closeout.'
+  },
+  '13-agent-instructions': {
+    title: 'Agent Instructions',
+    description: 'Write repo instructions an agent can actually follow instead of decorative guidance.'
+  },
+  '11-evaluation-design': {
+    title: 'Evaluation Design',
+    description: 'Measure whether AI output is improving instead of just changing.'
+  },
+  '14-working-with-public-data': {
+    title: 'Working with Public Data',
+    description: 'Use public sources with provenance, source notes, and production-readiness discipline.'
+  }
+}
+
 function readModule(slug) {
   const dir = path.join(MODULES_DIR, slug)
   if (!fs.existsSync(dir)) return null
@@ -90,7 +117,8 @@ function readLab(relPath) {
 function buildBundle(name, spec) {
   const moduleSlugs = spec.modules === '*' ? listAllModules() : spec.modules
   const labFiles = spec.labs || []
-  const header = [
+
+  const headerLines = [
     `# ${spec.title}`,
     '',
     `> ${spec.description}`,
@@ -102,10 +130,25 @@ function buildBundle(name, spec) {
     moduleSlugs ? `## Modules included` : `## Labs included`,
     '',
     ...(moduleSlugs ? moduleSlugs.map(s => `- ${s}`) : labFiles.map(s => `- ${s}`)),
-    '',
-    '---',
     ''
-  ].join('\n')
+  ]
+
+  if (name === 'starter-bundle.md' && moduleSlugs) {
+    headerLines.push('## Operator table of contents')
+    headerLines.push('')
+    headerLines.push('Use this map when assigning the starter path, reviewing operator progress, or jumping directly to a module in an AI notebook.')
+    headerLines.push('')
+    for (const slug of moduleSlugs) {
+      const item = STARTER_TOC[slug] ?? { title: slug, description: 'Review this starter-path module.' }
+      headerLines.push(`- [${item.title}](#${slug}) - ${item.description}`)
+    }
+    headerLines.push('')
+  }
+
+  headerLines.push('---')
+  headerLines.push('')
+
+  const header = headerLines.join('\n')
 
   const body = moduleSlugs
     ? moduleSlugs
