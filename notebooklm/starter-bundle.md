@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-07-01
+Generated: 2026-07-03
 
 ## Modules included
 
@@ -14,6 +14,17 @@ Generated: 2026-07-01
 - 13-agent-instructions
 - 11-evaluation-design
 - 14-working-with-public-data
+
+## Table of Contents
+
+Welcome to the Starter Bundle. Below is a quick guide to help you navigate the module contents:
+
+* [Getting Started](#00-getting-started) - Operator guide for managing module execution.
+* [Prompt Engineering](#10-prompt-engineering) - Operator guide for managing module execution.
+* [Ai Coding Practice](#12-ai-coding-practice) - Operator guide for managing module execution.
+* [Agent Instructions](#13-agent-instructions) - Operator guide for managing module execution.
+* [Evaluation Design](#11-evaluation-design) - Operator guide for managing module execution.
+* [Working With Public Data](#14-working-with-public-data) - Operator guide for managing module execution.
 
 ---
 

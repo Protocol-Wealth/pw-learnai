@@ -90,7 +90,8 @@ function readLab(relPath) {
 function buildBundle(name, spec) {
   const moduleSlugs = spec.modules === '*' ? listAllModules() : spec.modules
   const labFiles = spec.labs || []
-  const header = [
+
+  const headerLines = [
     `# ${spec.title}`,
     '',
     `> ${spec.description}`,
@@ -102,10 +103,31 @@ function buildBundle(name, spec) {
     moduleSlugs ? `## Modules included` : `## Labs included`,
     '',
     ...(moduleSlugs ? moduleSlugs.map(s => `- ${s}`) : labFiles.map(s => `- ${s}`)),
-    '',
-    '---',
     ''
-  ].join('\n')
+  ];
+
+  // Inject an operator-facing Table of Contents specifically for the starter bundle
+  if (name === 'starter-bundle.md' && moduleSlugs) {
+    headerLines.push('## Table of Contents');
+    headerLines.push('');
+    headerLines.push('Welcome to the Starter Bundle. Below is a quick guide to help you navigate the module contents:');
+    headerLines.push('');
+    moduleSlugs.forEach(slug => {
+      // Formats the directory slug into a clean title (e.g. "00-getting-started" -> "Getting Started")
+      const displayTitle = slug
+        .replace(/^\d+-/, '')
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      headerLines.push(`* [${displayTitle}](#${slug}) - Operator guide for managing module execution.`);
+    });
+    headerLines.push('');
+  }
+
+  headerLines.push('---');
+  headerLines.push('');
+
+  const header = headerLines.join('\n')
 
   const body = moduleSlugs
     ? moduleSlugs
