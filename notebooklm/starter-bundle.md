@@ -15,16 +15,16 @@ Generated: 2026-07-03
 - 11-evaluation-design
 - 14-working-with-public-data
 
-## Table of Contents
+## Operator table of contents
 
-Welcome to the Starter Bundle. Below is a quick guide to help you navigate the module contents:
+Use this map when assigning the starter path, reviewing operator progress, or jumping directly to a module in an AI notebook.
 
-* [Getting Started](#00-getting-started) - Operator guide for managing module execution.
-* [Prompt Engineering](#10-prompt-engineering) - Operator guide for managing module execution.
-* [Ai Coding Practice](#12-ai-coding-practice) - Operator guide for managing module execution.
-* [Agent Instructions](#13-agent-instructions) - Operator guide for managing module execution.
-* [Evaluation Design](#11-evaluation-design) - Operator guide for managing module execution.
-* [Working With Public Data](#14-working-with-public-data) - Operator guide for managing module execution.
+- [Getting Started](#00-getting-started) - Set up the operating loop: repository, durable state files, GitHub, tools, and safe handoff discipline.
+- [Prompt Engineering](#10-prompt-engineering) - Turn prompts into repeatable work artifacts with clear inputs, outputs, versioning, and evaluation hooks.
+- [AI Coding Practice](#12-ai-coding-practice) - Use coding agents deliberately: narrow tasks, explicit permissions, tests, review, and clean closeout.
+- [Agent Instructions](#13-agent-instructions) - Write repo instructions an agent can actually follow instead of decorative guidance.
+- [Evaluation Design](#11-evaluation-design) - Measure whether AI output is improving instead of just changing.
+- [Working with Public Data](#14-working-with-public-data) - Use public sources with provenance, source notes, and production-readiness discipline.
 
 ---
 
