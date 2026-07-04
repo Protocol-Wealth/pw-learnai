@@ -2,6 +2,10 @@
 
 How to move from "I know ChatGPT prompts" to "I can use coding agents, GitHub, data sources, and deployment services without making a mess."
 
+> **Beginner tip:** You can use the optional, zero-config [static starter template](../../first-page.html) to quickly test your browser flow without any build step.
+
+---
+
 ## The claim
 
 The next step after prompt literacy is not learning every framework. It is learning an operating loop:
@@ -14,15 +18,19 @@ The next step after prompt literacy is not learning every framework. It is learn
 
 If a beginner can do that loop, they can learn Codex, Claude Code, Antigravity, or the next coding agent without restarting from zero.
 
+---
+
 ## Choose your level
 
 Use level before tool choice:
 
 | Level | You are here if | Next step |
 |-------|-----------------|-----------|
-| Beginner | You know ChatGPT or Claude prompts, but GitHub, local files, and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and complete one harmless read-only task |
-| Intermediate | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
-| Advanced | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
+| **Beginner** | You know ChatGPT or Claude prompts, but GitHub, local files, and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and complete one harmless read-only task |
+| **Intermediate** | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
+| **Advanced** | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
+
+---
 
 ## The first hour
 
@@ -37,22 +45,25 @@ A beginner should see a short visual route before reading a long module:
 
 The goal is not to learn every command. The goal is to learn that AI work becomes safer when it lives in files you can read, diff, open, and verify.
 
+---
+
 ## Why Markdown and HTML
 
 Markdown is useful because it is plain text that also renders nicely on GitHub. Use it for:
 
-- `README.md` to explain what the project is.
-- `SETUP-NOTES.md` to record what was installed and what worked.
-- `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
-- `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
+* `README.md` to explain what the project is.
+* `SETUP-NOTES.md` to record what was installed and what worked.
+* `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
+* `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
 
 HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment.
 
-Use both:
+Use them together:
 
 ```text
 README.md        - what this project is and how to use it
 SETUP-NOTES.md   - what you installed and what worked
+ROADMAP.md       - prioritized future work and backlog
 first-page.html  - the first visible browser artifact
 ```
 
@@ -72,7 +83,7 @@ Minimum outcome:
 - You can open a pull request or at least push a branch for review.
 
 Do not start by memorizing every Git command. Start by understanding the diff: what changed, why it changed, and whether the check passed.
-
+👉 **Read the full guide here:** [Visual Diff-Reading Explainer for Beginners](./diff-explainer.md)
 ### Stage 2: One desktop agent, then one CLI
 
 Pick one visual surface first. Codex app, Claude Code desktop, a Claude Code IDE extension, or Antigravity can help a beginner see files, diffs, and running tasks without living in the terminal all day.

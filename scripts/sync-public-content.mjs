@@ -15,6 +15,7 @@ const ROOT_MARKDOWN_FILES = [
   'CLAUDE.md',
   'CONTRIBUTING.md',
 ]
+const ROOT_STATIC_FILES = ['first-page.html']
 
 function copyDirectory(name) {
   const source = path.join(ROOT, name)
@@ -44,4 +45,11 @@ for (const filename of ROOT_MARKDOWN_FILES) {
   }
 }
 
-console.log(`Synced ${CONTENT_DIRS.join(', ')} and root markdown docs into public/.`)
+for (const filename of ROOT_STATIC_FILES) {
+  const source = path.join(ROOT, filename)
+  if (fs.existsSync(source)) {
+    fs.copyFileSync(source, path.join(PUBLIC_DIR, filename))
+  }
+}
+
+console.log(`Synced ${CONTENT_DIRS.join(', ')}, root markdown docs, and root static files into public/.`)
