@@ -90,15 +90,17 @@ function readModule(slug) {
   const actualFiles = fs.readdirSync(dir)
     .filter(entry => !entry.startsWith('.'))
     .sort()
-  const expectedFiles = [...files].sort()
+  const unexpectedFiles = actualFiles.filter(entry => !entry.endsWith('.md'))
+  const missingFiles = files.filter(entry => !actualFiles.includes(entry))
 
-  if (actualFiles.join('\n') !== expectedFiles.join('\n')) {
+  if (missingFiles.length > 0 || unexpectedFiles.length > 0) {
     throw new Error(
-      `Module ${slug} must contain exactly ${expectedFiles.join(', ')}; found ${actualFiles.join(', ') || 'nothing'}.`
+      `Module ${slug} must contain ${files.join(', ')} and only markdown resources; missing ${missingFiles.join(', ') || 'none'}, unexpected ${unexpectedFiles.join(', ') || 'none'}.`
     )
   }
 
-  const sections = files.map(f => fs.readFileSync(path.join(dir, f), 'utf8'))
+  const extraFiles = actualFiles.filter(entry => !files.includes(entry)).sort()
+  const sections = [...files, ...extraFiles].map(f => fs.readFileSync(path.join(dir, f), 'utf8'))
   return sections.join('\n\n---\n\n')
 }
 

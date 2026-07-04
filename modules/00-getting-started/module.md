@@ -1,14 +1,14 @@
-# 🚀 00 - Getting Started as an AI Operator
+# 00 - Getting Started as an AI Operator
 
-How to move from "I know ChatGPT prompts" to "I can use coding agents, GitHub, data sources, and deployment services without making a mess." ✨
+How to move from "I know ChatGPT prompts" to "I can use coding agents, GitHub, data sources, and deployment services without making a mess."
 
-> 💡 **Beginner Tip:** You can use our optional, zero-config [Static Starter Template](./first-page.html) to quickly test your browser flow without any build step. 🎉
+> **Beginner tip:** You can use the optional, zero-config [static starter template](../../first-page.html) to quickly test your browser flow without any build step.
 
 ---
 
-## 🎯 The claim
+## The claim
 
-The next step after prompt literacy is not learning every framework. It is learning an operating loop: 🔄
+The next step after prompt literacy is not learning every framework. It is learning an operating loop:
 
 1. Put work in a repository.
 2. Give the agent durable project instructions.
@@ -16,13 +16,13 @@ The next step after prompt literacy is not learning every framework. It is learn
 4. Run the documented check.
 5. Update the state files that let the next session continue.
 
-If a beginner can do that loop, they can learn Codex, Claude Code, Antigravity, or the next coding agent without restarting from zero. 😎
+If a beginner can do that loop, they can learn Codex, Claude Code, Antigravity, or the next coding agent without restarting from zero.
 
 ---
 
-## 📊 Choose your level
+## Choose your level
 
-Use level before tool choice: 🔥
+Use level before tool choice:
 
 | Level | You are here if | Next step |
 |-------|-----------------|-----------|
@@ -32,9 +32,9 @@ Use level before tool choice: 🔥
 
 ---
 
-## 🕒 The first hour
+## The first hour
 
-A beginner should see a short visual route before reading a long module: 🧭
+A beginner should see a short visual route before reading a long module:
 
 1. Create GitHub, enable 2FA, and open one practice repo or folder.
 2. Choose Claude, Codex, or both.
@@ -43,20 +43,20 @@ A beginner should see a short visual route before reading a long module: 🧭
 5. Ask for a read-only repo tour before any edits.
 6. Let the agent make one tiny change, then inspect the diff and run the check.
 
-The goal is not to learn every command. The goal is to learn that AI work becomes safer when it lives in files you can read, diff, open, and verify.🛡️
+The goal is not to learn every command. The goal is to learn that AI work becomes safer when it lives in files you can read, diff, open, and verify.
 
 ---
 
-## 🛠️ Why Markdown and HTML
+## Why Markdown and HTML
 
-Markdown is useful because it is plain text that also renders nicely on GitHub. Use it for: ✨
+Markdown is useful because it is plain text that also renders nicely on GitHub. Use it for:
 
 * `README.md` to explain what the project is.
 * `SETUP-NOTES.md` to record what was installed and what worked.
 * `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
 * `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
 
-HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment. 🌐
+HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment.
 
 Use them together:
 
@@ -64,7 +64,7 @@ Use them together:
 README.md        - what this project is and how to use it
 SETUP-NOTES.md   - what you installed and what worked
 ROADMAP.md       - prioritized future work and backlog
-first-page.html  - the first visible browser artifact (Static Template)
+first-page.html  - the first visible browser artifact
 ```
 
 Markdown explains the work. HTML shows the work.

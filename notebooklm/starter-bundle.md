@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-07-03
+Generated: 2026-07-04
 
 ## Modules included
 
@@ -37,6 +37,10 @@ Use this map when assigning the starter path, reviewing operator progress, or ju
 
 How to move from "I know ChatGPT prompts" to "I can use coding agents, GitHub, data sources, and deployment services without making a mess."
 
+> **Beginner tip:** You can use the optional, zero-config [static starter template](../../first-page.html) to quickly test your browser flow without any build step.
+
+---
+
 ## The claim
 
 The next step after prompt literacy is not learning every framework. It is learning an operating loop:
@@ -49,15 +53,19 @@ The next step after prompt literacy is not learning every framework. It is learn
 
 If a beginner can do that loop, they can learn Codex, Claude Code, Antigravity, or the next coding agent without restarting from zero.
 
+---
+
 ## Choose your level
 
 Use level before tool choice:
 
 | Level | You are here if | Next step |
 |-------|-----------------|-----------|
-| Beginner | You know ChatGPT or Claude prompts, but GitHub, local files, and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and complete one harmless read-only task |
-| Intermediate | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
-| Advanced | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
+| **Beginner** | You know ChatGPT or Claude prompts, but GitHub, local files, and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and complete one harmless read-only task |
+| **Intermediate** | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
+| **Advanced** | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
+
+---
 
 ## The first hour
 
@@ -72,22 +80,25 @@ A beginner should see a short visual route before reading a long module:
 
 The goal is not to learn every command. The goal is to learn that AI work becomes safer when it lives in files you can read, diff, open, and verify.
 
+---
+
 ## Why Markdown and HTML
 
 Markdown is useful because it is plain text that also renders nicely on GitHub. Use it for:
 
-- `README.md` to explain what the project is.
-- `SETUP-NOTES.md` to record what was installed and what worked.
-- `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
-- `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
+* `README.md` to explain what the project is.
+* `SETUP-NOTES.md` to record what was installed and what worked.
+* `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
+* `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
 
 HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment.
 
-Use both:
+Use them together:
 
 ```text
 README.md        - what this project is and how to use it
 SETUP-NOTES.md   - what you installed and what worked
+ROADMAP.md       - prioritized future work and backlog
 first-page.html  - the first visible browser artifact
 ```
 
@@ -107,7 +118,7 @@ Minimum outcome:
 - You can open a pull request or at least push a branch for review.
 
 Do not start by memorizing every Git command. Start by understanding the diff: what changed, why it changed, and whether the check passed.
-
+👉 **Read the full guide here:** [Visual Diff-Reading Explainer for Beginners](./diff-explainer.md)
 ### Stage 2: One desktop agent, then one CLI
 
 Pick one visual surface first. Codex app, Claude Code desktop, a Claude Code IDE extension, or Antigravity can help a beginner see files, diffs, and running tasks without living in the terminal all day.
@@ -415,6 +426,175 @@ Reviewed: 2026-06-30.
 - Protocol-Wealth/nexus-core - https://github.com/Protocol-Wealth/nexus-core
 - Protocol-Wealth/pwos-core - https://github.com/Protocol-Wealth/pwos-core
 - Protocol-Wealth/pwplan-core - https://github.com/Protocol-Wealth/pwplan-core
+
+
+---
+
+# 📖 Understanding Git Diffs
+
+Before making your first contribution, it's helpful to understand what a **diff** is.
+
+A **diff** shows the changes made between two versions of a file. Git uses diffs to display exactly what has been **added**, **removed**, or **modified**.
+
+---
+
+## Why Does This Matter?
+
+Reviewing a diff before committing helps you:
+
+- ✅ Catch accidental changes
+- ✅ Verify your work
+- ✅ Keep commits clean and focused
+- ✅ Make code reviews easier
+
+Even experienced developers check their diffs before every commit.
+
+---
+
+# Anatomy of a Diff
+
+Example:
+
+```diff
+--- a/src/example.js
++++ b/src/example.js
+
+ function greet() {
+-    console.log("Hello");
++    console.log("Hello, World!");
+ }
+```
+
+Let's break this down.
+
+## File Paths
+
+```diff
+--- a/src/example.js
++++ b/src/example.js
+```
+
+- `---` represents the previous version of the file.
+- `+++` represents the updated version.
+
+The `a/` and `b/` prefixes simply identify the old and new versions.
+
+---
+
+## Removed Lines
+
+Lines beginning with a **minus (`-`)** were removed.
+
+```diff
+- console.log("Hello");
+```
+
+Git typically highlights these lines in **red**.
+
+---
+
+## Added Lines
+
+Lines beginning with a **plus (`+`)** were added.
+
+```diff
++ console.log("Hello, World!");
+```
+
+Git typically highlights these lines in **green**.
+
+---
+
+## Unchanged Lines
+
+Lines without a `+` or `-` provide surrounding context.
+
+```diff
+function greet() {
+```
+
+These help you understand where the changes occurred.
+
+---
+
+# Visual Example
+
+```text
+Old File
+
+Hello
+World
+Git
+```
+
+becomes
+
+```text
+New File
+
+Hello
+GitHub
+Git
+```
+
+Git displays this as:
+
+```diff
+ Hello
+-World
++GitHub
+ Git
+```
+
+---
+
+# Before You Commit
+
+A good habit is to review your changes:
+
+```bash
+git diff
+```
+
+If everything looks correct, stage your files:
+
+```bash
+git add .
+```
+
+Then create your commit:
+
+```bash
+git commit -m "Describe your changes"
+```
+
+---
+
+# Tips for Beginners
+
+✔ Read every diff before committing.
+
+✔ Small diffs are easier to understand than large ones.
+
+✔ If something unexpected appears in the diff, investigate before committing.
+
+✔ Don't worry if diffs look confusing at first. Reading them becomes much easier with practice.
+
+---
+
+# Summary
+
+| Symbol | Meaning |
+|--------|---------|
+| `+` | Added line |
+| `-` | Removed line |
+| `---` | Previous version |
+| `+++` | Updated version |
+| Context | Unchanged surrounding lines |
+
+---
+
+Happy coding! 🚀
 
 
 
