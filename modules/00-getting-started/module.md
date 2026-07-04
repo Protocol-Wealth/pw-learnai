@@ -72,7 +72,7 @@ Minimum outcome:
 - You can open a pull request or at least push a branch for review.
 
 Do not start by memorizing every Git command. Start by understanding the diff: what changed, why it changed, and whether the check passed.
-
+👉 **Read the full guide here:** [Visual Diff-Reading Explainer for Beginners](./diff-explainer.md)
 ### Stage 2: One desktop agent, then one CLI
 
 Pick one visual surface first. Codex app, Claude Code desktop, a Claude Code IDE extension, or Antigravity can help a beginner see files, diffs, and running tasks without living in the terminal all day.
