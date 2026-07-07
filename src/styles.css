@@ -3,14 +3,47 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+    color-scheme: light;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  background: #f8fafc;
+    margin: 0;
+    background: #f8fafc;
+}
+
+/* 🌐 Issue #20: Homepage Accessibility & Mobile Polish Patches */
+
+/* Improve keyboard navigation focus indicators */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+    outline: 3px solid #06b6d4 !important;
+    /* clear cyan-500 outline */
+    outline-offset: 2px !important;
+}
+
+/* Ensure body prevents unexpected layout breaking on tiny touch viewports */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Polish tap targets sizing for mobile viewports without destroying core layouts */
+@media (max-width: 768px) {
+
+    button,
+    a,
+    [role="button"] {
+        min-height: 42px;
+        /* Standard web accessibility guidelines friendly */
+    }
 }
