@@ -30,11 +30,22 @@ import McpToolCallPlanner from '../components/interactive/McpToolCallPlanner.jsx
 import PiiGuardSimulator from '../components/interactive/PiiGuardSimulator.jsx'
 import SourceNoteBuilder from '../components/interactive/SourceNoteBuilder.jsx'
 import SetupNotesChecklist from '../components/interactive/SetupNotesChecklist.jsx'
+import PromptAgentExercise from '../components/interactive/PromptAgentExercise.jsx'
 import PlanningContractValidator from '../components/interactive/PlanningContractValidator.jsx'
 import PromptEvaluator from '../components/interactive/PromptEvaluator.jsx'
 import AgentInstructionsAuditor from '../components/interactive/AgentInstructionsAuditor.jsx'
 
 const TOOLS = [
+    {
+        id: 'prompt-agent-exercise',
+        name: 'Prompt-to-Agent Exercise',
+        module: '18',
+        category: 'Advanced Agents',
+        component: PromptAgentExercise,
+        href: 'modules/18-prompt-to-agent-task/module.md',
+        description: 'Interactive sandbox to structure and simulate prompt-to-agent task routing directly in-browser.',
+        tags: ['Prompting', 'Agents', 'Simulation', 'Sandbox'],
+    },
     {
         id: 'setup-notes-checklist',
         name: 'Beginner Onboarding Checklist',
