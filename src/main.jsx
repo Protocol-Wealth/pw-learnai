@@ -32,8 +32,30 @@ import PlanningContractValidator from '../components/interactive/PlanningContrac
 import PromptEvaluator from '../components/interactive/PromptEvaluator.jsx'
 import AgentInstructionsAuditor from '../components/interactive/AgentInstructionsAuditor.jsx'
 import PromptAgentExercise from '../components/interactive/PromptAgentExercise.jsx'
+import SetupNotesChecklist from '../components/interactive/SetupNotesChecklist.jsx'
+import SourceNoteBuilder from '../components/interactive/SourceNoteBuilder.jsx'
 
 const TOOLS = [
+  {
+    id: 'setup-notes-checklist',
+    name: 'Beginner Onboarding Checklist',
+    module: '00',
+    category: 'Getting Started',
+    component: SetupNotesChecklist,
+    href: 'modules/00-getting-started/module.md',
+    description: 'A one-screen, printable onboarding checklist covering GitHub, 2FA, coding agents, state files, and verification.',
+    tags: ['GitHub', 'Agents', 'SETUP-NOTES.md', 'Checklist'],
+  },
+  {
+    id: 'source-note-builder',
+    name: 'Source Note Builder',
+    module: '14',
+    category: 'Working with Data',
+    component: SourceNoteBuilder,
+    href: 'modules/14-working-with-public-data/module.md',
+    description: 'Browser-only source-note builder for Data.gov, the National Archives Catalog API, and OAI-PMH.',
+    tags: ['Data.gov', 'Archives', 'OAI-PMH', 'Metadata'],
+  },
   {
     id: 'setup-path',
     name: 'Setup Path Builder',
