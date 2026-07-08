@@ -34,6 +34,7 @@ import AgentInstructionsAuditor from '../components/interactive/AgentInstruction
 import PromptAgentExercise from '../components/interactive/PromptAgentExercise.jsx'
 import SetupNotesChecklist from '../components/interactive/SetupNotesChecklist.jsx'
 import SourceNoteBuilder from '../components/interactive/SourceNoteBuilder.jsx'
+import TestSetCompositionAuditor from '../components/interactive/TestSetCompositionAuditor.jsx'
 
 const TOOLS = [
   {
@@ -145,6 +146,16 @@ const TOOLS = [
     href: 'modules/10-prompt-engineering/module.md',
     description: 'Score a prompt against the six durability properties.',
     tags: ['Prompts', 'Evaluation'],
+  },
+  {
+    id: 'test-set-composition',
+    name: 'Test-Set Composition Auditor',
+    module: '11',
+    category: 'Practice',
+    component: TestSetCompositionAuditor,
+    href: 'modules/11-evaluation-design/module.md',
+    description: 'Tag your evaluation cases and check the happy/edge/adversarial/out-of-distribution mix against the recommended bands.',
+    tags: ['Evaluation', 'Test set', 'Coverage'],
   },
   {
     id: 'disruption',
