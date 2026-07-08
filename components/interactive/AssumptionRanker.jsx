@@ -58,6 +58,7 @@ export default function AssumptionRanker() {
                 value={a.text}
                 onChange={e => update(a.id, 'text', e.target.value)}
                 placeholder="Specific assumption the plan rests on..."
+                aria-label="Assumption text"
                 className="flex-1 px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-500"
               />
               <button
@@ -73,7 +74,7 @@ export default function AssumptionRanker() {
                   <span>Stakes (if broken, impact)</span>
                   <span className="font-mono">{a.stakes}/5</span>
                 </div>
-                <input type="range" min={1} max={5} value={a.stakes} onChange={e => update(a.id, 'stakes', Number(e.target.value))} className="w-full" />
+                <input type="range" min={1} max={5} value={a.stakes} onChange={e => update(a.id, 'stakes', Number(e.target.value))} aria-label={`Stakes if broken (1-5) for: ${a.text || 'this assumption'}`} className="w-full" />
                 <div className="flex justify-between text-[10px] text-slate-500">
                   <span>Plan still works</span>
                   <span>Plan collapses</span>
@@ -84,7 +85,7 @@ export default function AssumptionRanker() {
                   <span>Confidence in assumption</span>
                   <span className="font-mono">{a.confidence}/5</span>
                 </div>
-                <input type="range" min={1} max={5} value={a.confidence} onChange={e => update(a.id, 'confidence', Number(e.target.value))} className="w-full" />
+                <input type="range" min={1} max={5} value={a.confidence} onChange={e => update(a.id, 'confidence', Number(e.target.value))} aria-label={`Confidence in assumption (1-5) for: ${a.text || 'this assumption'}`} className="w-full" />
                 <div className="flex justify-between text-[10px] text-slate-500">
                   <span>Pure guess</span>
                   <span>Strong evidence</span>
