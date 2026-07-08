@@ -19,7 +19,12 @@ function gh(args) {
 
 function checksPass(pr) {
   const checks = pr.statusCheckRollup || []
-  if (checks.length === 0) return true
+  // An empty rollup must NOT vacuously pass. Previously `checks.length === 0`
+  // returned true, but the only workflows (bundle.yml, deploy-pages.yml) run
+  // on push to main and never on pull_request, so statusCheckRollup was ALWAYS
+  // empty for open PRs. That made every PR vacuously "pass" and pnpm build
+  // never ran pre-merge. Require at least one completed CI check to exist.
+  if (checks.length === 0) return false
   return checks.every(check => {
     const conclusion = check.conclusion || check.state
     return ['SUCCESS', 'SKIPPED', 'NEUTRAL'].includes(String(conclusion).toUpperCase())
@@ -28,7 +33,10 @@ function checksPass(pr) {
 
 function isMergeable(pr) {
   if (pr.isDraft) return false
-  if (pr.reviewDecision === 'CHANGES_REQUESTED') return false
+  // Require an explicit approving review, not merely the absence of a
+  // CHANGES_REQUESTED. reviewDecision is null/'' when no review has happened,
+  // so "not CHANGES_REQUESTED" previously let unreviewed PRs through.
+  if (pr.reviewDecision !== 'APPROVED') return false
   if (!['CLEAN', 'HAS_HOOKS'].includes(pr.mergeStateStatus)) return false
   return checksPass(pr)
 }
