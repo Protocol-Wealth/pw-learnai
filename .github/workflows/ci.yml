@@ -23,6 +23,6 @@ jobs:
           node-version: '22'
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
-      - name: Check TOOLS registry for dead links
-        run: node scripts/check-tool-links.mjs
+      - name: Check for internal dead links
+        run: node scripts/check-links.mjs
       - run: pnpm build

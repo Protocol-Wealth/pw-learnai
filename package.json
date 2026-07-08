@@ -13,6 +13,7 @@
     "prepreview": "node scripts/sync-public-content.mjs",
     "preview": "vite preview",
     "bundle": "node scripts/bundle-notebooklm.js",
+    "check:links": "node scripts/check-links.mjs",
     "pr:audit": "node scripts/audit-mergeable-prs.mjs",
     "pr:mergeable": "node scripts/audit-mergeable-prs.mjs --merge"
   },
