@@ -14,3 +14,33 @@ body {
   margin: 0;
   background: #f8fafc;
 }
+
+/* Issue #20: homepage accessibility & mobile polish */
+
+/* Keyboard-navigation focus indicators. !important so the ring still shows
+   on elements that opt into Tailwind's focus:outline-none utility. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid #06b6d4 !important; /* cyan-500 */
+  outline-offset: 2px !important;
+}
+
+/* Prevent unexpected horizontal overflow on narrow touch viewports. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Comfortable tap-target sizing on small viewports. */
+@media (max-width: 768px) {
+  a,
+  button,
+  [role="button"] {
+    min-height: 42px;
+  }
+}
