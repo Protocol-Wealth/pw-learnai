@@ -1,0 +1,28 @@
+name: CI
+
+# Runs on every pull request into main so `pnpm build` and the dead-link check
+# actually execute before merge. This is deliberately a SEPARATE, read-only
+# workflow: bundle.yml and deploy-pages.yml hold contents:write / pages:write
+# tokens and must not run on pull_request, where a fork PR could obtain a
+# write-scoped token.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6.4.0
+        with:
+          node-version: '22'
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - name: Check TOOLS registry for dead links
+        run: node scripts/check-tool-links.mjs
+      - run: pnpm build
