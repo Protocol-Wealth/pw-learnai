@@ -31,6 +31,7 @@ import PiiGuardSimulator from '../components/interactive/PiiGuardSimulator.jsx'
 import PlanningContractValidator from '../components/interactive/PlanningContractValidator.jsx'
 import PromptEvaluator from '../components/interactive/PromptEvaluator.jsx'
 import AgentInstructionsAuditor from '../components/interactive/AgentInstructionsAuditor.jsx'
+import PromptAgentExercise from '../components/interactive/PromptAgentExercise.jsx'
 
 const TOOLS = [
   {
@@ -102,6 +103,16 @@ const TOOLS = [
     href: 'modules/13-agent-instructions/module.md',
     description: 'Score a pasted CLAUDE.md / AGENTS.md in your browser, then copy a deep-audit prompt for your repo.',
     tags: ['CLAUDE.md', 'AGENTS.md', 'Coding agents'],
+  },
+  {
+    id: 'prompt-agent-exercise',
+    name: 'Prompt-to-Agent Exercise',
+    module: '13',
+    category: 'Practice',
+    component: PromptAgentExercise,
+    href: 'modules/13-agent-instructions/module.md',
+    description: 'Interactive sandbox to structure and simulate prompt-to-agent task routing directly in-browser.',
+    tags: ['Prompting', 'Agents', 'Simulation', 'Sandbox'],
   },
   {
     id: 'prompt',
