@@ -132,6 +132,7 @@ export default function ValueDestructionPremortem() {
                     onChange={e => setMitigation(p.id, e.target.value)}
                     rows={2}
                     placeholder="Specific, not generic. Contractual language, technical architecture, audit rights..."
+                    aria-label="Specific mitigation in place"
                     className="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
                   />
                   <div className="text-xs text-slate-500 mt-1 italic">Reference: {p.mitigation}</div>

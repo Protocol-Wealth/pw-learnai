@@ -89,6 +89,7 @@ export default function AdvantageMatrix() {
                   value={a.name}
                   onChange={e => update(a.id, 'name', e.target.value)}
                   placeholder="Activity name (be specific)"
+                  aria-label="Activity name"
                   className="flex-1 px-3 py-2 border border-slate-300 rounded-md text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500"
                 />
                 <button
@@ -104,7 +105,7 @@ export default function AdvantageMatrix() {
                     <span>Task leverage</span>
                     <span className="font-mono">{a.leverage}</span>
                   </div>
-                  <input type="range" min={0} max={100} value={a.leverage} onChange={e => update(a.id, 'leverage', Number(e.target.value))} className="w-full" />
+                  <input type="range" min={0} max={100} value={a.leverage} onChange={e => update(a.id, 'leverage', Number(e.target.value))} aria-label={`Task leverage (0-100) for: ${a.name || 'this activity'}`} className="w-full" />
                   <div className="flex justify-between text-[10px] text-slate-500 mt-1">
                     <span>Low (under 1.5x)</span>
                     <span>High (3x+)</span>
@@ -115,7 +116,7 @@ export default function AdvantageMatrix() {
                     <span>Moat durability</span>
                     <span className="font-mono">{a.durability}</span>
                   </div>
-                  <input type="range" min={0} max={100} value={a.durability} onChange={e => update(a.id, 'durability', Number(e.target.value))} className="w-full" />
+                  <input type="range" min={0} max={100} value={a.durability} onChange={e => update(a.id, 'durability', Number(e.target.value))} aria-label={`Moat durability (0-100) for: ${a.name || 'this activity'}`} className="w-full" />
                   <div className="flex justify-between text-[10px] text-slate-500 mt-1">
                     <span>Low (commodity)</span>
                     <span>High (compounding)</span>
@@ -131,6 +132,7 @@ export default function AdvantageMatrix() {
                     value={a.durableInput}
                     onChange={e => update(a.id, 'durableInput', e.target.value)}
                     placeholder="Proprietary X that competitors cannot easily acquire..."
+                    aria-label="Durable input for this Quadrant A activity"
                     className="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
                   />
                   {!a.durableInput && (
