@@ -35,6 +35,7 @@ import PromptAgentExercise from '../components/interactive/PromptAgentExercise.j
 import SetupNotesChecklist from '../components/interactive/SetupNotesChecklist.jsx'
 import SourceNoteBuilder from '../components/interactive/SourceNoteBuilder.jsx'
 import TestSetCompositionAuditor from '../components/interactive/TestSetCompositionAuditor.jsx'
+import TrustBoundaryAuditor from '../components/interactive/TrustBoundaryAuditor.jsx'
 
 const TOOLS = [
   {
@@ -156,6 +157,16 @@ const TOOLS = [
     href: 'modules/11-evaluation-design/module.md',
     description: 'Tag your evaluation cases and check the happy/edge/adversarial/out-of-distribution mix against the recommended bands.',
     tags: ['Evaluation', 'Test set', 'Coverage'],
+  },
+  {
+    id: 'trust-boundary',
+    name: 'Trust-Boundary Auditor',
+    module: '15',
+    category: 'Practice',
+    component: TrustBoundaryAuditor,
+    href: 'modules/15-security-secrets-hygiene/module.md',
+    description: 'Enumerate an AI feature\'s surfaces and see when untrusted input, private data, and exfiltration co-occur — the lethal trifecta.',
+    tags: ['Security', 'Prompt injection', 'Secrets', 'Trust boundary'],
   },
   {
     id: 'disruption',
@@ -431,6 +442,7 @@ const MODULE_GROUPS = [
       ['06', 'Organizational Design for Continuous Change', 'modules/06-organizational-design/module.md'],
       ['07', 'Disciplined Experimentation', 'modules/07-experimentation/module.md'],
       ['08', 'Stakeholder Buy-in Through Evidence', 'modules/08-stakeholder-evidence/module.md'],
+      ['15', 'Security & Secrets Hygiene', 'modules/15-security-secrets-hygiene/module.md'],
     ],
   },
   {

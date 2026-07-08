@@ -36,8 +36,8 @@ const BUNDLES = {
   },
   'practice-bundle.md': {
     title: 'pw-learnai — Practice (AI tools, prompts, evals, coding)',
-    description: 'Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, and public-data source discipline.',
-    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '14-working-with-public-data']
+    description: 'Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, and security and secrets hygiene.',
+    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '14-working-with-public-data', '15-security-secrets-hygiene']
   },
   'ai-deep-dive.md': {
     title: 'pw-learnai — AI Focus',
