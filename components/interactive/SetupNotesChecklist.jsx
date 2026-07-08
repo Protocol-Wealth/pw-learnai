@@ -68,31 +68,40 @@ export default function SetupNotesChecklist() {
 
             {/* Checklist Tasks */}
             <div className="space-y-4">
-                {CHECKLIST_ITEMS.map((item) => (
-                    <div
-                        key={item.id}
-                        onClick={() => toggleItem(item.id)}
-                        className={`flex items-start gap-3 p-3 rounded-lg border transition cursor-pointer select-none ${checkedItems[item.id]
-                            ? 'bg-emerald-50 border-emerald-200 text-slate-700'
-                            : 'bg-slate-50 border-slate-100 text-slate-900 hover:border-slate-300'
-                            }`}
-                    >
-                        <input
-                            type="checkbox"
-                            checked={!!checkedItems[item.id]}
-                            onChange={() => { }} // Handled by parent div onClick
-                            className="mt-1 h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 pointer-events-none"
-                        />
-                        <div>
-                            <span className="inline-block text-[10px] font-bold uppercase tracking-wider bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded mb-1">
-                                {item.category}
+                {CHECKLIST_ITEMS.map((item) => {
+                    const isChecked = !!checkedItems[item.id]
+                    return (
+                        <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => toggleItem(item.id)}
+                            aria-pressed={isChecked}
+                            className={`flex w-full items-start gap-3 p-3 rounded-lg border text-left transition cursor-pointer select-none ${isChecked
+                                ? 'bg-emerald-50 border-emerald-200 text-slate-700'
+                                : 'bg-slate-50 border-slate-100 text-slate-900 hover:border-slate-300'
+                                }`}
+                        >
+                            {/* Decorative check indicator; the button's aria-pressed conveys state to assistive tech. */}
+                            <span
+                                aria-hidden="true"
+                                className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border text-[10px] font-bold leading-none ${isChecked
+                                    ? 'bg-emerald-600 border-emerald-600 text-white'
+                                    : 'bg-white border-slate-300 text-transparent'
+                                    }`}
+                            >
+                                ✓
                             </span>
-                            <p className={`text-sm leading-relaxed ${checkedItems[item.id] ? 'line-through text-slate-400' : ''}`}>
-                                {item.task}
-                            </p>
-                        </div>
-                    </div>
-                ))}
+                            <span className="min-w-0">
+                                <span className="inline-block text-[10px] font-bold uppercase tracking-wider bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded mb-1">
+                                    {item.category}
+                                </span>
+                                <span className={`block text-sm leading-relaxed ${isChecked ? 'line-through text-slate-400' : ''}`}>
+                                    {item.task}
+                                </span>
+                            </span>
+                        </button>
+                    )
+                })}
             </div>
 
             {/* Footer message indicating static/client-only nature */}
