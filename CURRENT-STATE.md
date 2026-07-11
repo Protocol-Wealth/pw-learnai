@@ -1,6 +1,6 @@
 # Current State
 
-Last reviewed: 2026-07-01.
+Last reviewed: 2026-07-11.
 
 ## Live status
 
@@ -31,9 +31,12 @@ Last reviewed: 2026-07-01.
 - `SetupPathBuilder` lets the user choose Claude, Codex, or both and generates a bounded first prompt.
 - Module 00 explains why Markdown is useful for durable instructions and why HTML is useful for immediate visual browser feedback.
 - Module 14 introduces Data.gov, the National Archives Catalog API, OAI-PMH, source notes, and safe public-data habits.
-- NotebookLM bundles include the starter and public-data paths.
+- Module 15 covers security & secrets hygiene for AI operators (the lethal trifecta, prompt injection, untrusted model output, secrets handling, trust boundaries).
+- Interactive tools now cover modules 00–03, 07, and 10–15, including the Beginner Onboarding Checklist (keyboard-accessible), Source Note Builder, Test-Set Composition Auditor (Module 11), and Trust-Boundary Auditor (Module 15).
+- NotebookLM bundles include the starter, public-data, and practice paths.
 - Root markdown docs and standalone prompts are copied into the static Pages artifact by `scripts/sync-public-content.mjs`.
 - Browser tools remain client-only: no login, telemetry, backend, external API calls, or secrets.
+- Pull requests into `main` run a read-only `ci.yml` (`pnpm install --frozen-lockfile` → internal dead-link check → `pnpm build`); `bundle.yml` and `deploy-pages.yml` stay push-triggered so their write-scoped tokens never run on pull requests.
 
 ## 2026-07-01 audit updates
 
@@ -43,6 +46,16 @@ Last reviewed: 2026-07-01.
 - Unused `recharts` dependency and transitive lockfile entries were removed.
 - `README.md`, `CLAUDE.md`, `AGENTS.md`, and `CONTRIBUTING.md` were refreshed to match current commands and dependency state.
 - GitHub issues [#14](https://github.com/Protocol-Wealth/pw-learnai/issues/14) through [#21](https://github.com/Protocol-Wealth/pw-learnai/issues/21) now track the open roadmap backlog.
+
+## 2026-07-11 triage and build-out session
+
+- Reverted PR #31 off `main` ([#36]) after review; its two components were re-implemented cleanly instead.
+- Merge automation hardened ([#38]): `audit-mergeable-prs.mjs` now requires `reviewDecision === 'APPROVED'` and treats an empty check rollup as a block; added the read-only `ci.yml` with an internal dead-link gate.
+- Dead-link checking broadened ([#41]): `scripts/check-links.mjs` covers all relative links in `src/main.jsx` plus markdown internal links; `pnpm check:links` added; `check-tool-links.mjs` removed.
+- Resolved issues #14 and #19 with clean, keyboard-accessible rebuilds ([#39]); added the Test-Set Composition Auditor for Module 11 ([#40]); accessibility sweep gave range sliders and unlabeled inputs accessible names ([#42]).
+- Added Module 15 (Security & Secrets Hygiene) and the Trust-Boundary Auditor ([#44], closing #43).
+- `ci.yml` also runs on `ready_for_review` so a draft marked ready runs the gate without a new commit.
+- Next backlog tracked in issues #45–#50 (see `ROADMAP.md`): companion tools for modules 04, 05, 06, 08, 09, and a content-accuracy audit.
 
 ## Verification
 
@@ -87,14 +100,14 @@ Additional checks:
 
 ## Open issue tracker
 
-- [#14](https://github.com/Protocol-Wealth/pw-learnai/issues/14): Add printable beginner checklist for `SETUP-NOTES.md`.
-- [#15](https://github.com/Protocol-Wealth/pw-learnai/issues/15): Add static `first-page.html` starter template.
-- [#16](https://github.com/Protocol-Wealth/pw-learnai/issues/16): Add visual diff-reading explainer for beginners.
-- [#17](https://github.com/Protocol-Wealth/pw-learnai/issues/17): Split Setup Path Builder prompts by agent workflow.
-- [#18](https://github.com/Protocol-Wealth/pw-learnai/issues/18): Add browser-only prompt-to-agent-task exercise.
-- [#19](https://github.com/Protocol-Wealth/pw-learnai/issues/19): Add browser-only public-data source-note builder.
-- [#20](https://github.com/Protocol-Wealth/pw-learnai/issues/20): Audit homepage accessibility and mobile polish.
-- [#21](https://github.com/Protocol-Wealth/pw-learnai/issues/21): Add operator-facing table of contents to starter bundle.
+Issues #14–#21 and #43 are closed. Current open backlog:
+
+- [#45](https://github.com/Protocol-Wealth/pw-learnai/issues/45): Companion tool for Module 04 — Decision Record Builder.
+- [#46](https://github.com/Protocol-Wealth/pw-learnai/issues/46): Companion tool for Module 05 — Platform Economics Diagnostic.
+- [#47](https://github.com/Protocol-Wealth/pw-learnai/issues/47): Companion tool for Module 06 — Change-Readiness Diagnostic.
+- [#48](https://github.com/Protocol-Wealth/pw-learnai/issues/48): Companion tool for Module 08 — Stakeholder Evidence Mapper.
+- [#49](https://github.com/Protocol-Wealth/pw-learnai/issues/49): Companion tool for Module 09 — Judgment Under Uncertainty aid.
+- [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50): Content accuracy audit — falsifiability pass and reference refresh.
 
 ## Known constraints
 

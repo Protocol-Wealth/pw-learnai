@@ -9,6 +9,9 @@ name: CI
 on:
   pull_request:
     branches: [main]
+    # Include ready_for_review so a draft PR marked ready runs CI even when
+    # no new commit is pushed (the default types are opened/synchronize/reopened).
+    types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: read

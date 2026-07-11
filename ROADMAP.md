@@ -4,17 +4,21 @@ This is a focused implementation roadmap, not a product promise.
 
 ## Near term
 
-- [#14](https://github.com/Protocol-Wealth/pw-learnai/issues/14): Add a one-screen beginner checklist that can be printed or copied into `SETUP-NOTES.md`.
-- [#15](https://github.com/Protocol-Wealth/pw-learnai/issues/15): Add an optional `first-page.html` starter template as a static example or downloadable snippet.
-- [#17](https://github.com/Protocol-Wealth/pw-learnai/issues/17): Make the Setup Path Builder output separate prompts for Claude-only, Codex-only, and Claude-plus-Codex handoff workflows.
-- [#16](https://github.com/Protocol-Wealth/pw-learnai/issues/16): Add a visual diff-reading explainer for beginners before they make their first commit.
+- [#45](https://github.com/Protocol-Wealth/pw-learnai/issues/45): Companion tool for Module 04 — Decision Record Builder.
+- [#46](https://github.com/Protocol-Wealth/pw-learnai/issues/46): Companion tool for Module 05 — Platform Economics Diagnostic.
+- [#47](https://github.com/Protocol-Wealth/pw-learnai/issues/47): Companion tool for Module 06 — Change-Readiness Diagnostic.
+- [#48](https://github.com/Protocol-Wealth/pw-learnai/issues/48): Companion tool for Module 08 — Stakeholder Evidence Mapper.
+- [#49](https://github.com/Protocol-Wealth/pw-learnai/issues/49): Companion tool for Module 09 — Judgment Under Uncertainty aid.
+
+These close the tool-coverage gap: every numbered module gets one client-only companion tool.
 
 ## Middle term
 
-- [#18](https://github.com/Protocol-Wealth/pw-learnai/issues/18): Add a small browser-only exercise for converting a weak chat prompt into a scoped coding-agent task.
-- [#19](https://github.com/Protocol-Wealth/pw-learnai/issues/19): Add a browser-only source-note builder for Data.gov, National Archives Catalog API, and OAI-PMH.
-- [#20](https://github.com/Protocol-Wealth/pw-learnai/issues/20): Add accessibility and mobile-polish review for the homepage learning-path cards.
-- [#21](https://github.com/Protocol-Wealth/pw-learnai/issues/21): Expand `notebooklm/starter-bundle.md` with a short operator-facing table of contents.
+- [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50): Content accuracy audit — falsifiability pass across modules and refresh of fast-moving AI references against current official docs.
+
+## Shipped
+
+- Issues #14–#21 (near/middle-term backlog) and #43 (Module 15 — Security & Secrets Hygiene) are complete. See `CURRENT-STATE.md` for the current live surface.
 
 ## Tracking rule
 
