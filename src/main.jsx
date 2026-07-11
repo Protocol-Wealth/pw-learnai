@@ -37,6 +37,10 @@ import SourceNoteBuilder from '../components/interactive/SourceNoteBuilder.jsx'
 import TestSetCompositionAuditor from '../components/interactive/TestSetCompositionAuditor.jsx'
 import TrustBoundaryAuditor from '../components/interactive/TrustBoundaryAuditor.jsx'
 import DecisionRecordBuilder from '../components/interactive/DecisionRecordBuilder.jsx'
+import PlatformEconomicsDiagnostic from '../components/interactive/PlatformEconomicsDiagnostic.jsx'
+import ChangeReadinessDiagnostic from '../components/interactive/ChangeReadinessDiagnostic.jsx'
+import StakeholderEvidenceMapper from '../components/interactive/StakeholderEvidenceMapper.jsx'
+import JudgmentUnderUncertainty from '../components/interactive/JudgmentUnderUncertainty.jsx'
 
 const TOOLS = [
   {
@@ -178,6 +182,46 @@ const TOOLS = [
     href: 'modules/04-decision-artifacts/module.md',
     description: 'Turn a recurring decision into a defensible, copyable record with context, options, and one-way/two-way-door reversibility.',
     tags: ['Decision record', 'ADR', 'Reversibility'],
+  },
+  {
+    id: 'platform-economics',
+    name: 'Platform Economics Diagnostic',
+    module: '05',
+    category: 'Strategy',
+    component: PlatformEconomicsDiagnostic,
+    href: 'modules/05-platform-economics/module.md',
+    description: 'Run the binary test: is this a platform with real network effects, or a product with an API?',
+    tags: ['Platform', 'Network effects', 'Moat'],
+  },
+  {
+    id: 'change-readiness',
+    name: 'Change-Readiness Diagnostic',
+    module: '06',
+    category: 'Practice',
+    component: ChangeReadinessDiagnostic,
+    href: 'modules/06-organizational-design/module.md',
+    description: 'Rate the structural factors of ambidexterity and find the weakest — where the architecture loses the explore/exploit trade-off.',
+    tags: ['Org design', 'Ambidexterity', 'Change'],
+  },
+  {
+    id: 'stakeholder-evidence',
+    name: 'Stakeholder Evidence Mapper',
+    module: '08',
+    category: 'Practice',
+    component: StakeholderEvidenceMapper,
+    href: 'modules/08-stakeholder-evidence/module.md',
+    description: 'Map each skeptic to the smallest evidence that converts them, and sequence the conversions instead of relying on persuasion.',
+    tags: ['Stakeholders', 'Evidence', 'Sequencing'],
+  },
+  {
+    id: 'ai-judgment',
+    name: 'Judgment Under Uncertainty',
+    module: '09',
+    category: 'Strategy',
+    component: JudgmentUnderUncertainty,
+    href: 'modules/09-ai-judgment/module.md',
+    description: 'Give an AI decision an explicit update path; flags high-confidence, hard-to-reverse calls with no review trigger.',
+    tags: ['Judgment', 'Uncertainty', 'Review trigger'],
   },
   {
     id: 'disruption',
