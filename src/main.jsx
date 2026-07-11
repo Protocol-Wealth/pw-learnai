@@ -36,6 +36,7 @@ import SetupNotesChecklist from '../components/interactive/SetupNotesChecklist.j
 import SourceNoteBuilder from '../components/interactive/SourceNoteBuilder.jsx'
 import TestSetCompositionAuditor from '../components/interactive/TestSetCompositionAuditor.jsx'
 import TrustBoundaryAuditor from '../components/interactive/TrustBoundaryAuditor.jsx'
+import DecisionRecordBuilder from '../components/interactive/DecisionRecordBuilder.jsx'
 
 const TOOLS = [
   {
@@ -167,6 +168,16 @@ const TOOLS = [
     href: 'modules/15-security-secrets-hygiene/module.md',
     description: 'Enumerate an AI feature\'s surfaces and see when untrusted input, private data, and exfiltration co-occur — the lethal trifecta.',
     tags: ['Security', 'Prompt injection', 'Secrets', 'Trust boundary'],
+  },
+  {
+    id: 'decision-record',
+    name: 'Decision Record Builder',
+    module: '04',
+    category: 'Practice',
+    component: DecisionRecordBuilder,
+    href: 'modules/04-decision-artifacts/module.md',
+    description: 'Turn a recurring decision into a defensible, copyable record with context, options, and one-way/two-way-door reversibility.',
+    tags: ['Decision record', 'ADR', 'Reversibility'],
   },
   {
     id: 'disruption',
