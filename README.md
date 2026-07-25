@@ -1,6 +1,6 @@
 # pw-learnai
 
-A modular, open-source library of ideas, frameworks, and interactive tools for applied AI strategy and AI-assisted software development. Built by [Protocol Wealth LLC](https://protocolwealth.io). MIT-licensed. No certificate. No paywall. No marketing funnel.
+A modular, open-source library of ideas, frameworks, and interactive tools for applied AI strategy and AI-assisted software development. Built by [Protocol Wealth LLC](https://protocolwealthllc.com). MIT-licensed. No certificate. No paywall. No marketing funnel.
 
 ## What this is
 
@@ -31,7 +31,7 @@ The first routing decision is level, not tool:
 |-------|---------------|-----------|
 | Beginner | You know ChatGPT or Claude prompts, but repositories and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and use the Setup Path Builder |
 | Intermediate | You can work in a repo and need repeatable agent practice | Add `AGENTS.md`, `CLAUDE.md`, state files, CLI-agent prompts, and a documented verification loop |
-| Advanced | You are connecting data, MCP, cloud, or regulated workflow patterns | Write public-data source notes, study the OSS labs, and deploy only after the local loop is stable |
+| Advanced | You are connecting runtimes, MCP, memory, remote access, cloud, or regulated workflow patterns | Use Module 16 to map the system, study the OSS labs, and deploy only after the local loop is stable |
 
 The full beginner path is deliberately practical:
 
@@ -41,13 +41,15 @@ The full beginner path is deliberately practical:
 4. Put durable repo guidance in `AGENTS.md` and `CLAUDE.md`.
 5. Keep `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and `ROADMAP.md` aligned as work changes.
 6. Learn public data sources with read-only examples before writing harvesters or deploying services.
+7. Use Module 15 to map untrusted content, secrets, tools, and egress.
+8. Use Module 16 to separate the runtime, control plane, capabilities, memory, recovery, remote path, and accountable humans before adding autonomy.
 
 The live site now starts with a visual first-hour walkthrough before sending anyone into raw markdown. The first file pair is simple:
 
 - `README.md` or `SETUP-NOTES.md` for instructions, notes, and agent-readable context.
 - [first-page.html](./first-page.html) or `index.html` for a visible browser artifact with no backend required.
 
-For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bundle.md). It combines the beginner path, prompt engineering, agentic coding, agent instructions, evaluation design, and public-data source discipline.
+For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bundle.md). It combines the beginner path, prompt engineering, agentic coding, agent instructions, evaluation design, public-data source discipline, and governed agent-system architecture.
 
 ## Project state
 
@@ -55,7 +57,7 @@ For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bun
 - [CURRENT-STATE.md](CURRENT-STATE.md) records what is live and last verified.
 - [NEXT-PROMPT.md](NEXT-PROMPT.md) gives the next agent a safe starting prompt.
 - [ROADMAP.md](ROADMAP.md) lists focused follow-up work and links each active item to a GitHub issue.
-- [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues) are the canonical tracker for outstanding work; current backlog starts at issues [#14](https://github.com/Protocol-Wealth/pw-learnai/issues/14) through [#21](https://github.com/Protocol-Wealth/pw-learnai/issues/21).
+- [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues) are the canonical tracker for outstanding work. Current work is listed in `ROADMAP.md`; the agent-systems entryway is tracked in [#54](https://github.com/Protocol-Wealth/pw-learnai/issues/54).
 
 ## Module index
 
@@ -94,6 +96,8 @@ Each module is self-contained. Start with `00` if you are new to repository-base
 | 11 | [Evaluation Design for AI Systems](modules/11-evaluation-design/module.md) | How do you know your AI system is getting better, not just different? |
 | 12 | [AI-Assisted Coding in Practice](modules/12-ai-coding-practice/module.md) | How do you use Codex CLI, Claude Code, and coding agents without creating maintenance debt? |
 | 13 | [Designing Agent Instructions](modules/13-agent-instructions/module.md) | What makes a CLAUDE.md / AGENTS.md one a coding agent actually follows, not decoration? |
+| 15 | [Security & Secrets Hygiene](modules/15-security-secrets-hygiene/module.md) | How do you keep untrusted content, secrets, and excessive agency from collapsing the trust boundary? |
+| 16 | [Building Agent Systems](modules/16-building-agent-systems/module.md) | How do you reuse a mature agent loop while separating intent, tools, permissions, memory, recovery, remote access, and human accountability? |
 
 ### Working with data
 
@@ -107,9 +111,14 @@ The labs connect the learning library to Protocol Wealth's open-source starting 
 
 | Lab | Source repo | Core question |
 |-----|-------------|---------------|
+| [PWCLI Core Lab](labs/protocol-wealth-oss/pwcli-core-lab.md) | [`Protocol-Wealth/pwcli-core`](https://github.com/Protocol-Wealth/pwcli-core) | How does a runtime-neutral control plane govern intent, redaction, approvals, and receipts around the Claude Agent SDK or another runtime? |
+| [Shard Core Lab](labs/protocol-wealth-oss/shard-core-lab.md) | [`Protocol-Wealth/shard-core`](https://github.com/Protocol-Wealth/shard-core) | Where do authenticated encryption, threshold recovery, and human ceremony belong—and where do they not belong—in an agent system? |
 | [Nexus Core Lab](labs/protocol-wealth-oss/nexus-core-lab.md) | [`Protocol-Wealth/nexus-core`](https://github.com/Protocol-Wealth/nexus-core) | How do MCP tools expose public, read-only financial analysis, planning tools, and on-chain analytics without carrying client identity? |
 | [PWOS Core Lab](labs/protocol-wealth-oss/pwos-core-lab.md) | [`Protocol-Wealth/pwos-core`](https://github.com/Protocol-Wealth/pwos-core) | How do PII boundaries, audit trails, confirmation gates, tool tiers, and compliance primitives become structural controls? |
-| [PWPlan Core Lab](labs/protocol-wealth-oss/pwplan-core-lab.md) | [`Protocol-Wealth/pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core) | How does a thin planning UI expose 16 tools while keeping the compute contract PII-free by construction? |
+| [PWPlan Core Lab](labs/protocol-wealth-oss/pwplan-core-lab.md) | [`Protocol-Wealth/pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core) | How does a thin planning UI consume a 34-tool engine contract while rejecting named direct-identifier keys without claiming de-identification? |
+| [System-of-Systems Lab](labs/protocol-wealth-oss/system-of-systems-lab.md) | Public repositories + live/public boundaries | How do the learning, control, runtime, capability, planning, governance, recovery, private-surface, and human layers fit without being confused for one product? |
+
+Public material treats durable semantic memory as a provider-neutral boundary and does not publish private implementation details or require a private component.
 
 ## How to use this library
 
@@ -146,7 +155,7 @@ cat modules/01-*/module.md modules/02-*/module.md modules/03-*/module.md > my-st
 
 ### With Codex CLI or Claude Code
 
-Module 12 is now written around practical terminal workflows for Codex CLI and Claude Code. This repo also includes lightweight agent guidance files:
+Module 12 is written around practical terminal workflows for Codex CLI and Claude Code. Module 16 continues into Agent SDK adapters, MCP, memory, remote access, system boundaries, and human decision rights. This repo also includes lightweight agent guidance files:
 
 - `AGENTS.md` for Codex and other agents that read the emerging shared convention
 - `CLAUDE.md` for Claude Code, importing `AGENTS.md` so guidance stays in one place
@@ -165,9 +174,11 @@ codex "Read labs/protocol-wealth-oss/README.md and propose the smallest safe lab
 claude --permission-mode plan "Read the PWOS Core lab and propose a client-only confirmation-gate simulator improvement."
 ```
 
+For a concrete Python and TypeScript Claude Agent SDK adapter structure, read the [PWCLI Core Lab](labs/protocol-wealth-oss/pwcli-core-lab.md) and [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6). The public guidance uses API-key or documented cloud-provider authentication for third-party SDK applications. It does not recommend extracting, copying, or proxying Claude subscription credentials.
+
 ### PR hygiene across the OSS surface
 
-Audit open PRs across `pw-learnai`, `nexus-core`, `pwos-core`, and `pwplan-core`:
+Audit open PRs across `pw-learnai`, `pwcli-core`, `shard-core`, `nexus-core`, `pwos-core`, and `pwplan-core`:
 
 ```bash
 pnpm pr:audit
@@ -185,7 +196,7 @@ pnpm pr:mergeable
 
 → **https://protocol-wealth.github.io/pw-learnai/**
 
-The interactive tools (setup path builder, MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, agent instructions auditor, disruption diagnostic, advantage matrix, pre-mortem, assumption ranker) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, screenshot if useful, leave.
+The interactive tools (including the setup path builder, Agent Systems Architect, MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, and agent-instructions auditor) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, copy or screenshot if useful, leave.
 
 Or run them locally:
 

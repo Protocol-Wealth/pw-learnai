@@ -16,8 +16,8 @@ const OUT_DIR = path.join(ROOT, 'notebooklm')
 const BUNDLES = {
   'starter-bundle.md': {
     title: 'pw-learnai — Starter Path',
-    description: 'A beginner path from prompt literacy to GitHub, coding agents, repo state files, public data sources, and safe first deployments.',
-    modules: ['00-getting-started', '10-prompt-engineering', '12-ai-coding-practice', '13-agent-instructions', '11-evaluation-design', '14-working-with-public-data']
+    description: 'A beginner path from prompt literacy to GitHub, coding agents, repo state files, public data sources, governed agent systems, and safe first deployments.',
+    modules: ['00-getting-started', '10-prompt-engineering', '12-ai-coding-practice', '13-agent-instructions', '11-evaluation-design', '14-working-with-public-data', '15-security-secrets-hygiene', '16-building-agent-systems']
   },
   'all-modules.md': {
     title: 'pw-learnai — Core Curriculum',
@@ -36,13 +36,13 @@ const BUNDLES = {
   },
   'practice-bundle.md': {
     title: 'pw-learnai — Practice (AI tools, prompts, evals, coding)',
-    description: 'Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, and security and secrets hygiene.',
-    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '14-working-with-public-data', '15-security-secrets-hygiene']
+    description: 'Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, security, and governed agent-system architecture.',
+    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '14-working-with-public-data', '15-security-secrets-hygiene', '16-building-agent-systems']
   },
   'ai-deep-dive.md': {
     title: 'pw-learnai — AI Focus',
     description: 'For someone who only wants the AI-specific modules.',
-    modules: ['00-getting-started', '02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions']
+    modules: ['00-getting-started', '02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '15-security-secrets-hygiene', '16-building-agent-systems']
   },
   'data-bundle.md': {
     title: 'pw-learnai — Working with Public Data',
@@ -51,8 +51,8 @@ const BUNDLES = {
   },
   'protocol-wealth-oss-labs.md': {
     title: 'pw-learnai — Protocol Wealth OSS Labs',
-    description: 'Applied labs connecting pw-learnai to nexus-core, pwos-core, and pwplan-core.',
-    labs: ['protocol-wealth-oss/README.md', 'protocol-wealth-oss/nexus-core-lab.md', 'protocol-wealth-oss/pwos-core-lab.md', 'protocol-wealth-oss/pwplan-core-lab.md']
+    description: 'Applied labs connecting learning, intent, capabilities, planning, governance, recovery, and human accountability across the Protocol Wealth public OSS surface.',
+    labs: ['protocol-wealth-oss/README.md', 'protocol-wealth-oss/system-of-systems-lab.md', 'protocol-wealth-oss/pwcli-core-lab.md', 'protocol-wealth-oss/shard-core-lab.md', 'protocol-wealth-oss/nexus-core-lab.md', 'protocol-wealth-oss/pwos-core-lab.md', 'protocol-wealth-oss/pwplan-core-lab.md']
   }
 }
 
@@ -80,6 +80,14 @@ const STARTER_TOC = {
   '14-working-with-public-data': {
     title: 'Working with Public Data',
     description: 'Use public sources with provenance, source notes, and production-readiness discipline.'
+  },
+  '15-security-secrets-hygiene': {
+    title: 'Security & Secrets Hygiene',
+    description: 'Map untrusted content, secrets, tools, and egress before adding agent-system capability.'
+  },
+  '16-building-agent-systems': {
+    title: 'Building Agent Systems',
+    description: 'Separate runtime, control plane, tools, memory, recovery, remote access, and accountable human decisions.'
   }
 }
 
@@ -90,17 +98,16 @@ function readModule(slug) {
   const actualFiles = fs.readdirSync(dir)
     .filter(entry => !entry.startsWith('.'))
     .sort()
-  const unexpectedFiles = actualFiles.filter(entry => !entry.endsWith('.md'))
+  const unexpectedFiles = actualFiles.filter(entry => !files.includes(entry))
   const missingFiles = files.filter(entry => !actualFiles.includes(entry))
 
   if (missingFiles.length > 0 || unexpectedFiles.length > 0) {
     throw new Error(
-      `Module ${slug} must contain ${files.join(', ')} and only markdown resources; missing ${missingFiles.join(', ') || 'none'}, unexpected ${unexpectedFiles.join(', ') || 'none'}.`
+      `Module ${slug} must contain exactly ${files.join(', ')}; missing ${missingFiles.join(', ') || 'none'}, unexpected ${unexpectedFiles.join(', ') || 'none'}.`
     )
   }
 
-  const extraFiles = actualFiles.filter(entry => !files.includes(entry)).sort()
-  const sections = [...files, ...extraFiles].map(f => fs.readFileSync(path.join(dir, f), 'utf8'))
+  const sections = files.map(f => fs.readFileSync(path.join(dir, f), 'utf8'))
   return sections.join('\n\n---\n\n')
 }
 

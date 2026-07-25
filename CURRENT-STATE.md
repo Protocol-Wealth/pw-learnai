@@ -1,6 +1,6 @@
 # Current State
 
-Last reviewed: 2026-07-11.
+Last reviewed: 2026-07-25.
 
 ## Live status
 
@@ -32,11 +32,29 @@ Last reviewed: 2026-07-11.
 - Module 00 explains why Markdown is useful for durable instructions and why HTML is useful for immediate visual browser feedback.
 - Module 14 introduces Data.gov, the National Archives Catalog API, OAI-PMH, source notes, and safe public-data habits.
 - Module 15 covers security & secrets hygiene for AI operators (the lethal trifecta, prompt injection, untrusted model output, secrets handling, trust boundaries).
-- Interactive tools now cover modules 00–03, 07, and 10–15, including the Beginner Onboarding Checklist (keyboard-accessible), Source Note Builder, Test-Set Composition Auditor (Module 11), and Trust-Boundary Auditor (Module 15).
+- Interactive tools cover every numbered live module from 00 through 15, including the Beginner Onboarding Checklist (keyboard-accessible), Source Note Builder, Test-Set Composition Auditor (Module 11), and Trust-Boundary Auditor (Module 15).
 - NotebookLM bundles include the starter, public-data, and practice paths.
 - Root markdown docs and standalone prompts are copied into the static Pages artifact by `scripts/sync-public-content.mjs`.
 - Browser tools remain client-only: no login, telemetry, backend, external API calls, or secrets.
 - Pull requests into `main` run a read-only `ci.yml` (`pnpm install --frozen-lockfile` → internal dead-link check → `pnpm build`); `bundle.yml` and `deploy-pages.yml` stay push-triggered so their write-scoped tokens never run on pull requests.
+## Implemented on `feat/agent-systems-entryway`; not yet live
+
+- Module 16 adds the system boundary between learning, `pwcli-core` intent/governance, the agent runtime, MCP capabilities, synthetic planning contracts, cross-cutting `pwos-core` controls, `shard-core` recovery, distinct state systems, remote access, consumer surfaces, and human decision rights.
+- Agent Systems Architect turns those boundaries into a client-only responsibility map, phased build sequence, warnings, human-role assignments, and explicit deferrals.
+- Protocol Wealth OSS labs add `pwcli-core`, `shard-core`, and a system-of-systems map to the Nexus, PWOS, and PWPlan labs.
+- The PWPlan orientation reflects the current 34-tool engine contract and accurately limits its direct-identifier key tripwire.
+- Cross-repo PR audit adds `pwcli-core` and `shard-core`.
+- Move these bullets under `What is live` only after the feature PR merges, the Pages workflow passes, and the live URLs are verified.
+
+## 2026-07-25 agent-systems session
+
+- Verified that `pwcli-core` is a control-plane specification, not an executable coding-agent runtime; implementation follow-up is tracked in [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6).
+- Verified that `shard-core` is public, prerelease, and not independently audited; its lab uses synthetic recovery exercises and keeps agents outside the recovery boundary.
+- Kept private durable-knowledge implementations out of the public curriculum and defined a provider-neutral boundary instead.
+- Grounded Agent SDK tools, permissions, hooks, sessions, MCP, subagents, hosting, security, authentication, branding, and Remote Control against current official Anthropic documentation reviewed 2026-07-25.
+- Separated official Claude Code subscription login/Remote Control from third-party Agent SDK authentication; the curriculum does not recommend OAuth-token extraction or unofficial subscription proxies.
+- Mapped `pwos.app` as the adviser operating surface, `pwportal.app` as the client portal, the public `-core` repos as inspectable foundations, and Protocol Wealth's human fiduciary/consulting work as a separate accountable service boundary.
+- Tracked the learning-repo implementation in [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54).
 
 ## 2026-07-01 audit updates
 
@@ -100,14 +118,10 @@ Additional checks:
 
 ## Open issue tracker
 
-Issues #14–#21 and #43 are closed. Current open backlog:
+Issues #14–#21, #43, and #45–#49 are closed. Current open work:
 
-- [#45](https://github.com/Protocol-Wealth/pw-learnai/issues/45): Companion tool for Module 04 — Decision Record Builder.
-- [#46](https://github.com/Protocol-Wealth/pw-learnai/issues/46): Companion tool for Module 05 — Platform Economics Diagnostic.
-- [#47](https://github.com/Protocol-Wealth/pw-learnai/issues/47): Companion tool for Module 06 — Change-Readiness Diagnostic.
-- [#48](https://github.com/Protocol-Wealth/pw-learnai/issues/48): Companion tool for Module 08 — Stakeholder Evidence Mapper.
-- [#49](https://github.com/Protocol-Wealth/pw-learnai/issues/49): Companion tool for Module 09 — Judgment Under Uncertainty aid.
 - [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50): Content accuracy audit — falsifiability pass and reference refresh.
+- [#54](https://github.com/Protocol-Wealth/pw-learnai/issues/54): Agent-systems learning path and Protocol Wealth OSS capability map.
 
 ## Known constraints
 

@@ -6,7 +6,7 @@ Pre-assembled markdown files. Upload any of these as a source in NotebookLM, Cla
 
 ### `starter-bundle.md`
 
-A beginner path from prompt literacy to GitHub, coding agents, repo state files, public data sources, and safe first deployments.
+A beginner path from prompt literacy to GitHub, coding agents, repo state files, public data sources, governed agent systems, and safe first deployments.
 
 ### `all-modules.md`
 
@@ -22,7 +22,7 @@ Organizational design for continuous change, disciplined experimentation, stakeh
 
 ### `practice-bundle.md`
 
-Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, and security and secrets hygiene.
+Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, security, and governed agent-system architecture.
 
 ### `ai-deep-dive.md`
 
@@ -34,7 +34,7 @@ Public dataset discovery, National Archives Catalog API constraints, OAI-PMH met
 
 ### `protocol-wealth-oss-labs.md`
 
-Applied labs connecting pw-learnai to nexus-core, pwos-core, and pwplan-core.
+Applied labs connecting learning, intent, capabilities, planning, governance, recovery, and human accountability across the Protocol Wealth public OSS surface.
 
 
 ## Regenerating
