@@ -13,6 +13,10 @@ All notable changes to `pw-learnai` are recorded here.
 
 ### Changed
 
+- Rewrote module claims and supporting generalities as falsifiable,
+  repo-specific hypotheses with observable failure conditions.
+- Refreshed fast-moving AI references against current official sources and
+  added reviewed dates where practical.
 - Expanded the homepage and README with a beginner-to-advanced agent-systems path and five additional OSS/system-boundary entry points.
 - Expanded cross-repo PR auditing to include `pwcli-core` and `shard-core`.
 - Updated the PWPlan lab and homepage from the stale 16-tool description to the current 34-tool public engine contract, while clarifying that its named-key tripwire is not de-identification.
@@ -29,6 +33,9 @@ All notable changes to `pw-learnai` are recorded here.
 
 ### Tracked
 
+- Implemented [`pw-learnai` issue #50](https://github.com/Protocol-Wealth/pw-learnai/issues/50)
+  in [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57); publication
+  remains pending merge and Pages verification.
 - Completed [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54) through merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55).
 - Created [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6) for governed Python and TypeScript Claude Agent SDK reference adapters.
 

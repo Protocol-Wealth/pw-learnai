@@ -2,9 +2,12 @@
 
 This is a focused implementation roadmap, not a product promise.
 
-## Near term
+## In review
 
-- [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50): Content accuracy audit — falsifiability pass across modules and refresh of fast-moving AI references against current official docs.
+- [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50), implemented in
+  [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57): module-wide
+  falsifiability pass and official-source refresh. Move this entry to Shipped
+  only after merge and live Pages verification.
 
 ## Shipped
 

@@ -49,6 +49,23 @@ Last reviewed: 2026-07-25.
 - The PWPlan orientation reflects the current 34-tool engine contract and accurately limits its direct-identifier key tripwire.
 - Cross-repo PR audit adds `pwcli-core` and `shard-core`.
 
+## 2026-07-25 content-accuracy audit
+
+- [`pw-learnai` issue #50](https://github.com/Protocol-Wealth/pw-learnai/issues/50)
+  is implemented in [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57);
+  it is not live until that PR merges and the Pages workflow succeeds.
+- Every module now opens with a falsifiable, repo-specific claim or test and
+  includes an exact limitations heading.
+- Unsupported frequency and causal generalities were removed, scoped, or
+  rewritten as hypotheses with observable failure conditions.
+- Fast-moving AI references now point to current official sources with reviewed
+  dates where practical.
+- Adversarial review challenged the claims, falsification tests, source quality,
+  and security module; the final re-review reported no remaining actionable
+  blockers.
+- `pnpm bundle`, `pnpm check:links` (103 links, 0 broken), `pnpm build`, and
+  `git diff --check` pass.
+
 ## 2026-07-25 agent-systems session
 
 - Verified that `pwcli-core` is a control-plane specification, not an executable coding-agent runtime; implementation follow-up is tracked in [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6).
