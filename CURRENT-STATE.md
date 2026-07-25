@@ -7,12 +7,18 @@ Last reviewed: 2026-07-25.
 - Live site: https://protocol-wealth.github.io/pw-learnai/
 - Default branch: `main`
 - Recent verified publish checkpoints:
+  - [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55): published the governed agent-systems entryway, Module 16, architecture tool, and expanded OSS labs.
   - [#23](https://github.com/Protocol-Wealth/pw-learnai/pull/23): corrected publish-state references after PR #22.
   - [#22](https://github.com/Protocol-Wealth/pw-learnai/pull/22): published documentation and issue-tracking state.
   - [#13](https://github.com/Protocol-Wealth/pw-learnai/pull/13): published the audit cleanup and prompt asset move.
 - State-reference correction PR: [#23](https://github.com/Protocol-Wealth/pw-learnai/pull/23), merged 2026-07-01.
 - Documentation and issue-tracking PR: [#22](https://github.com/Protocol-Wealth/pw-learnai/pull/22), merged 2026-07-01.
 - Audit cleanup PR: [#13](https://github.com/Protocol-Wealth/pw-learnai/pull/13), merged 2026-07-01.
+- Agent-systems entryway PR: [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55), merged 2026-07-25 as `838ff102cc2bc245c2a5ff34fd5f0d59bbad54bc`.
+- Main workflows after PR #55 passed:
+  - Bundle NotebookLM sources: `30161461181`
+  - Deploy to GitHub Pages: `30161461175`
+  - CodeQL: `30161461077`
 - Main workflows after PR #23 passed:
   - Deploy to GitHub Pages: `28552548488`
   - CodeQL: `28552547902`
@@ -32,19 +38,16 @@ Last reviewed: 2026-07-25.
 - Module 00 explains why Markdown is useful for durable instructions and why HTML is useful for immediate visual browser feedback.
 - Module 14 introduces Data.gov, the National Archives Catalog API, OAI-PMH, source notes, and safe public-data habits.
 - Module 15 covers security & secrets hygiene for AI operators (the lethal trifecta, prompt injection, untrusted model output, secrets handling, trust boundaries).
-- Interactive tools cover every numbered live module from 00 through 15, including the Beginner Onboarding Checklist (keyboard-accessible), Source Note Builder, Test-Set Composition Auditor (Module 11), and Trust-Boundary Auditor (Module 15).
+- Interactive tools cover every numbered live module from 00 through 16, including the Beginner Onboarding Checklist (keyboard-accessible), Source Note Builder, Test-Set Composition Auditor (Module 11), Trust-Boundary Auditor (Module 15), and Agent Systems Architect (Module 16).
 - NotebookLM bundles include the starter, public-data, and practice paths.
 - Root markdown docs and standalone prompts are copied into the static Pages artifact by `scripts/sync-public-content.mjs`.
 - Browser tools remain client-only: no login, telemetry, backend, external API calls, or secrets.
 - Pull requests into `main` run a read-only `ci.yml` (`pnpm install --frozen-lockfile` → internal dead-link check → `pnpm build`); `bundle.yml` and `deploy-pages.yml` stay push-triggered so their write-scoped tokens never run on pull requests.
-## Implemented on `feat/agent-systems-entryway`; not yet live
-
 - Module 16 adds the system boundary between learning, `pwcli-core` intent/governance, the agent runtime, MCP capabilities, synthetic planning contracts, cross-cutting `pwos-core` controls, `shard-core` recovery, distinct state systems, remote access, consumer surfaces, and human decision rights.
 - Agent Systems Architect turns those boundaries into a client-only responsibility map, phased build sequence, warnings, human-role assignments, and explicit deferrals.
 - Protocol Wealth OSS labs add `pwcli-core`, `shard-core`, and a system-of-systems map to the Nexus, PWOS, and PWPlan labs.
 - The PWPlan orientation reflects the current 34-tool engine contract and accurately limits its direct-identifier key tripwire.
 - Cross-repo PR audit adds `pwcli-core` and `shard-core`.
-- Move these bullets under `What is live` only after the feature PR merges, the Pages workflow passes, and the live URLs are verified.
 
 ## 2026-07-25 agent-systems session
 
@@ -54,7 +57,7 @@ Last reviewed: 2026-07-25.
 - Grounded Agent SDK tools, permissions, hooks, sessions, MCP, subagents, hosting, security, authentication, branding, and Remote Control against current official Anthropic documentation reviewed 2026-07-25.
 - Separated official Claude Code subscription login/Remote Control from third-party Agent SDK authentication; the curriculum does not recommend OAuth-token extraction or unofficial subscription proxies.
 - Mapped `pwos.app` as the adviser operating surface, `pwportal.app` as the client portal, the public `-core` repos as inspectable foundations, and Protocol Wealth's human fiduciary/consulting work as a separate accountable service boundary.
-- Tracked the learning-repo implementation in [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54).
+- Completed [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54) through merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55).
 
 ## 2026-07-01 audit updates
 
@@ -82,6 +85,7 @@ Commands run during the closeout session:
 ```bash
 pnpm bundle
 pnpm build
+pnpm check:links
 git diff --check
 ```
 
@@ -98,6 +102,13 @@ Additional checks:
 
 - Source scan found no runtime `fetch`, `XMLHttpRequest`, `axios`, Tailwind CDN, or live Nexus calls in `src`, `components`, or `index.html`.
 - First-party TypeScript scan found no `.ts`, `.tsx`, or `tsconfig*.json` outside ignored dependency/build directories.
+- Three read-only adversarial reviewers checked frontend/module contracts, security/source claims, and systems/human-integration boundaries; all reported no remaining high- or medium-severity blockers at PR #55 head `51da50e8dca695214bcfd34367854498e7598559`.
+- Live Pages responses after PR #55 returned HTTP 200 for:
+  - `/pw-learnai/`
+  - `/pw-learnai/modules/16-building-agent-systems/module.md`
+  - `/pw-learnai/labs/protocol-wealth-oss/system-of-systems-lab.md`
+  - `/pw-learnai/labs/getting-started/diff-explainer.md`
+  - `/pw-learnai/CURRENT-STATE.md`
 - Live Pages responses after PR #23 returned HTTP 200 for:
   - `/pw-learnai/CURRENT-STATE.md`
   - `/pw-learnai/NEXT-PROMPT.md`
@@ -118,10 +129,9 @@ Additional checks:
 
 ## Open issue tracker
 
-Issues #14–#21, #43, and #45–#49 are closed. Current open work:
+Issues #14–#21, #43, #45–#49, and #54 are closed. Current open work:
 
 - [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50): Content accuracy audit — falsifiability pass and reference refresh.
-- [#54](https://github.com/Protocol-Wealth/pw-learnai/issues/54): Agent-systems learning path and Protocol Wealth OSS capability map.
 
 ## Known constraints
 

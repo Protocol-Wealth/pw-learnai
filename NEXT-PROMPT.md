@@ -14,7 +14,7 @@ Context:
 - Module 16 and the Agent Systems Architect separate runtime, intent/control plane, MCP capabilities, planning, governance, recovery, memory, remote access, and human accountability.
 - The OSS labs cover `pwcli-core`, `shard-core`, `nexus-core`, `pwos-core`, `pwplan-core`, and their system-of-systems boundary.
 - Keep private durable-knowledge implementations out of public content; use a provider-neutral interface unless publication is explicitly authorized.
-- Open `pw-learnai` work is tracked in issues #50 and #54. Executable Claude Agent SDK adapter work is separately tracked in `pwcli-core` issue #6.
+- The agent-systems entryway shipped in PR #55 and closed issue #54. Current open `pw-learnai` work is issue #50. Executable Claude Agent SDK adapter work is separately tracked in `pwcli-core` issue #6.
 
 Scope:
 - Prefer small, reviewable changes to one module triad, one lab, one browser-only component, or one root-state slice.

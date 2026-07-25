@@ -29,8 +29,14 @@ All notable changes to `pw-learnai` are recorded here.
 
 ### Tracked
 
-- Created [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54) for this scoped learning-path implementation.
+- Completed [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54) through merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55).
 - Created [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6) for governed Python and TypeScript Claude Agent SDK reference adapters.
+
+### Published
+
+- Merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55) as `838ff102cc2bc245c2a5ff34fd5f0d59bbad54bc`.
+- Passed Bundle NotebookLM sources `30161461181`, Deploy to GitHub Pages `30161461175`, and CodeQL `30161461077`.
+- Verified live HTTP 200 responses for the app, Module 16, system-of-systems lab, moved diff explainer, and canonical current-state document.
 
 ## 2026-07-01
 
