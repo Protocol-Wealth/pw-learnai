@@ -1,5 +1,8 @@
 # 04 — References
 
+Reviewed: 2026-07-25. The design and decision-science sources are stable; current
+vendor prompt libraries and template galleries should be re-checked before use.
+
 ## On tool design
 
 - **Norman, Don.** *The Design of Everyday Things* (1988, revised 2013). The foundational text on affordances, signifiers, and the cost of cognitive load. Reads as well now as it did in 1988.
@@ -23,6 +26,8 @@
 
 ## Practical templates
 
-- **Anthropic's prompt library** for AI artifacts (claude.ai/anthropic-cookbook). Good baseline patterns when the artifact involves an LLM.
+- **Anthropic.** [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook).
+  Official recipes and example patterns; verify each example against current API docs
+  before adopting it.
 - **Notion, Airtable, and similar** template galleries. Often more useful than they look, especially for the rubric and diagnostic types.
 - **Spreadsheets.** The most underrated decision-support tool in the world. Most artifacts could be a spreadsheet. Fight the temptation to build software.

@@ -1,5 +1,8 @@
 # 06 — References
 
+Reviewed: 2026-07-25. These are stable organizational-design sources; case outcomes
+should be checked against the period and evidence actually being analyzed.
+
 ## Primary sources
 
 - **O'Reilly, Charles, and Michael Tushman.** *Lead and Disrupt* (2016, second edition 2021). The definitive operator treatment of organizational ambidexterity. Read this if you read one book on the topic.

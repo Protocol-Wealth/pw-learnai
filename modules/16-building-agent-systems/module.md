@@ -327,7 +327,7 @@ For Protocol Wealth, the public `-core` repositories are inspectable foundations
 9. **Add remote access.** Official Remote Control or firewall-verified tailnet SSH before a custom daemon.
 10. **Add production hosting only when needed.** Isolate sessions, settings, transcripts, egress, and credentials; define incident ownership.
 
-## What this module does not claim
+## What this module does not cover
 
 - It does not turn `pw-learnai` into an agent runtime.
 - It does not claim the public repositories reproduce Protocol Wealth's private production estate.

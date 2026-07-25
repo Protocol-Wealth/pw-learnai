@@ -9,7 +9,7 @@ decoration: fluent, generic, and untethered to the repo it governs. A decorative
 costs tokens every turn and changes no behavior. This module is about writing the
 other kind.
 
-## The one job: encode what the agent cannot infer
+## The claim: encode what the agent cannot infer
 
 **Claim:** An instructions file that contains no command, no path, and no framework
 name will not measurably change agent behavior on your repo. **Test:** delete it, re-run
@@ -126,7 +126,7 @@ Two complementary checks, and they catch different things:
   validate every command and path against ground truth, then rewrite the file. Use it
   when you want correctness, not just shape.
 
-## What this won't fix
+## What this module does not cover
 
 A good instructions file makes a capable agent more reliable on your repo. It does not
 make an incapable agent capable, and it does not substitute for reading the diff. Treat

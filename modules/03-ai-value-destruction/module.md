@@ -4,7 +4,12 @@ The failure modes that look like wins in the short run.
 
 ## The claim
 
-Most AI deployments in established firms either break even or destroy value, not because the AI is bad but because the deployment design did not account for specific failure modes. The failure modes are predictable. They can be identified in a pre-mortem before deployment and mitigated by design. Most firms skip the pre-mortem and pay for the discovery in production.
+An AI deployment can improve its local efficiency metric while destroying net value
+through data leakage, lost differentiation, deskilling, bad decisions, regulatory
+exposure, or lost trust. The claim is testable: record those downside measures before
+deployment, then compare total observed benefit and harm. If none of the six patterns
+changes the deployment decision or its controls, this framework did not add value for
+that case.
 
 ## Why this matters
 

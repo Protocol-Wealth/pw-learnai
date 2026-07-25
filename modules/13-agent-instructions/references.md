@@ -1,13 +1,19 @@
 # References — Designing Agent Instructions
 
-Cite current sources; AI-tool guidance moves fast. Before finalizing, fetch the live docs
-and fill exact URLs and a reviewed date rather than relying on memory.
+Reviewed: 2026-07-25. Agent configuration changes quickly; re-check the live vendor
+documentation before turning an example into policy or automation.
 
-- Anthropic — Claude Code memory / CLAUDE.md documentation. [verify current URL on
-  docs.claude.com; reviewed: __________]
-- Anthropic — Claude Code settings and project configuration. [verify current URL;
-  reviewed: __________]
-- AGENTS.md — the cross-tool agent-instructions convention. [verify current URL;
-  reviewed: __________]
-- Companion tool in this repo: components/interactive/AgentInstructionsAuditor.jsx.
-- Companion prompt in this repo: prompts/agent-instructions-deep-audit.md.
+- **Anthropic.** [How Claude remembers your project](https://code.claude.com/docs/en/memory).
+  Current `CLAUDE.md` hierarchy, imports, scoped rules, and auto-memory behavior.
+- **Anthropic.** [Claude Code settings](https://code.claude.com/docs/en/settings).
+  Current user, project, local, and managed settings locations and precedence.
+- **Anthropic.** [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices).
+  Current guidance on concise, repo-specific project instructions.
+- **AGENTS.md.** [Open format](https://agents.md/). Cross-tool convention, discovery
+  rules, and examples.
+- **OpenAI.** [Custom instructions with AGENTS.md](https://developers.openai.com/codex/guides/agents-md).
+  Codex-specific discovery and scope behavior.
+- Companion browser-only tool in this repo:
+  [`components/interactive/AgentInstructionsAuditor.jsx`](../../components/interactive/AgentInstructionsAuditor.jsx).
+- Companion prompt in this repo:
+  [`prompts/agent-instructions-deep-audit.md`](../../prompts/agent-instructions-deep-audit.md).

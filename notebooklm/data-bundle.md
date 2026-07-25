@@ -26,14 +26,18 @@ How to use public datasets, archival APIs, and metadata-harvesting protocols wit
 
 ## The claim
 
-Public data work fails less often because the API is hard and more often because the operator skips source discipline. A usable public-data workflow records four things before code exists:
+A public-data workflow is not reproducible unless it records four things before code
+exists:
 
 1. Where the metadata came from.
 2. Where the actual data lives.
 3. What the access terms and rate limits are.
 4. How the result will be attributed and refreshed.
 
-If those four facts are missing, an agent can still write code, but it is probably automating confusion.
+This is falsifiable: give the source note to a second operator and ask them to retrieve
+the same sample under the same terms. If they can do so without any of the four facts,
+the contract is stricter than that source requires. If they cannot, code alone did not
+make the workflow reproducible.
 
 ## The operating model
 
@@ -718,7 +722,11 @@ How to know your AI system is getting better, not just different.
 
 ## The claim
 
-Most teams ship AI systems without an evaluation harness, then ship changes without measuring whether the changes improve anything. The result is a system that drifts in quality without anyone noticing, where confidence in output rises with familiarity rather than evidence. Evaluation is the discipline that breaks the drift. It is unglamorous. It is the difference between an AI system that compounds in usefulness and one that quietly degrades.
+An AI system without a repeatable evaluation set cannot distinguish an improvement
+from a behavior change on the tasks it claims to support. This is testable: run the
+same representative cases and rubric before and after a change. If the harness cannot
+detect a deliberately introduced failure that users would care about, the evaluation
+does not cover the claimed behavior.
 
 ## Why this matters
 
@@ -876,6 +884,10 @@ The discipline is to make this an explicit decision rather than an ambient drift
 
 # 11 — References
 
+Reviewed: 2026-07-25. Model-as-judge behavior, vendor red-teaming guidance, and
+regulatory requirements change; pin the model and rubric used for every recorded
+evaluation.
+
 ## Primary sources
 
 - **Hamel Husain, Isaac Flath, Eugene Yan, Bryan Bischof, Jason Liu, Charles Frye.** "What We Learned from a Year of Building with LLMs" (2024). The clearest practical treatment of LLM evaluation in production. Read this first.
@@ -894,7 +906,13 @@ The discipline is to make this an explicit decision rather than an ambient drift
 
 ## On red-teaming
 
-- **Anthropic, OpenAI, Google.** Vendor red-teaming documentation. Vendor-specific but the patterns transfer.
+- **Anthropic.** [System cards](https://www.anthropic.com/system-cards). Official
+  capability and safety evaluations with model-specific methods and limits.
+- **OpenAI.** [Approach to external red teaming](https://cdn.openai.com/papers/openais-approach-to-external-red-teaming.pdf).
+  Official description of campaign scope, participant guidance, interfaces, and
+  reporting.
+- **Google DeepMind.** [Model cards](https://deepmind.google/models/model-cards/).
+  Official model-specific evaluation, safety, and limitation evidence.
 - **AI Village at DEF CON.** Annual public red-teaming work. Useful for understanding what real adversarial testing looks like.
 
 ## On the limits of evaluation
@@ -918,9 +936,13 @@ How to ship real software with Codex CLI, Claude Code, and similar coding agents
 
 ## The claim
 
-AI coding agents are no longer just autocomplete. The useful mental model is a junior engineer with a terminal, a large working memory, uneven judgment, and the ability to make changes much faster than you can review them. The durable productivity gain comes from operating that agent deliberately: persistent project instructions, narrow tasks, explicit permissions, tests-first verification, and a second review pass before the work lands.
-
-Teams that treat CLI agents as magic implementation engines create hidden debt. Teams that treat them as repo operators with a clear operating model get leverage without giving up engineering control.
+Coding agents can inspect repositories, edit files, run commands, and use external
+tools, so their operating model matters as much as their generated code. This module
+predicts that persistent project instructions, narrow tasks, explicit permissions,
+documented verification, and a separate review pass reduce unrequested diff scope and
+post-merge defects on representative tasks. If the controlled and uncontrolled
+workflows produce the same measured outcomes, the extra operating controls did not
+help that repository.
 
 ## Why this matters
 
@@ -1317,7 +1339,8 @@ The goal is not to chase every new feature. The goal is to remove stale assumpti
 
 # 12 - References
 
-Tool-specific guidance reviewed on 2026-06-07. Re-check vendor docs before turning these notes into policy or automation.
+Tool-specific guidance reviewed on 2026-07-25. Re-check vendor docs before turning
+these notes into policy or automation.
 
 ## Current CLI documentation
 

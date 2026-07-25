@@ -4,9 +4,13 @@ How to ship real software with Codex CLI, Claude Code, and similar coding agents
 
 ## The claim
 
-AI coding agents are no longer just autocomplete. The useful mental model is a junior engineer with a terminal, a large working memory, uneven judgment, and the ability to make changes much faster than you can review them. The durable productivity gain comes from operating that agent deliberately: persistent project instructions, narrow tasks, explicit permissions, tests-first verification, and a second review pass before the work lands.
-
-Teams that treat CLI agents as magic implementation engines create hidden debt. Teams that treat them as repo operators with a clear operating model get leverage without giving up engineering control.
+Coding agents can inspect repositories, edit files, run commands, and use external
+tools, so their operating model matters as much as their generated code. This module
+predicts that persistent project instructions, narrow tasks, explicit permissions,
+documented verification, and a separate review pass reduce unrequested diff scope and
+post-merge defects on representative tasks. If the controlled and uncontrolled
+workflows produce the same measured outcomes, the extra operating controls did not
+help that repository.
 
 ## Why this matters
 

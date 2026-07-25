@@ -4,11 +4,19 @@ When an opportunity is actually a platform, and when it is a product with an API
 
 ## The claim
 
-Platform strategy is the single most misapplied framework in modern business. The word means something specific — a business whose core value comes from facilitating direct interactions between two or more participant groups, where the interactions produce network effects. Most things called platforms are products with an API. Treating a product like a platform wastes money. Treating a platform like a product loses the category. Telling them apart requires a specific test, not pattern-matching to Uber and Airbnb.
+A business is a platform under this module only when its core value comes from direct
+interactions among two or more participant groups and those interactions produce
+measurable network effects. If a candidate fails any of the three structural tests
+below yet still generates value primarily through participant interactions and
+network effects, the test has misclassified it.
 
 ## Why this matters
 
-Platform investments are expensive and slow to mature. The chicken-and-egg launch problem alone takes 18-36 months to solve in most categories. If the opportunity is not actually a platform, the investment never returns because there is no compounding network effect to justify the cost structure. Before committing to a platform strategy, the test is binary: is this a platform or not?
+Platform investments can require simultaneous supply- and demand-side acquisition. If
+the opportunity lacks compounding network effects, spending on both sides may create
+operating complexity without a platform return. Before committing, classify the
+business model and define which observed interaction would disprove that
+classification.
 
 ## The idea
 
@@ -52,7 +60,10 @@ Five strategies that have worked, listed roughly in order of capital intensity:
 
 2. **Fake one side until you make it.** Operate as a single-sided business at first, then layer the platform on top. Amazon's third-party marketplace launched after years of first-party retail. The first-party operation kept consumers coming while the third-party marketplace bootstrapped.
 
-3. **Constrain the geography or vertical.** Launch in one city, one campus, one industry. Density matters more than total scale early. eBay started with collectibles. Facebook started with Harvard. Going narrow first is almost always right.
+3. **Constrain the geography or vertical.** Launch in one city, one campus, or one
+industry when local density is the bottleneck. eBay's early category concentration
+and Facebook's initial campus boundary illustrate the pattern, but the strategy fails
+when value does not depend on local or segment density.
 
 4. **Piggyback on an existing network.** Use an established platform's distribution. PayPal on eBay. Zynga on Facebook. Vulnerable to the host platform's policy changes, but capital-light to start.
 
@@ -71,7 +82,10 @@ The platform's strategic job is to raise the cost of multi-homing for at least o
 - Platform-specific reputation systems that lock in seller goodwill
 - Unique demand the seller cannot reach elsewhere
 
-If both sides multi-home freely and the platform has no mechanism to reduce it, the platform never compounds.
+If both sides multi-home freely, measure whether transaction density, retention, or
+unit economics still improve as participation grows. If they do, multi-homing did not
+eliminate compounding in that case; if they do not, claimed network effects need a
+different mechanism.
 
 ### Envelopment
 
@@ -82,20 +96,20 @@ Envelopment risk is high when:
 - Your functionality is plausibly an extension of theirs
 - They have distribution you do not have
 
-Defending against envelopment requires either (a) network effects deep enough that switching is costly even when the new option is free, or (b) functionality that the larger platform cannot or will not match without compromising its core. Most platforms that get enveloped did not see it coming because they were comparing themselves to direct competitors rather than to the adjacent category.
+Treat adjacent-category blindness as a hypothesis, not an explanation after the fact. List the larger platforms that share the user base, record their distribution and extension options, and compare that list with the direct-competitor review. If the adjacent-category review identifies no credible entrant or changes no defensive decision, it did not improve the envelopment analysis.
 
 ### Monetization sequencing
 
-Most platforms do not monetize in the first phase. The first phase is solving the chicken-and-egg problem and reaching critical density. Monetization at this stage suppresses growth and slows network effects.
+When critical density is the named constraint, test whether early monetization suppresses participation before adopting it as doctrine. Compare a priced cohort with an otherwise matched free cohort on activation, cross-side response, retention, and contribution margin. If pricing does not reduce density or network formation, delaying monetization is not supported in that setting.
 
-The right sequence in most cases:
+A candidate sequence when that test shows density is the binding constraint:
 
 1. **Phase 1: Free both sides.** Reach density.
 2. **Phase 2: Free the demand side, monetize supply.** When demand is dense enough that suppliers cannot reach it efficiently elsewhere, suppliers will pay for access.
 3. **Phase 3: Tier the supply side.** Take rate, advertising, premium features for suppliers competing for limited demand attention.
 4. **Phase 4: Layer on adjacent revenue.** Payment processing, advertising, data products, financial services. The original take rate becomes one of many revenue streams.
 
-Skipping phases is the classic founder mistake. The pressure from investors to "show monetization" frequently kills platforms before they reach the density that makes monetization profitable.
+Do not label a skipped phase a mistake without evidence. Predefine the density and unit-economics thresholds for each phase; if a platform can charge earlier while meeting both, the sequence should be shortened rather than defended.
 
 ## Worked example: applying the test
 

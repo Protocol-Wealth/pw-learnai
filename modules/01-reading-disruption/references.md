@@ -1,5 +1,8 @@
 # 01 — References
 
+Reviewed: 2026-07-25. These are primarily stable books and papers; current company
+examples should be re-checked before use.
+
 ## Primary sources
 
 - **Christensen, Clayton.** *The Innovator's Dilemma* (1997). The foundational text. The worked examples (disk drives, excavators, steel) are still the cleanest demonstrations of the four-condition pattern.

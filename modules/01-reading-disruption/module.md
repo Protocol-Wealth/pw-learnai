@@ -4,11 +4,16 @@ How to tell real disruption from incumbent-friendly change, before the quarterly
 
 ## The claim
 
-Most technology shifts that get called "disruption" in the press are sustaining innovations that favor incumbents. Real disruption has a specific structural signature, and you can diagnose it before the market agrees. The cost of the diagnosis is low. The cost of missing it compounds.
+A technology shift qualifies as disruption under the framework in this module only if
+it meets all four structural conditions below. If an observed case lacks any one
+condition yet the framework still labels it disruptive, the diagnostic has failed.
 
 ## Why this matters
 
-If you run a business or lead a function, the single most expensive mistake you can make is executing a correct plan against a wrong read of the terrain. Transformation failures are usually not execution failures — they are diagnosis failures. This module gives you a specific diagnostic.
+If you run a business or lead a function, executing a coherent plan against a bad
+read of the terrain can waste more than an execution mistake because the team may
+optimize the wrong response. This module gives you a specific diagnostic whose
+classification can be challenged against observed cases.
 
 ## The idea
 

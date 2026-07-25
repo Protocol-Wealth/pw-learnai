@@ -25,11 +25,21 @@ How to structure for exploration without starving the core.
 
 ## The claim
 
-The capability to run a stable core business and explore new opportunities simultaneously — organizational ambidexterity — is not a leadership virtue. It is a structural property of the organization. Firms that fail at it usually fail because the structure does not support it, not because leadership is insufficiently visionary. The structural choices are specific, the failure modes are predictable, and the right answer depends on your industry clock speed and capability overlap, not on who happens to be running the company.
+The capability to run a stable core business and explore new opportunities
+simultaneously—organizational ambidexterity—depends on structural choices as well as
+leadership. This module predicts that the architecture should change with industry
+clock speed and capability overlap. Compare matched teams or successive trials on
+predeclared delivery, learning, and core-performance measures. If the architecture
+matched to those conditions does not outperform the mismatched alternative across
+repeated observations, the diagnostic has not predicted the outcome.
 
 ## Why this matters
 
-Most transformation initiatives die at the resource allocation stage. The core business has urgent revenue pressure, the exploration has long payback horizons, and the same management bandwidth tries to do both. The exploration loses every quarter. The structural problem is not "leaders need to prioritize the future" — that advice has been given for forty years and has not made organizations better at this. The structural problem is that the wrong architecture sets the leadership up to lose the trade-off no matter how visionary they are.
+Core operations and exploratory work often compete for budget, management attention,
+and success metrics. A structure that forces both through the same short-horizon
+allocation process can starve exploration even when leaders say it matters. The
+remedy must therefore specify reporting lines, resource rights, metrics, and
+reintegration—not only ask leaders to prioritize the future.
 
 ## The idea
 
@@ -76,14 +86,14 @@ The organization oscillates between exploit-focused and explore-focused phases a
 **Works when:**
 - The industry clock speed permits periods of focus without losing position
 - The organization is small enough to coordinate at the whole-organization level
-- Leadership can credibly commit to the cycle (most cannot)
+- Leadership can credibly commit to the cycle and complete at least two planned phase changes
 
 **Fails when:**
-- The industry forces both modes simultaneously (most modern industries)
+- The industry forces exploitation and exploration to run simultaneously
 - The shift between phases is too abrupt and either mode does not reach effectiveness before being switched off
 - The leadership commits and then defects under quarterly pressure
 
-In practice, sequential ambidexterity is rare in firms larger than a few hundred people. It is more common at startup scale, where the company explicitly moves from "search for product-market fit" to "scale" to "operationalize." At larger scale, the simultaneous demands of multiple business lines make sequential ambidexterity infeasible.
+Treat coordination capacity, not firm size alone, as the constraint. Before choosing this architecture, identify which business lines can pause exploitation or exploration during each phase. If a large firm can complete the planned cycle without missed operating or learning thresholds, size did not make the architecture infeasible there.
 
 ### The decision criteria
 
@@ -102,7 +112,7 @@ Choose sequential ambidexterity when:
 - The competitive landscape genuinely permits periods of focus
 - Leadership has credibility for the cycle
 
-The mistake is choosing the architecture that is comfortable rather than the one the situation requires. Most leaders default to contextual ambidexterity because it requires no organizational design work. Most exploration efforts in mature firms then fail.
+Test architecture fit against explicit operating evidence rather than comfort. Record the chosen architecture, the rejected alternatives, capacity assigned to exploration, and the first two learning thresholds. If contextual ambidexterity meets those thresholds without exploration time being captured by core work, the predicted failure mode did not occur.
 
 ## The five conditions for transformation capability
 
@@ -140,7 +150,10 @@ Remedy: Honest capability audit. Build, hire, or partner explicitly for the gaps
 
 ## Influence maps versus org charts
 
-The formal org chart describes who reports to whom. The influence map describes how decisions actually get made. The two are never identical, and in transformation contexts the gap is often the deciding factor.
+The formal org chart describes who reports to whom. An influence map records observed
+decision behavior. Compare them rather than assuming they match: if the same people
+control the decision in both maps, the additional map added no information for that
+case.
 
 The influence map identifies:
 
@@ -149,7 +162,10 @@ The influence map identifies:
 - **Veto players.** People whose objection alone can stop a project — security, legal, the senior executive who insists on signoff for anything in their domain. Often these veto rights are unwritten.
 - **Coalition leaders.** People who, when they back a thing, bring others with them. Their support is multiplicative.
 
-Drawing the influence map is the most underused diagnostic in transformation work. Most leaders operate with an unexamined model of how their organization decides things, and the simple act of drawing the actual map — who talks to whom about what, whose opinion swings the meeting, who has the unwritten veto — is often the highest-leverage intervention available.
+Treat the influence map as a diagnostic hypothesis, not a universally high-leverage
+intervention. Draw who supplies information, resources, vetoes, and coalition support;
+then compare the map with the next material decision. If it does not predict who
+changed or stopped the decision, revise or discard it.
 
 ## Operating rhythm
 
@@ -157,7 +173,7 @@ Continuous transformation is a set of recurring practices, not a posture. The fo
 
 **Environmental scanning.** A regular review of what is changing outside the firm. Markets, competitors, technology, regulation, customer behavior. Cadence: monthly to quarterly. Output: a short written brief, not a slide deck. The brief identifies signals that should change priorities, signals to keep watching, and signals to stop watching.
 
-**Strategy updating.** A regular review of whether the strategy still fits the environment. Cadence: quarterly to annual. Output: explicit decisions to continue, modify, or kill specific initiatives. The point is to make the decisions explicit; most strategy drifts because no one says "we are dropping this" and the implicit answer is "we are still doing it."
+**Strategy updating.** A regular review of whether the strategy still fits the environment. Cadence: quarterly to annual. Output: explicit decisions to continue, modify, or kill specific initiatives. The test is whether named initiatives receive an explicit decision; if they do and priorities still drift, decision silence was not the cause.
 
 **Portfolio review.** A regular review of where the firm is allocating capital — money, time, attention. Cadence: quarterly. Output: specific reallocation decisions, with the reasoning documented.
 
@@ -167,7 +183,7 @@ These four practices create the organizational machinery for continuous transfor
 
 ## Common failure modes
 
-- **Choosing the comfortable architecture.** Defaulting to contextual ambidexterity because no structural change is required. Most exploration in mature firms then fails.
+- **Choosing the comfortable architecture.** Defaulting to contextual ambidexterity because no structural change is required, then missing the predefined exploration-time or learning thresholds.
 - **Declaring culture instead of building it.** Posters about innovation. Speeches about psychological safety. The behaviors that produce the culture are unchanged. The culture does not change.
 - **Treating the five conditions as a checklist.** All five must hold. Three out of five fails the same way as zero out of five.
 - **Confusing the org chart with the influence map.** Strategies designed for the org chart fail when the actual decisions get made by a different group.
@@ -271,6 +287,9 @@ Each gap is a transformation blocker. The list is the work, not the diagnosis.
 
 # 06 — References
 
+Reviewed: 2026-07-25. These are stable organizational-design sources; case outcomes
+should be checked against the period and evidence actually being analyzed.
+
 ## Primary sources
 
 - **O'Reilly, Charles, and Michael Tushman.** *Lead and Disrupt* (2016, second edition 2021). The definitive operator treatment of organizational ambidexterity. Read this if you read one book on the topic.
@@ -315,11 +334,18 @@ What makes an experiment actually diagnostic versus theater.
 
 ## The claim
 
-Most "experiments" in corporate settings are not experiments because they were never going to change a decision. They are validation exercises — runs designed to confirm what leadership already wants to do. Real experiments have specific properties: they make a falsifiable prediction, they have predefined success criteria, they can be done cheaply, and the result actually changes what happens next. Without all four, the run is theater.
+A run is diagnostic only when it makes a falsifiable prediction, defines success
+before results are known, is cheap relative to the decision, and commits the team to a
+different next action for each material outcome. Audit the decision record after the
+run: if the result could not have changed what happened next, it was validation
+theater rather than an experiment under this definition.
 
 ## Why this matters
 
-Experimentation is the only mechanism for learning under uncertainty that does not require being right in advance. Done well, experiments compound — each one cheaply rules out hypotheses and concentrates investment on the ones that survive. Done badly, experiments consume budget without producing decisions. The difference is mostly design discipline, not technique.
+A precommitted experiment is one mechanism for learning under uncertainty without
+requiring the prediction to be right. A run adds evidence only when its outcome can
+change a decision; otherwise it consumes budget without discriminating among the
+available actions.
 
 ## The idea
 
@@ -519,6 +545,9 @@ A rough heuristic: 3-10% of the cost of the underlying decision should go to exp
 
 # 07 — References
 
+Reviewed: 2026-07-25. These sources explain durable experimental methods; statistical,
+legal, and platform-specific requirements must be re-checked for the actual trial.
+
 ## Primary sources
 
 - **McGrath, Rita Gunther, and Ian MacMillan.** *Discovery-Driven Growth* (2009). The expanded treatment of discovery-driven planning. Earlier *HBR* articles cover the core; the book has the workbook material.
@@ -557,7 +586,14 @@ How to convert skeptics by sequence rather than persuasion.
 
 ## The claim
 
-Initiatives die in the committee phase more often than in the market. The standard remedy — better persuasion, more compelling narrative, executive sponsorship — works occasionally. The reliable remedy is sequencing: designing a path of small, undeniable evidence that converts specific skeptics in a specific order, leaving each conversion documented well enough that it does not get re-litigated. Persuasion is for people who agree with you. Evidence is for people who do not.
+When a named stakeholder can block an initiative for a specific objection, evidence
+targeted to that objection should change the decision more often than a generic
+persuasive narrative. Record the objection and decision, then compare matched cases or
+successive decisions where one uses an agreed test and the other uses a generic
+presentation. If the targeted evidence does not change decisions at a higher observed
+rate, the claimed advantage is absent in that setting. If evidence resolves the
+objection without changing the decision, the model is missing a political or
+incentive constraint.
 
 ## Why this matters
 
@@ -565,7 +601,7 @@ The cost of initiative death by committee is asymmetric. The initiative consumed
 
 ## The idea
 
-A stakeholder map identifies who must agree, who must not block, and who can be ignored. Most teams over-invest in the third group and under-invest in the second.
+A stakeholder map identifies who must agree, who must not block, and who can be ignored. Before acting, estimate time allocated to each group and name every veto holder. If veto holders receive equal or greater evidence work and the decision still stalls, misallocated stakeholder effort was not the cause in that case.
 
 ### The four stakeholder roles
 
@@ -614,7 +650,7 @@ Initiatives need public commitment to kill criteria — the conditions under whi
 
 Why: skeptics often suspect (correctly) that committed teams will not recognize failure when they see it. Public kill criteria flip the dynamic. The team commits in advance to recognize specific failure conditions. If those conditions occur, the team itself triggers the shutdown rather than waiting for an executive intervention.
 
-This is uncomfortable to commit to. It also dramatically lowers skeptic resistance, because the skeptic's worst case ("we will spend money on this for years and never admit it isn't working") is taken off the table.
+The hypothesis is that public kill criteria lower skeptic resistance by bounding the downside. Record skeptic approval or objection strength before and after the criteria are published. If resistance does not fall, the criteria did not resolve that skeptic's concern.
 
 The kill criteria should be:
 - Specific — measurable conditions, not vibes
@@ -757,6 +793,9 @@ File this where the team can find it. Reference it when the same objection resur
 ---
 
 # 08 — References
+
+Reviewed: 2026-07-25. These are stable management and stakeholder sources; local
+decision rights and incentives must be observed rather than inferred from the books.
 
 ## Primary sources
 

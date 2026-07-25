@@ -4,7 +4,11 @@ How to make AI decisions when the capability curve keeps moving.
 
 ## The claim
 
-AI capability changes faster than most decision processes. A judgment that was correct six months ago may be wrong now because models got cheaper, more capable, or both. The defense is not to predict the curve — that fails reliably — but to build decision processes that absorb capability shifts without re-litigating from scratch. The processes are specific. Most organizations do not have them.
+AI capability, cost, and vendor terms can change between an organization's review
+cycles. A quarterly capability inventory, reversibility classification, and explicit
+trigger should therefore surface decisions worth revisiting without reopening every
+decision. If the process misses a material documented capability or cost change that
+crosses a predefined trigger, the process has failed.
 
 ## Why this matters
 
