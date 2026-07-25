@@ -2136,8 +2136,10 @@ async def main():
     async for message in query(
         prompt="Review this repository. Do not edit.",
         options=ClaudeAgentOptions(
+            tools=["Read", "Glob", "Grep"],
             allowed_tools=["Read", "Glob", "Grep"],
             disallowed_tools=["Edit", "Write", "Bash"],
+            permission_mode="dontAsk",
         ),
     ):
         print(message)
@@ -2160,88 +2162,68 @@ The short example is not the architecture. The architecture is what surrounds it
 
 `allowed_tools` / `allowedTools` is an auto-approval list, not a complete tool-removal mechanism. Use the SDK's tool configuration and `disallowed_tools` / `disallowedTools` when a tool must not be available.
 
-## Concrete CLI and adapter structure
+## Shipped CLI and adapter structure
 
-Keep executable work in `pwcli-core`, not in this client-only learning repo. The complete structure is phased: the first milestone implements a one-shot adapter and shared contracts; the REPL, MCP, remote, and hosted-service folders remain explicit future boundaries rather than invisible scope.
+Keep executable work in `pwcli-core`, not in this client-only learning repo.
+[`pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7)
+shipped this bounded one-shot reference implementation:
 
 ```text
-examples/claude-agent-sdk/
+examples/claude-agent-sdk-adapters/
 ├── README.md
-├── docs/
-│   ├── architecture.md
-│   ├── auth.md
-│   ├── permissions-and-hooks.md
-│   ├── mcp.md
-│   ├── remote.md
-│   └── threat-model.md
-├── contracts/
-│   ├── adapter-profile.json
-│   ├── redaction-policy.json
-│   ├── synthetic-task.json
-│   └── receipt.schema.json
+├── fixtures/
+│   ├── intent-read-only-review.json
+│   ├── redaction-public-repo.json
+│   ├── run-receipt.json
+│   ├── runtime-claude-agent-sdk-python.json
+│   └── runtime-claude-agent-sdk-typescript.json
 ├── python/
 │   ├── pyproject.toml
+│   ├── sdk_contract_smoke.py
 │   ├── src/pwcli_claude_adapter/
-│   │   ├── __main__.py
-│   │   ├── cli.py
-│   │   ├── repl.py
-│   │   ├── config.py
-│   │   ├── auth.py
-│   │   ├── intent.py
-│   │   ├── policy.py
-│   │   ├── hooks.py
-│   │   ├── runtime.py
-│   │   ├── mcp.py
-│   │   ├── approvals.py
-│   │   ├── receipts.py
-│   │   ├── sessions.py
-│   │   ├── sandbox.py
-│   │   ├── remote.py
-│   │   └── observability.py
-│   └── tests/
-│       ├── test_contract_parity.py
-│       ├── test_policy_fail_closed.py
-│       ├── test_redaction.py
-│       └── test_synthetic_one_shot.py
+│   │   ├── __init__.py
+│   │   ├── adapter.py
+│   │   └── cli.py
+│   └── tests/test_adapter.py
 └── typescript/
+    ├── package-lock.json
     ├── package.json
     ├── src/
-    │   ├── index.ts
-    │   ├── cli.ts
-    │   ├── repl.ts
-    │   ├── config.ts
-    │   ├── auth.ts
-    │   ├── intent.ts
-    │   ├── policy.ts
-    │   ├── hooks.ts
-    │   ├── runtime.ts
-    │   ├── mcp.ts
-    │   ├── approvals.ts
-    │   ├── receipts.ts
-    │   ├── sessions.ts
-    │   ├── sandbox.ts
-    │   ├── remote.ts
-    │   └── observability.ts
-    └── test/
-        ├── contract-parity.test.ts
-        ├── policy-fail-closed.test.ts
-        ├── redaction.test.ts
-        └── synthetic-one-shot.test.ts
+    │   ├── adapter.ts
+    │   └── cli.ts
+    ├── tests/adapter.test.ts
+    └── tsconfig.json
 ```
 
-Python and TypeScript should express the same policy and receipt contracts. Language-specific code should be an adapter detail, not a second architecture.
+The implementations share intent, redaction, and receipt contracts while using
+equivalent language-specific runtime profiles. Both enforce the same read-only
+policy and content-minimized receipt boundary. Their dependency-free tests use
+fake query functions, so repository validation does not require an SDK package,
+credential, model call, or network access.
 
-The initial CLI surface should be concrete but narrow:
+The shipped CLI surfaces are deliberately narrow:
 
-```text
-pwcli-agent run "review this repository"   # one shot
-pwcli-agent repl                           # later milestone
-pwcli-agent resume <session-id>            # later milestone
-pwcli-agent config show
-pwcli-agent doctor                         # auth, sandbox, runtime, MCP readiness
+```bash
+cd examples/claude-agent-sdk-adapters/python
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install .
+pwcli-claude-review "Review this repository" --cwd <public-repo>
+
+cd ../typescript
+npm install
+npm run review -- "Review this repository" --cwd <public-repo>
 ```
 
-Authentication selection, permission/hook composition, MCP configuration, session retention, sandbox enforcement, remote-client authorization, and content-minimized observability each have their own module. Cost and token metadata may be recorded; prompts, file contents, credentials, and raw sensitive tool results do not belong in the receipt.
+The runtime still requires API-key or documented cloud-provider authentication.
+Provide it through the environment's normal secret-management path, never in
+the prompt or copied command history.
+
+There is no shipped REPL, resume command, edit/write/Bash authority, interactive
+approval UI, MCP, subagent, memory, sandbox provisioner, remote mode, or hosted
+multi-tenant service. Those are later milestones with separate exit evidence.
+The receipt records policy evidence and a result digest; prompts, model output,
+tool arguments, file contents, credentials, and raw tool results are excluded.
 
 ## Authentication: separate official products from third-party apps
 
@@ -2620,7 +2602,7 @@ The Agent SDK overview currently directs third-party applications to API-key or 
 - **Protocol Wealth.** [`pwos-core`](https://github.com/Protocol-Wealth/pwos-core). Open governance and compliance primitive packages.
 - **Protocol Wealth.** [`pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core). Planning reference UI and named direct-identifier key tripwires; public learning examples use synthetic inputs.
 - **Protocol Wealth.** [`shard-core`](https://github.com/Protocol-Wealth/shard-core). Prerelease authenticated encryption and threshold-recovery utility. Its README explicitly says it has not received an independent security audit.
-- **Protocol Wealth.** [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6). Tracked implementation of governed Python and TypeScript Claude Agent SDK reference adapters.
+- **Protocol Wealth.** [`pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7) and its [Claude Agent SDK reference adapters](https://github.com/Protocol-Wealth/pwcli-core/tree/main/examples/claude-agent-sdk-adapters). Governed read-only Python and TypeScript examples with equivalent synthetic contracts, policy tests, and content-minimized receipts; mutating tools, MCP, subagents, memory, sandbox provisioning, remote access, and hosted isolation are deferred.
 
 Private implementations are intentionally excluded from the public source map. Use a provider-neutral durable-knowledge boundary unless publication is explicitly authorized.
 

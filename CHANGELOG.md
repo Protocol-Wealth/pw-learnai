@@ -9,7 +9,7 @@ All notable changes to `pw-learnai` are recorded here.
 - Added Module 16, `Building Agent Systems`, separating the agent runtime from intent/governance, capabilities, planning, memory, recovery, remote access, and accountable human decisions.
 - Added the browser-only Agent Systems Architect, which produces a responsibility map, phased build sequence, boundary warnings, and explicit deferrals without storing or transmitting user input.
 - Added public-safe labs for `pwcli-core`, `shard-core`, and the full Protocol Wealth agent system-of-systems.
-- Added a concrete Python and TypeScript Claude Agent SDK adapter structure while keeping executable runtime work in [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6).
+- Added a concrete Python and TypeScript Claude Agent SDK adapter orientation, now linked to the bounded read-only implementation shipped in [`pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7).
 
 ### Changed
 
@@ -36,7 +36,7 @@ All notable changes to `pw-learnai` are recorded here.
 - Completed [`pw-learnai` issue #50](https://github.com/Protocol-Wealth/pw-learnai/issues/50)
   through merged [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57).
 - Completed [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54) through merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55).
-- Created [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6) for governed Python and TypeScript Claude Agent SDK reference adapters.
+- Completed [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6) through merged [`pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7), which shipped governed read-only Python and TypeScript Claude Agent SDK reference adapters.
 
 ### Published
 
@@ -48,6 +48,7 @@ All notable changes to `pw-learnai` are recorded here.
 - Merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55) as `838ff102cc2bc245c2a5ff34fd5f0d59bbad54bc`.
 - Passed Bundle NotebookLM sources `30161461181`, Deploy to GitHub Pages `30161461175`, and CodeQL `30161461077`.
 - Verified live HTTP 200 responses for the app, Module 16, system-of-systems lab, moved diff explainer, and canonical current-state document.
+- `pwcli-core` PR [#7](https://github.com/Protocol-Wealth/pwcli-core/pull/7) merged as `542533e8f53193c6c43a89dfab2b8250da77c1b0`; main Validate `30164106786` and CodeQL `30164106516` passed.
 
 ## 2026-07-01
 

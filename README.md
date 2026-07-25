@@ -174,7 +174,7 @@ codex "Read labs/protocol-wealth-oss/README.md and propose the smallest safe lab
 claude --permission-mode plan "Read the PWOS Core lab and propose a client-only confirmation-gate simulator improvement."
 ```
 
-For a concrete Python and TypeScript Claude Agent SDK adapter structure, read the [PWCLI Core Lab](labs/protocol-wealth-oss/pwcli-core-lab.md) and [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6). The public guidance uses API-key or documented cloud-provider authentication for third-party SDK applications. It does not recommend extracting, copying, or proxying Claude subscription credentials.
+For concrete Python and TypeScript Claude Agent SDK reference adapters, read the [PWCLI Core Lab](labs/protocol-wealth-oss/pwcli-core-lab.md) and the [implementation shipped in `pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7). The bounded examples are read-only, use API-key or documented cloud-provider authentication, and do not extract, copy, or proxy Claude subscription credentials.
 
 ### PR hygiene across the OSS surface
 
