@@ -2,15 +2,11 @@
 
 This is a focused implementation roadmap, not a product promise.
 
-## In review
-
-- [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50), implemented in
-  [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57): module-wide
-  falsifiability pass and official-source refresh. Move this entry to Shipped
-  only after merge and live Pages verification.
-
 ## Shipped
 
+- [#50](https://github.com/Protocol-Wealth/pw-learnai/issues/50), shipped in
+  [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57): module-wide
+  falsifiability pass and official-source refresh.
 - [#54](https://github.com/Protocol-Wealth/pw-learnai/issues/54), shipped in [PR #55](https://github.com/Protocol-Wealth/pw-learnai/pull/55): agent-systems learning path, client-only architecture builder, `pwcli-core` and `shard-core` labs, and system-of-systems map.
 - Tool-coverage backlog (#45–#49): companion tools for modules 04, 05, 06, 08, and 09 — every numbered module now has one client-only companion tool.
 - Issues #14–#21 (prior near/middle-term backlog) and #43 (Module 15 — Security & Secrets Hygiene). See `CURRENT-STATE.md` for the current live surface.

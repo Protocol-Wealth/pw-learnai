@@ -8,6 +8,7 @@ Last reviewed: 2026-07-25.
 - Default branch: `main`
 - Recent verified publish checkpoints:
   - [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55): published the governed agent-systems entryway, Module 16, architecture tool, and expanded OSS labs.
+  - [#57](https://github.com/Protocol-Wealth/pw-learnai/pull/57): published the module-wide falsifiability and official-source audit.
   - [#23](https://github.com/Protocol-Wealth/pw-learnai/pull/23): corrected publish-state references after PR #22.
   - [#22](https://github.com/Protocol-Wealth/pw-learnai/pull/22): published documentation and issue-tracking state.
   - [#13](https://github.com/Protocol-Wealth/pw-learnai/pull/13): published the audit cleanup and prompt asset move.
@@ -15,6 +16,11 @@ Last reviewed: 2026-07-25.
 - Documentation and issue-tracking PR: [#22](https://github.com/Protocol-Wealth/pw-learnai/pull/22), merged 2026-07-01.
 - Audit cleanup PR: [#13](https://github.com/Protocol-Wealth/pw-learnai/pull/13), merged 2026-07-01.
 - Agent-systems entryway PR: [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55), merged 2026-07-25 as `838ff102cc2bc245c2a5ff34fd5f0d59bbad54bc`.
+- Content-accuracy audit PR: [#57](https://github.com/Protocol-Wealth/pw-learnai/pull/57), merged 2026-07-25 as `119b0f7673b98e146f79a3cedb8ed9bd138d690e`.
+- Main workflows after PR #57 passed:
+  - Bundle NotebookLM sources: `30164081598`
+  - Deploy to GitHub Pages: `30164081591`
+  - CodeQL: `30164081407`
 - Main workflows after PR #55 passed:
   - Bundle NotebookLM sources: `30161461181`
   - Deploy to GitHub Pages: `30161461175`
@@ -52,8 +58,7 @@ Last reviewed: 2026-07-25.
 ## 2026-07-25 content-accuracy audit
 
 - [`pw-learnai` issue #50](https://github.com/Protocol-Wealth/pw-learnai/issues/50)
-  is implemented in [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57);
-  it is not live until that PR merges and the Pages workflow succeeds.
+  closed through merged [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57).
 - Every module now opens with a falsifiable, repo-specific claim or test and
   includes an exact limitations heading.
 - Unsupported frequency and causal generalities were removed, scoped, or
@@ -65,6 +70,8 @@ Last reviewed: 2026-07-25.
   blockers.
 - `pnpm bundle`, `pnpm check:links` (103 links, 0 broken), `pnpm build`, and
   `git diff --check` pass.
+- GitHub Pages deploy `30164081591` passed, and live HTTP/content checks
+  confirmed the updated module text and public state document.
 
 ## 2026-07-25 agent-systems session
 
