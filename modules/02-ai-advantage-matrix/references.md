@@ -1,5 +1,8 @@
 # 02 — References
 
+Reviewed: 2026-07-25. Stable strategy sources are distinguished from current
+AI-industry examples, which should be re-checked before use.
+
 ## Primary sources
 
 - **Agrawal, Ajay, Joshua Gans, Avi Goldfarb.** *Prediction Machines* (2018) and *Power and Prediction* (2022). The economic analysis of AI as cost reduction for prediction tasks. The matrix in this module is a structured application of their framing.

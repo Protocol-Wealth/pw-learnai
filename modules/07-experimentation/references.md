@@ -1,5 +1,8 @@
 # 07 — References
 
+Reviewed: 2026-07-25. These sources explain durable experimental methods; statistical,
+legal, and platform-specific requirements must be re-checked for the actual trial.
+
 ## Primary sources
 
 - **McGrath, Rita Gunther, and Ian MacMillan.** *Discovery-Driven Growth* (2009). The expanded treatment of discovery-driven planning. Earlier *HBR* articles cover the core; the book has the workbook material.

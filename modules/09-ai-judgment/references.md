@@ -1,10 +1,22 @@
 # 09 — References
 
+Reviewed: 2026-07-25. Model capability, pricing, availability, and safety evidence move
+quickly; use the current official system cards and an independent evaluation relevant
+to the task before making a deployment decision.
+
 ## Primary sources
 
-- **Anthropic, OpenAI, Google DeepMind.** Model cards and system cards for current frontier models. The official documents on capability and limits. Take seriously, read with context — vendors describe their models favorably, but the technical sections are usually accurate.
-- **METR (Model Evaluation and Threat Research).** Public capability evaluations on agentic tasks. Useful for benchmarking what frontier models can actually do, separate from vendor claims.
-- **Stanford HAI.** Annual *AI Index Report*. Aggregate statistics on capability, cost, deployment. Worth scanning each year.
+- **Anthropic.** [System cards](https://www.anthropic.com/system-cards). Official
+  capability and safety evaluations for released Claude models.
+- **OpenAI.** [Model guidance](https://developers.openai.com/api/docs/guides/latest-model).
+  Current official model-selection, prompting, and evaluation guidance; do not treat
+  benchmark results as a substitute for task-specific evaluation.
+- **Google DeepMind.** [Model cards](https://deepmind.google/models/model-cards/).
+  Official capability and safety documentation for Gemini-family releases.
+- **METR (Model Evaluation and Threat Research).** [Public evaluations](https://metr.org/research/).
+  Independent capability evaluations on agentic tasks.
+- **Stanford HAI.** [Annual AI Index Report](https://hai.stanford.edu/ai-index).
+  Aggregate statistics on capability, cost, and deployment.
 
 ## On reasoning under uncertainty
 

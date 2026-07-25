@@ -4,7 +4,14 @@ How to convert skeptics by sequence rather than persuasion.
 
 ## The claim
 
-Initiatives die in the committee phase more often than in the market. The standard remedy — better persuasion, more compelling narrative, executive sponsorship — works occasionally. The reliable remedy is sequencing: designing a path of small, undeniable evidence that converts specific skeptics in a specific order, leaving each conversion documented well enough that it does not get re-litigated. Persuasion is for people who agree with you. Evidence is for people who do not.
+When a named stakeholder can block an initiative for a specific objection, evidence
+targeted to that objection should change the decision more often than a generic
+persuasive narrative. Record the objection and decision, then compare matched cases or
+successive decisions where one uses an agreed test and the other uses a generic
+presentation. If the targeted evidence does not change decisions at a higher observed
+rate, the claimed advantage is absent in that setting. If evidence resolves the
+objection without changing the decision, the model is missing a political or
+incentive constraint.
 
 ## Why this matters
 
@@ -12,7 +19,7 @@ The cost of initiative death by committee is asymmetric. The initiative consumed
 
 ## The idea
 
-A stakeholder map identifies who must agree, who must not block, and who can be ignored. Most teams over-invest in the third group and under-invest in the second.
+A stakeholder map identifies who must agree, who must not block, and who can be ignored. Before acting, estimate time allocated to each group and name every veto holder. If veto holders receive equal or greater evidence work and the decision still stalls, misallocated stakeholder effort was not the cause in that case.
 
 ### The four stakeholder roles
 
@@ -61,7 +68,7 @@ Initiatives need public commitment to kill criteria — the conditions under whi
 
 Why: skeptics often suspect (correctly) that committed teams will not recognize failure when they see it. Public kill criteria flip the dynamic. The team commits in advance to recognize specific failure conditions. If those conditions occur, the team itself triggers the shutdown rather than waiting for an executive intervention.
 
-This is uncomfortable to commit to. It also dramatically lowers skeptic resistance, because the skeptic's worst case ("we will spend money on this for years and never admit it isn't working") is taken off the table.
+The hypothesis is that public kill criteria lower skeptic resistance by bounding the downside. Record skeptic approval or objection strength before and after the criteria are published. If resistance does not fall, the criteria did not resolve that skeptic's concern.
 
 The kill criteria should be:
 - Specific — measurable conditions, not vibes

@@ -4,15 +4,22 @@ What separates a durable prompt from a lucky one.
 
 ## The claim
 
-Most prompt engineering content treats prompts as standalone artifacts. The useful framing is different: a prompt is a small program that runs against an unstable runtime (a language model) to produce structured output. Treating prompts like software — with explicit inputs, predictable outputs, version control, and evaluation harnesses — produces durable results. Treating them as creative writing produces results that work until they do not.
+A production prompt should be treated as a versioned program evaluated against a
+representative input set. The claim is falsifiable: compare a structured, versioned
+prompt with an unversioned prose prompt on the same rubric and inputs. If the
+structured prompt does not improve repeatability or make regressions easier to detect,
+the added machinery did not help that task.
 
 ## Why this matters
 
-Prompts that work in demo break in production. The pattern is universal: the prompt produces good output on the examples the author tried, then fails on inputs the author did not anticipate, then quietly produces bad output that no one notices because the failure mode looks like the success mode. The cost of bad output is paid by users and customers, not by the prompt author. The discipline of treating prompts as engineering artifacts catches these failures before they ship.
+A prompt that works on author-selected examples can still fail on untested inputs.
+Measure that gap on a representative set before deployment. If the production set
+shows no material failures or regressions, the demo-to-production risk did not
+materialize for that prompt.
 
 ## The idea
 
-A durable prompt has six properties. Most production prompts that work over time have all six. Most demo prompts have one or two.
+This module defines a durable prompt through six inspectable properties. Compare a version that implements them with the current prompt on the same representative set and revision window. If the six-property version does not reduce failures or maintenance churn, this checklist did not improve durability for that task.
 
 ### Property 1: Explicit role and context
 

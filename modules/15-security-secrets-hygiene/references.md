@@ -1,6 +1,8 @@
 # 15 — References
 
-Reviewed 2026-07. AI security guidance moves quickly; treat dated items as starting points and check current vendor and standards-body docs before relying on any specific control.
+Reviewed: 2026-07-25. AI security guidance moves quickly; treat dated items as
+starting points and check current vendor and standards-body docs before relying on any
+specific control.
 
 ## On prompt injection and the lethal trifecta
 
@@ -19,7 +21,10 @@ Reviewed 2026-07. AI security guidance moves quickly; treat dated items as start
 
 ## Tool and agent security
 
-- **Model Context Protocol (MCP) security guidance.** As agents gain tools, the tool boundary becomes the trust boundary. Review the labs in this repo (`labs/protocol-wealth-oss/`) for the confirmation-gate and PII-boundary patterns, and check current MCP security docs for tool-permission models.
+- **Model Context Protocol.** [Security best practices](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices).
+  Official attack and mitigation guidance covering authorization, SSRF, sessions,
+  local-server privileges, sandboxing, and scope minimization. Review the labs in this
+  repo (`labs/protocol-wealth-oss/`) as local examples, not as a substitute.
 - **Excessive agency.** The failure mode where an agent is given broader tool access than the task requires. Scope tools to the minimum; gate the consequential ones.
 
 ## Standards and governance

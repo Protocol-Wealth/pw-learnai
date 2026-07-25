@@ -27,11 +27,16 @@ How to tell real disruption from incumbent-friendly change, before the quarterly
 
 ## The claim
 
-Most technology shifts that get called "disruption" in the press are sustaining innovations that favor incumbents. Real disruption has a specific structural signature, and you can diagnose it before the market agrees. The cost of the diagnosis is low. The cost of missing it compounds.
+A technology shift qualifies as disruption under the framework in this module only if
+it meets all four structural conditions below. If an observed case lacks any one
+condition yet the framework still labels it disruptive, the diagnostic has failed.
 
 ## Why this matters
 
-If you run a business or lead a function, the single most expensive mistake you can make is executing a correct plan against a wrong read of the terrain. Transformation failures are usually not execution failures — they are diagnosis failures. This module gives you a specific diagnostic.
+If you run a business or lead a function, executing a coherent plan against a bad
+read of the terrain can waste more than an execution mistake because the team may
+optimize the wrong response. This module gives you a specific diagnostic whose
+classification can be challenged against observed cases.
 
 ## The idea
 
@@ -237,6 +242,9 @@ The objections are the feedback. Revise.
 
 # 01 — References
 
+Reviewed: 2026-07-25. These are primarily stable books and papers; current company
+examples should be re-checked before use.
+
 ## Primary sources
 
 - **Christensen, Clayton.** *The Innovator's Dilemma* (1997). The foundational text. The worked examples (disk drives, excavators, steel) are still the cleanest demonstrations of the four-condition pattern.
@@ -279,19 +287,28 @@ Where AI creates durable advantage, where it produces a race to the floor, and h
 
 ## The claim
 
-AI is a cost-and-capability shift, not a strategy. Its effect on any given activity depends on two variables: how much the activity speeds up under AI (leverage), and how much competitive advantage survives the speedup (moat durability). Every AI investment decision maps to one of four quadrants, and each quadrant demands a different response. Treating AI as uniformly strategic is the mistake that gets firms into trouble.
+AI is a cost-and-capability shift, not a strategy. This module predicts that an
+activity's appropriate investment posture changes with two variables: measured task
+leverage and the durability of the underlying advantage. Predefine the thresholds and
+response attached to each quadrant, then reclassify after a defined trial. If an
+activity crosses a quadrant boundary but the prescribed investment posture does not
+change—or a different posture repeatedly performs as well on the declared outcome—the
+matrix did not add decision value for that case.
 
 ## Why this matters
 
-Most AI investment decisions get made one of two wrong ways. Either the firm treats AI as universally strategic and over-invests in categories where the advantage cannot hold (race to the floor), or it treats AI as uniformly tactical and under-invests in categories where the advantage compounds (missed moat). The matrix is a forcing function to classify before committing.
+Without an explicit classification, a team can over-invest where competitors can copy
+the gain or under-invest where scarce inputs make the gain compound. The matrix is a
+forcing function to classify before committing and to revisit the classification with
+measured results.
 
 ## The idea
 
 Two axes. Four quadrants. Each quadrant has a distinct response pattern.
 
-**Axis 1 — Task leverage.** How much does AI speed up, cheapen, or improve the activity? Measured roughly as the ratio of AI-augmented cost/time to human-only cost/time. High leverage = 3x or more improvement. Low leverage = under 1.5x.
+**Axis 1 — Task leverage.** How much does AI speed up, cheapen, or improve the activity? Measure it as the ratio of AI-augmented cost, time, or quality to the human-only baseline. Define "high" and "low" thresholds before the trial; do not import a universal cutoff from this module.
 
-**Axis 2 — Moat durability.** After the AI speedup lands in your competitors too, how much of your advantage survives? High durability = the advantage compounds because the input (proprietary data, regulatory moat, network effect, distribution control) is scarce and not reproducible. Low durability = the advantage evaporates within two to three years because the AI capability itself becomes commodity.
+**Axis 2 — Moat durability.** After the AI speedup lands in your competitors too, how much of your advantage survives? High durability means the advantage rests on a scarce input such as proprietary data, a lawful regulatory position, a network effect, or distribution control. Low durability means the gain comes mainly from model access or a workflow competitors can reproduce. Set a review horizon that matches the activity rather than assuming a fixed number of years.
 
 ### The four quadrants
 
@@ -462,6 +479,9 @@ This is not a one-time exercise. It is a forcing function for repeated honest cl
 
 # 02 — References
 
+Reviewed: 2026-07-25. Stable strategy sources are distinguished from current
+AI-industry examples, which should be re-checked before use.
+
 ## Primary sources
 
 - **Agrawal, Ajay, Joshua Gans, Avi Goldfarb.** *Prediction Machines* (2018) and *Power and Prediction* (2022). The economic analysis of AI as cost reduction for prediction tasks. The matrix in this module is a structured application of their framing.
@@ -505,7 +525,12 @@ The failure modes that look like wins in the short run.
 
 ## The claim
 
-Most AI deployments in established firms either break even or destroy value, not because the AI is bad but because the deployment design did not account for specific failure modes. The failure modes are predictable. They can be identified in a pre-mortem before deployment and mitigated by design. Most firms skip the pre-mortem and pay for the discovery in production.
+An AI deployment can improve its local efficiency metric while destroying net value
+through data leakage, lost differentiation, deskilling, bad decisions, regulatory
+exposure, or lost trust. The claim is testable: record those downside measures before
+deployment, then compare total observed benefit and harm. If none of the six patterns
+changes the deployment decision or its controls, this framework did not add value for
+that case.
 
 ## Why this matters
 
@@ -690,6 +715,9 @@ If you cannot write kill criteria, you have not thought through the risk. Write 
 
 # 03 — References
 
+Reviewed: 2026-07-25. Vendor terms, regulation, and agency guidance change; follow the
+current official source before treating any item here as operational or legal advice.
+
 ## On AI deployment failures
 
 - **Raji, Inioluwa Deborah, et al.** "Closing the AI Accountability Gap." *FAccT* 2020. Framework for auditing AI systems before and after deployment.
@@ -697,7 +725,13 @@ If you cannot write kill criteria, you have not thought through the risk. Write 
 
 ## On vendor contracts and data governance
 
-- **Anthropic, OpenAI, Google.** Each vendor's enterprise data processing terms. Read them. They change. The public marketing version is not the contractual version.
+- **Anthropic.** [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  Official feature-specific retention and zero-data-retention eligibility; contract
+  terms remain controlling.
+- **OpenAI.** [Data controls in the OpenAI platform](https://platform.openai.com/docs/models/default-usage-policies-by-endpoint).
+  Official endpoint-level retention and data-control reference.
+- **Google Cloud.** [Vertex AI and zero data retention](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/vertex-ai-zero-data-retention).
+  Official retention, training, caching, and feature-specific boundary reference.
 - **NIST AI Risk Management Framework (AI RMF 1.0)**, 2023. The most widely referenced framework for managing AI risk in enterprise deployments. Dense but comprehensive.
 - **Executive Order 14110** (Biden, 2023) and successor guidance. For federal context and downstream regulatory effects. The regulatory landscape is shifting; check current state.
 
@@ -736,11 +770,19 @@ When an opportunity is actually a platform, and when it is a product with an API
 
 ## The claim
 
-Platform strategy is the single most misapplied framework in modern business. The word means something specific — a business whose core value comes from facilitating direct interactions between two or more participant groups, where the interactions produce network effects. Most things called platforms are products with an API. Treating a product like a platform wastes money. Treating a platform like a product loses the category. Telling them apart requires a specific test, not pattern-matching to Uber and Airbnb.
+A business is a platform under this module only when its core value comes from direct
+interactions among two or more participant groups and those interactions produce
+measurable network effects. If a candidate fails any of the three structural tests
+below yet still generates value primarily through participant interactions and
+network effects, the test has misclassified it.
 
 ## Why this matters
 
-Platform investments are expensive and slow to mature. The chicken-and-egg launch problem alone takes 18-36 months to solve in most categories. If the opportunity is not actually a platform, the investment never returns because there is no compounding network effect to justify the cost structure. Before committing to a platform strategy, the test is binary: is this a platform or not?
+Platform investments can require simultaneous supply- and demand-side acquisition. If
+the opportunity lacks compounding network effects, spending on both sides may create
+operating complexity without a platform return. Before committing, classify the
+business model and define which observed interaction would disprove that
+classification.
 
 ## The idea
 
@@ -784,7 +826,10 @@ Five strategies that have worked, listed roughly in order of capital intensity:
 
 2. **Fake one side until you make it.** Operate as a single-sided business at first, then layer the platform on top. Amazon's third-party marketplace launched after years of first-party retail. The first-party operation kept consumers coming while the third-party marketplace bootstrapped.
 
-3. **Constrain the geography or vertical.** Launch in one city, one campus, one industry. Density matters more than total scale early. eBay started with collectibles. Facebook started with Harvard. Going narrow first is almost always right.
+3. **Constrain the geography or vertical.** Launch in one city, one campus, or one
+industry when local density is the bottleneck. eBay's early category concentration
+and Facebook's initial campus boundary illustrate the pattern, but the strategy fails
+when value does not depend on local or segment density.
 
 4. **Piggyback on an existing network.** Use an established platform's distribution. PayPal on eBay. Zynga on Facebook. Vulnerable to the host platform's policy changes, but capital-light to start.
 
@@ -803,7 +848,10 @@ The platform's strategic job is to raise the cost of multi-homing for at least o
 - Platform-specific reputation systems that lock in seller goodwill
 - Unique demand the seller cannot reach elsewhere
 
-If both sides multi-home freely and the platform has no mechanism to reduce it, the platform never compounds.
+If both sides multi-home freely, measure whether transaction density, retention, or
+unit economics still improve as participation grows. If they do, multi-homing did not
+eliminate compounding in that case; if they do not, claimed network effects need a
+different mechanism.
 
 ### Envelopment
 
@@ -814,20 +862,20 @@ Envelopment risk is high when:
 - Your functionality is plausibly an extension of theirs
 - They have distribution you do not have
 
-Defending against envelopment requires either (a) network effects deep enough that switching is costly even when the new option is free, or (b) functionality that the larger platform cannot or will not match without compromising its core. Most platforms that get enveloped did not see it coming because they were comparing themselves to direct competitors rather than to the adjacent category.
+Treat adjacent-category blindness as a hypothesis, not an explanation after the fact. List the larger platforms that share the user base, record their distribution and extension options, and compare that list with the direct-competitor review. If the adjacent-category review identifies no credible entrant or changes no defensive decision, it did not improve the envelopment analysis.
 
 ### Monetization sequencing
 
-Most platforms do not monetize in the first phase. The first phase is solving the chicken-and-egg problem and reaching critical density. Monetization at this stage suppresses growth and slows network effects.
+When critical density is the named constraint, test whether early monetization suppresses participation before adopting it as doctrine. Compare a priced cohort with an otherwise matched free cohort on activation, cross-side response, retention, and contribution margin. If pricing does not reduce density or network formation, delaying monetization is not supported in that setting.
 
-The right sequence in most cases:
+A candidate sequence when that test shows density is the binding constraint:
 
 1. **Phase 1: Free both sides.** Reach density.
 2. **Phase 2: Free the demand side, monetize supply.** When demand is dense enough that suppliers cannot reach it efficiently elsewhere, suppliers will pay for access.
 3. **Phase 3: Tier the supply side.** Take rate, advertising, premium features for suppliers competing for limited demand attention.
 4. **Phase 4: Layer on adjacent revenue.** Payment processing, advertising, data products, financial services. The original take rate becomes one of many revenue streams.
 
-Skipping phases is the classic founder mistake. The pressure from investors to "show monetization" frequently kills platforms before they reach the density that makes monetization profitable.
+Do not label a skipped phase a mistake without evidence. Predefine the density and unit-economics thresholds for each phase; if a platform can charge earlier while meeting both, the sequence should be shortened rather than defended.
 
 ## Worked example: applying the test
 
@@ -941,6 +989,9 @@ Investor pressure usually pushes for premature monetization. The discipline is t
 
 # 05 — References
 
+Reviewed: 2026-07-25. These are stable economics and strategy sources; current company
+examples should be verified against primary filings or product documentation.
+
 ## Primary sources
 
 - **Parker, Geoffrey, Marshall Van Alstyne, and Sangeet Paul Choudary.** *Platform Revolution* (2016). The most comprehensive treatment of platform economics for an operator audience. Read this if you read one book on the topic.
@@ -982,7 +1033,11 @@ How to make AI decisions when the capability curve keeps moving.
 
 ## The claim
 
-AI capability changes faster than most decision processes. A judgment that was correct six months ago may be wrong now because models got cheaper, more capable, or both. The defense is not to predict the curve — that fails reliably — but to build decision processes that absorb capability shifts without re-litigating from scratch. The processes are specific. Most organizations do not have them.
+AI capability, cost, and vendor terms can change between an organization's review
+cycles. A quarterly capability inventory, reversibility classification, and explicit
+trigger should therefore surface decisions worth revisiting without reopening every
+decision. If the process misses a material documented capability or cost change that
+crosses a predefined trigger, the process has failed.
 
 ## Why this matters
 
@@ -1121,11 +1176,23 @@ Most operators discover they consume a lot of secondary commentary that does not
 
 # 09 — References
 
+Reviewed: 2026-07-25. Model capability, pricing, availability, and safety evidence move
+quickly; use the current official system cards and an independent evaluation relevant
+to the task before making a deployment decision.
+
 ## Primary sources
 
-- **Anthropic, OpenAI, Google DeepMind.** Model cards and system cards for current frontier models. The official documents on capability and limits. Take seriously, read with context — vendors describe their models favorably, but the technical sections are usually accurate.
-- **METR (Model Evaluation and Threat Research).** Public capability evaluations on agentic tasks. Useful for benchmarking what frontier models can actually do, separate from vendor claims.
-- **Stanford HAI.** Annual *AI Index Report*. Aggregate statistics on capability, cost, deployment. Worth scanning each year.
+- **Anthropic.** [System cards](https://www.anthropic.com/system-cards). Official
+  capability and safety evaluations for released Claude models.
+- **OpenAI.** [Model guidance](https://developers.openai.com/api/docs/guides/latest-model).
+  Current official model-selection, prompting, and evaluation guidance; do not treat
+  benchmark results as a substitute for task-specific evaluation.
+- **Google DeepMind.** [Model cards](https://deepmind.google/models/model-cards/).
+  Official capability and safety documentation for Gemini-family releases.
+- **METR (Model Evaluation and Threat Research).** [Public evaluations](https://metr.org/research/).
+  Independent capability evaluations on agentic tasks.
+- **Stanford HAI.** [Annual AI Index Report](https://hai.stanford.edu/ai-index).
+  Aggregate statistics on capability, cost, and deployment.
 
 ## On reasoning under uncertainty
 

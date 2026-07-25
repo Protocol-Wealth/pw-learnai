@@ -4,14 +4,18 @@ How to use public datasets, archival APIs, and metadata-harvesting protocols wit
 
 ## The claim
 
-Public data work fails less often because the API is hard and more often because the operator skips source discipline. A usable public-data workflow records four things before code exists:
+A public-data workflow is not reproducible unless it records four things before code
+exists:
 
 1. Where the metadata came from.
 2. Where the actual data lives.
 3. What the access terms and rate limits are.
 4. How the result will be attributed and refreshed.
 
-If those four facts are missing, an agent can still write code, but it is probably automating confusion.
+This is falsifiable: give the source note to a second operator and ask them to retrieve
+the same sample under the same terms. If they can do so without any of the four facts,
+the contract is stricter than that source requires. If they cannot, code alone did not
+make the workflow reproducible.
 
 ## The operating model
 

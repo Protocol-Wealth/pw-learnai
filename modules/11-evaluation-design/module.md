@@ -4,7 +4,11 @@ How to know your AI system is getting better, not just different.
 
 ## The claim
 
-Most teams ship AI systems without an evaluation harness, then ship changes without measuring whether the changes improve anything. The result is a system that drifts in quality without anyone noticing, where confidence in output rises with familiarity rather than evidence. Evaluation is the discipline that breaks the drift. It is unglamorous. It is the difference between an AI system that compounds in usefulness and one that quietly degrades.
+An AI system without a repeatable evaluation set cannot distinguish an improvement
+from a behavior change on the tasks it claims to support. This is testable: run the
+same representative cases and rubric before and after a change. If the harness cannot
+detect a deliberately introduced failure that users would care about, the evaluation
+does not cover the claimed behavior.
 
 ## Why this matters
 

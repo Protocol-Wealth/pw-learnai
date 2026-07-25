@@ -4,11 +4,16 @@ How to build a tool that actually gets used.
 
 ## The claim
 
-Most internal tools are built to make the builder feel productive, not to be used. The ones that get used share a specific design pattern: they reduce a real decision the user makes regularly to a structured set of inputs, give a defensible output, and respect the user's existing workflow rather than fighting it. Decision-support artifacts that do not meet all three criteria do not get used, regardless of how clever they are.
+A decision-support artifact is more likely to survive its first month when it passes
+three tests: it supports a recurring decision, produces an output the user can defend,
+and fits the user's existing workflow. Define adoption before launch—for example,
+weekly use on the named decision. If an artifact that fails a test is adopted at the
+same or higher rate than one that passes all three, the pattern did not predict use in
+that setting.
 
 ## Why this matters
 
-The deliverable for most AI strategy work is a tool. A rubric, a worksheet, a calculator, a piece of working software. The tools that compound are the ones that survive past the first month — that the user reaches for again, that get refined as the user's understanding deepens, that the user shares with colleagues without prompting. This module is about how to build for that outcome rather than the launch-and-forget alternative.
+This module targets a tool as the deliverable: a rubric, worksheet, calculator, or piece of working software. Define "survives" before launch—for example, the named user returns to it within 30 days, refines it after use, or shares it without prompting. If a launch-only artifact performs as well on those measures, the proposed design pattern did not add persistence in that setting.
 
 ## The idea
 

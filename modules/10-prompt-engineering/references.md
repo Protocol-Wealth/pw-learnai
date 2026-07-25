@@ -1,9 +1,17 @@
 # 10 — References
 
+Reviewed: 2026-07-25. Vendor prompting behavior changes with models and APIs; verify
+current official guidance and rerun representative evaluations before changing a
+production prompt.
+
 ## Primary sources
 
-- **Anthropic.** *Claude Prompt Engineering Guide* (docs.claude.com). The most current vendor documentation. Read this before optimizing.
-- **OpenAI.** *Prompt Engineering Guide* (platform.openai.com/docs). Vendor-specific but most patterns transfer.
+- **Anthropic.** [Prompt engineering overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview).
+  Current vendor guidance for defining success criteria, evaluations, and prompt
+  techniques.
+- **OpenAI.** [Model guidance](https://developers.openai.com/api/docs/guides/latest-model).
+  Current official prompting and migration guidance. Treat its quantitative examples
+  as directional and validate on your own workload.
 - **Schulhoff, Sander, et al.** *The Prompt Report* (2024). Comprehensive academic survey of prompt engineering techniques. Long but thorough.
 
 ## On structured prompting
@@ -30,4 +38,6 @@
 ## On the limits of prompt engineering
 
 - **Various critics** have argued that elaborate prompt engineering is a band-aid over models that should be more capable by default. The argument is partially correct — vendor improvements have absorbed many techniques into default behavior. The implication is to keep prompts as simple as the task allows and add structure only when needed.
-- **Fine-tuning vs prompting.** For tasks done at high volume with consistent format, fine-tuning beats elaborate prompting. The crossover point is roughly 1000+ similar tasks per month with consistent input/output structure. Below that, prompting is more flexible and cheaper to iterate.
+- **Fine-tuning vs prompting.** The right boundary depends on measured quality, data
+  availability, privacy, latency, maintenance, and cost. There is no universal
+  request-volume crossover; compare approaches on the actual task.

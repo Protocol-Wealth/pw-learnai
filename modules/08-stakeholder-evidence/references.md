@@ -1,5 +1,8 @@
 # 08 — References
 
+Reviewed: 2026-07-25. These are stable management and stakeholder sources; local
+decision rights and incentives must be observed rather than inferred from the books.
+
 ## Primary sources
 
 - **Cialdini, Robert.** *Influence* (1984, multiple editions). The canonical reference on persuasion, used here mostly to understand what evidence-based buy-in is *not*. Cialdini's six principles work, but they work as influence levers, not as truth-finding mechanisms. Use sparingly.

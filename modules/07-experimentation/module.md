@@ -4,11 +4,18 @@ What makes an experiment actually diagnostic versus theater.
 
 ## The claim
 
-Most "experiments" in corporate settings are not experiments because they were never going to change a decision. They are validation exercises — runs designed to confirm what leadership already wants to do. Real experiments have specific properties: they make a falsifiable prediction, they have predefined success criteria, they can be done cheaply, and the result actually changes what happens next. Without all four, the run is theater.
+A run is diagnostic only when it makes a falsifiable prediction, defines success
+before results are known, is cheap relative to the decision, and commits the team to a
+different next action for each material outcome. Audit the decision record after the
+run: if the result could not have changed what happened next, it was validation
+theater rather than an experiment under this definition.
 
 ## Why this matters
 
-Experimentation is the only mechanism for learning under uncertainty that does not require being right in advance. Done well, experiments compound — each one cheaply rules out hypotheses and concentrates investment on the ones that survive. Done badly, experiments consume budget without producing decisions. The difference is mostly design discipline, not technique.
+A precommitted experiment is one mechanism for learning under uncertainty without
+requiring the prediction to be right. A run adds evidence only when its outcome can
+change a decision; otherwise it consumes budget without discriminating among the
+available actions.
 
 ## The idea
 

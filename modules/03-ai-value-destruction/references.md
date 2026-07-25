@@ -1,5 +1,8 @@
 # 03 — References
 
+Reviewed: 2026-07-25. Vendor terms, regulation, and agency guidance change; follow the
+current official source before treating any item here as operational or legal advice.
+
 ## On AI deployment failures
 
 - **Raji, Inioluwa Deborah, et al.** "Closing the AI Accountability Gap." *FAccT* 2020. Framework for auditing AI systems before and after deployment.
@@ -7,7 +10,13 @@
 
 ## On vendor contracts and data governance
 
-- **Anthropic, OpenAI, Google.** Each vendor's enterprise data processing terms. Read them. They change. The public marketing version is not the contractual version.
+- **Anthropic.** [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  Official feature-specific retention and zero-data-retention eligibility; contract
+  terms remain controlling.
+- **OpenAI.** [Data controls in the OpenAI platform](https://platform.openai.com/docs/models/default-usage-policies-by-endpoint).
+  Official endpoint-level retention and data-control reference.
+- **Google Cloud.** [Vertex AI and zero data retention](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/vertex-ai-zero-data-retention).
+  Official retention, training, caching, and feature-specific boundary reference.
 - **NIST AI Risk Management Framework (AI RMF 1.0)**, 2023. The most widely referenced framework for managing AI risk in enterprise deployments. Dense but comprehensive.
 - **Executive Order 14110** (Biden, 2023) and successor guidance. For federal context and downstream regulatory effects. The regulatory landscape is shifting; check current state.
 

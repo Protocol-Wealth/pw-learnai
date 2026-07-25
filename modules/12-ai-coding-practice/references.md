@@ -1,6 +1,7 @@
 # 12 - References
 
-Tool-specific guidance reviewed on 2026-06-07. Re-check vendor docs before turning these notes into policy or automation.
+Tool-specific guidance reviewed on 2026-07-25. Re-check vendor docs before turning
+these notes into policy or automation.
 
 ## Current CLI documentation
 

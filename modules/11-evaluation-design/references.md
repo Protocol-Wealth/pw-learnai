@@ -1,5 +1,9 @@
 # 11 — References
 
+Reviewed: 2026-07-25. Model-as-judge behavior, vendor red-teaming guidance, and
+regulatory requirements change; pin the model and rubric used for every recorded
+evaluation.
+
 ## Primary sources
 
 - **Hamel Husain, Isaac Flath, Eugene Yan, Bryan Bischof, Jason Liu, Charles Frye.** "What We Learned from a Year of Building with LLMs" (2024). The clearest practical treatment of LLM evaluation in production. Read this first.
@@ -18,7 +22,13 @@
 
 ## On red-teaming
 
-- **Anthropic, OpenAI, Google.** Vendor red-teaming documentation. Vendor-specific but the patterns transfer.
+- **Anthropic.** [System cards](https://www.anthropic.com/system-cards). Official
+  capability and safety evaluations with model-specific methods and limits.
+- **OpenAI.** [Approach to external red teaming](https://cdn.openai.com/papers/openais-approach-to-external-red-teaming.pdf).
+  Official description of campaign scope, participant guidance, interfaces, and
+  reporting.
+- **Google DeepMind.** [Model cards](https://deepmind.google/models/model-cards/).
+  Official model-specific evaluation, safety, and limitation evidence.
 - **AI Village at DEF CON.** Annual public red-teaming work. Useful for understanding what real adversarial testing looks like.
 
 ## On the limits of evaluation

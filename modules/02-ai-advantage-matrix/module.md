@@ -4,19 +4,28 @@ Where AI creates durable advantage, where it produces a race to the floor, and h
 
 ## The claim
 
-AI is a cost-and-capability shift, not a strategy. Its effect on any given activity depends on two variables: how much the activity speeds up under AI (leverage), and how much competitive advantage survives the speedup (moat durability). Every AI investment decision maps to one of four quadrants, and each quadrant demands a different response. Treating AI as uniformly strategic is the mistake that gets firms into trouble.
+AI is a cost-and-capability shift, not a strategy. This module predicts that an
+activity's appropriate investment posture changes with two variables: measured task
+leverage and the durability of the underlying advantage. Predefine the thresholds and
+response attached to each quadrant, then reclassify after a defined trial. If an
+activity crosses a quadrant boundary but the prescribed investment posture does not
+change—or a different posture repeatedly performs as well on the declared outcome—the
+matrix did not add decision value for that case.
 
 ## Why this matters
 
-Most AI investment decisions get made one of two wrong ways. Either the firm treats AI as universally strategic and over-invests in categories where the advantage cannot hold (race to the floor), or it treats AI as uniformly tactical and under-invests in categories where the advantage compounds (missed moat). The matrix is a forcing function to classify before committing.
+Without an explicit classification, a team can over-invest where competitors can copy
+the gain or under-invest where scarce inputs make the gain compound. The matrix is a
+forcing function to classify before committing and to revisit the classification with
+measured results.
 
 ## The idea
 
 Two axes. Four quadrants. Each quadrant has a distinct response pattern.
 
-**Axis 1 — Task leverage.** How much does AI speed up, cheapen, or improve the activity? Measured roughly as the ratio of AI-augmented cost/time to human-only cost/time. High leverage = 3x or more improvement. Low leverage = under 1.5x.
+**Axis 1 — Task leverage.** How much does AI speed up, cheapen, or improve the activity? Measure it as the ratio of AI-augmented cost, time, or quality to the human-only baseline. Define "high" and "low" thresholds before the trial; do not import a universal cutoff from this module.
 
-**Axis 2 — Moat durability.** After the AI speedup lands in your competitors too, how much of your advantage survives? High durability = the advantage compounds because the input (proprietary data, regulatory moat, network effect, distribution control) is scarce and not reproducible. Low durability = the advantage evaporates within two to three years because the AI capability itself becomes commodity.
+**Axis 2 — Moat durability.** After the AI speedup lands in your competitors too, how much of your advantage survives? High durability means the advantage rests on a scarce input such as proprietary data, a lawful regulatory position, a network effect, or distribution control. Low durability means the gain comes mainly from model access or a workflow competitors can reproduce. Set a review horizon that matches the activity rather than assuming a fixed number of years.
 
 ### The four quadrants
 

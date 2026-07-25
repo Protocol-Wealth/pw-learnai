@@ -1,5 +1,8 @@
 # 05 — References
 
+Reviewed: 2026-07-25. These are stable economics and strategy sources; current company
+examples should be verified against primary filings or product documentation.
+
 ## Primary sources
 
 - **Parker, Geoffrey, Marshall Van Alstyne, and Sangeet Paul Choudary.** *Platform Revolution* (2016). The most comprehensive treatment of platform economics for an operator audience. Read this if you read one book on the topic.
