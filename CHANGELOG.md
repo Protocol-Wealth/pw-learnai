@@ -33,14 +33,18 @@ All notable changes to `pw-learnai` are recorded here.
 
 ### Tracked
 
-- Implemented [`pw-learnai` issue #50](https://github.com/Protocol-Wealth/pw-learnai/issues/50)
-  in [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57); publication
-  remains pending merge and Pages verification.
+- Completed [`pw-learnai` issue #50](https://github.com/Protocol-Wealth/pw-learnai/issues/50)
+  through merged [PR #57](https://github.com/Protocol-Wealth/pw-learnai/pull/57).
 - Completed [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54) through merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55).
 - Created [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6) for governed Python and TypeScript Claude Agent SDK reference adapters.
 
 ### Published
 
+- Merged PR [#57](https://github.com/Protocol-Wealth/pw-learnai/pull/57) as
+  `119b0f7673b98e146f79a3cedb8ed9bd138d690e`.
+- Passed Bundle NotebookLM sources `30164081598`, Deploy to GitHub Pages
+  `30164081591`, and CodeQL `30164081407`; verified the updated module and state
+  document live over HTTP 200.
 - Merged PR [#55](https://github.com/Protocol-Wealth/pw-learnai/pull/55) as `838ff102cc2bc245c2a5ff34fd5f0d59bbad54bc`.
 - Passed Bundle NotebookLM sources `30161461181`, Deploy to GitHub Pages `30161461175`, and CodeQL `30161461077`.
 - Verified live HTTP 200 responses for the app, Module 16, system-of-systems lab, moved diff explainer, and canonical current-state document.
