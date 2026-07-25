@@ -272,14 +272,17 @@ function buildArchitecture(state) {
 
   if (state.authority !== 'read') requiredRoleIds.add('approver')
   if (state.authority === 'consequential') requiredRoleIds.add('stopOwner')
+  if (state.goal === 'domain') requiredRoleIds.add('domainOwner')
   if (state.remote !== 'local') {
     requiredRoleIds.add('stopOwner')
     requiredRoleIds.add('securityOwner')
   }
+  if (state.data === 'internal') requiredRoleIds.add('dataController')
   if (state.data === 'sensitive') {
     requiredRoleIds.add('securityOwner')
     requiredRoleIds.add('dataController')
   }
+  if (state.stateSystems.includes('semantic')) requiredRoleIds.add('dataController')
   if (state.surface === 'app') {
     for (const roleId of ['productOwner', 'dataController', 'securityOwner', 'stopOwner']) requiredRoleIds.add(roleId)
   }
@@ -373,8 +376,12 @@ function buildArchitecture(state) {
   for (const stateSystem of enabledStateSystems) {
     const detail = {
       session: 'Declare provider/server boundary, transcript retention, deletion, resume, and export. Do not copy transcripts into receipts.',
-      repo: 'Promote only reviewed, source-cited facts; define the owner who updates or removes stale guidance.',
-      semantic: 'Treat writes as effects with source, promotion review, contradiction handling, tenant isolation, retention, export, and deletion.',
+      repo: state.authority === 'read'
+        ? 'Review existing source-cited guidance only. Repo-knowledge promotion remains deferred until write authority and exact approval are declared.'
+        : 'Promote only reviewed, source-cited facts; define the owner who updates or removes stale guidance.',
+      semantic: state.authority === 'read'
+        ? 'Retrieval only. Defer memory writes until source, approval, contradiction, tenant, retention, export, and deletion controls are declared.'
+        : 'Treat writes as effects with source, promotion review, contradiction handling, tenant isolation, retention, export, and deletion.',
     }[stateSystem.id]
     layers.push({
       title: stateSystem.label,
@@ -421,7 +428,9 @@ function buildArchitecture(state) {
     warnings.push('A model may propose a consequential action; a named human or deterministic policy boundary must approve and verify the exact effect.')
   }
   if (state.stateSystems.includes('semantic')) {
-    warnings.push('Treat every semantic-memory write as a side effect. Require source, promotion review, contradiction handling, retention, and deletion.')
+    warnings.push(state.authority === 'read'
+      ? 'Read-only authority permits semantic retrieval only. Memory promotion and writes remain explicitly deferred.'
+      : 'Treat every semantic-memory write as a side effect. Require source, promotion review, contradiction handling, retention, and deletion.')
   }
   if (state.remote === 'official') {
     warnings.push('Official Remote Control is a Claude Code product path, not SDK hosting. Execution stays local, but Anthropic stores the session transcript; Zero Data Retention organizations cannot enable it.')
@@ -473,10 +482,14 @@ function buildArchitecture(state) {
     phases.push('Run read-only contract, security, and human-workflow reviewers; adjudicate every finding.')
   }
   if (state.stateSystems.includes('repo')) {
-    phases.push('Commit only reviewed, source-cited durable facts to repo state files.')
+    phases.push(state.authority === 'read'
+      ? 'Review existing repo guidance; defer every commit or durable-fact promotion.'
+      : 'Commit only reviewed, source-cited durable facts to repo state files.')
   }
   if (state.stateSystems.includes('semantic')) {
-    phases.push('Test memory promotion, provenance, contradiction, tenant isolation, export, retention, and deletion before enabling writes.')
+    phases.push(state.authority === 'read'
+      ? 'Test retrieval boundaries only; defer semantic-memory promotion and writes.'
+      : 'Test memory promotion, provenance, contradiction, tenant isolation, export, retention, and deletion before enabling writes.')
   }
   if (state.remote !== 'local') {
     phases.push(state.remote === 'custom'
@@ -491,6 +504,8 @@ function buildArchitecture(state) {
   const deferred = []
   if (!state.capabilities.includes('mcp')) deferred.push('External MCP capability servers')
   if (!state.stateSystems.includes('semantic')) deferred.push('Semantic memory')
+  if (state.authority === 'read' && state.stateSystems.includes('repo')) deferred.push('Repo-knowledge commits and promotion')
+  if (state.authority === 'read' && state.stateSystems.includes('semantic')) deferred.push('Semantic-memory promotion and writes')
   if (state.remote === 'local') deferred.push('Remote access')
   if (state.remote !== 'custom') deferred.push('Custom daemon or multi-tenant hosting')
   if (state.data !== 'sensitive') deferred.push('Sensitive or regulated data')
