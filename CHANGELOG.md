@@ -2,6 +2,36 @@
 
 All notable changes to `pw-learnai` are recorded here.
 
+## 2026-07-25
+
+### Added
+
+- Added Module 16, `Building Agent Systems`, separating the agent runtime from intent/governance, capabilities, planning, memory, recovery, remote access, and accountable human decisions.
+- Added the browser-only Agent Systems Architect, which produces a responsibility map, phased build sequence, boundary warnings, and explicit deferrals without storing or transmitting user input.
+- Added public-safe labs for `pwcli-core`, `shard-core`, and the full Protocol Wealth agent system-of-systems.
+- Added a concrete Python and TypeScript Claude Agent SDK adapter structure while keeping executable runtime work in [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6).
+
+### Changed
+
+- Expanded the homepage and README with a beginner-to-advanced agent-systems path and five additional OSS/system-boundary entry points.
+- Expanded cross-repo PR auditing to include `pwcli-core` and `shard-core`.
+- Updated the PWPlan lab and homepage from the stale 16-tool description to the current 34-tool public engine contract, while clarifying that its named-key tripwire is not de-identification.
+- Updated NotebookLM starter, practice, AI-focus, and Protocol Wealth OSS lab bundles.
+
+### Corrected
+
+- Replaced unsafe third-party auth guidance with the current documented boundary: Agent SDK applications use API-key or documented cloud-provider authentication; official Claude Code subscription login and Remote Control are separate product paths.
+- Documented that `allowed_tools` / `allowedTools` auto-approves matching tools but does not by itself remove every unlisted tool.
+- Kept private durable-knowledge implementations out of the public dependency map; public material describes a provider-neutral boundary instead.
+- Removed stale embedded PR-state claims from the OSS lab guide.
+- Restored the exact three-file module contract by moving the Module 00 diff explainer into `labs/getting-started/` and making the bundler reject every extra module file.
+- Incorporated adversarial contract, security, and human-systems review: governance is cross-cutting, state systems remain distinct, sensitive/live/recovery roles are conditional and explicit, and remote/hosting boundaries are fail-closed.
+
+### Tracked
+
+- Created [`pw-learnai` issue #54](https://github.com/Protocol-Wealth/pw-learnai/issues/54) for this scoped learning-path implementation.
+- Created [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6) for governed Python and TypeScript Claude Agent SDK reference adapters.
+
 ## 2026-07-01
 
 ### Changed

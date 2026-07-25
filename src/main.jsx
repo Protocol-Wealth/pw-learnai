@@ -41,6 +41,7 @@ import PlatformEconomicsDiagnostic from '../components/interactive/PlatformEcono
 import ChangeReadinessDiagnostic from '../components/interactive/ChangeReadinessDiagnostic.jsx'
 import StakeholderEvidenceMapper from '../components/interactive/StakeholderEvidenceMapper.jsx'
 import JudgmentUnderUncertainty from '../components/interactive/JudgmentUnderUncertainty.jsx'
+import AgentSystemsArchitect from '../components/interactive/AgentSystemsArchitect.jsx'
 
 const TOOLS = [
   {
@@ -110,8 +111,8 @@ const TOOLS = [
     category: 'OSS Labs',
     component: PlanningContractValidator,
     href: 'labs/protocol-wealth-oss/pwplan-core-lab.md',
-    description: 'Validate PII-free planning payloads against the PWPlan contract invariant.',
-    tags: ['PWPlan Core', 'Planning', 'PII-free'],
+    description: 'Test synthetic planning payloads against PWPlan direct-identifier key tripwires.',
+    tags: ['PWPlan Core', 'Planning', 'Synthetic data'],
   },
   {
     id: 'coding-playbook',
@@ -122,6 +123,16 @@ const TOOLS = [
     href: 'modules/12-ai-coding-practice/module.md',
     description: 'Compose bounded Codex CLI and Claude Code tasks with scope, permissions, and verification.',
     tags: ['Codex CLI', 'Claude Code', 'Review'],
+  },
+  {
+    id: 'agent-systems',
+    name: 'Agent Systems Architect',
+    module: '16',
+    category: 'Practice',
+    component: AgentSystemsArchitect,
+    href: 'modules/16-building-agent-systems/module.md',
+    description: 'Map runtime, control plane, MCP, data, memory, remote access, recovery, and accountable humans before building.',
+    tags: ['Agent SDK', 'PWCLI Core', 'MCP', 'Memory', 'Human systems', 'Architecture'],
   },
   {
     id: 'agent-instructions',
@@ -305,16 +316,16 @@ const LEVEL_PATHS = [
     level: 'Advanced',
     icon: Server,
     summary: 'You are ready to connect data, MCP tools, cloud services, or regulated workflow patterns.',
-    outcome: 'Outcome: public-data source notes, PII-free contracts, clear deployment targets, and live verification.',
+    outcome: 'Outcome: a governed agent-system map, public-data source notes, synthetic planning contracts, and live verification.',
     actions: [
       'Start with Data.gov, National Archives, or OAI-PMH source notes before writing ingest code.',
-      'Use Nexus, PWOS, and PWPlan labs to study MCP, compliance primitives, and PII-free planning contracts.',
+      'Use Module 16 and the OSS system map to separate runtime, tools, memory, security, and human decision rights.',
       'Choose GitHub Pages, Cloud Run, Fly.io, or Neon only after the local loop and rollback path are clear.',
     ],
     links: [
+      ['Module 16', 'modules/16-building-agent-systems/module.md'],
       ['Module 14', 'modules/14-working-with-public-data/module.md'],
       ['OSS labs', 'labs/protocol-wealth-oss/README.md'],
-      ['Data bundle', 'notebooklm/data-bundle.md'],
     ],
   },
 ]
@@ -401,6 +412,22 @@ const LEARNING_PATHS = [
     ],
   },
   {
+    id: 'agent-systems',
+    title: 'Building Agent Systems',
+    icon: Layers,
+    summary: 'Agent SDK adapters, control planes, MCP capabilities, memory boundaries, remote access, and accountable humans.',
+    links: [
+      ['Module 16', 'modules/16-building-agent-systems/module.md'],
+      ['System map', 'labs/protocol-wealth-oss/system-of-systems-lab.md'],
+      ['PWCLI lab', 'labs/protocol-wealth-oss/pwcli-core-lab.md'],
+    ],
+    steps: [
+      'Reuse a mature agent loop and govern it with explicit intent, tools, data, approvals, and receipts.',
+      'Keep sessions, repo state, semantic memory, and protected recovery as different systems.',
+      'Name the human who approves, verifies, stops, and recovers every consequential workflow.',
+    ],
+  },
+  {
     id: 'best-practices',
     title: 'Best Practices',
     icon: ShieldCheck,
@@ -420,7 +447,7 @@ const LEARNING_PATHS = [
     id: 'working-with-data',
     title: 'Working with Data',
     icon: Database,
-    summary: 'Public datasets, archival APIs, OAI-PMH harvesting, and PII-free compute boundaries.',
+    summary: 'Public datasets, archival APIs, OAI-PMH harvesting, and direct-identifier-reducing compute boundaries.',
     links: [
       ['Nexus lab', 'labs/protocol-wealth-oss/nexus-core-lab.md'],
       ['PWPlan lab', 'labs/protocol-wealth-oss/pwplan-core-lab.md'],
@@ -429,29 +456,47 @@ const LEARNING_PATHS = [
     steps: [
       'Use Data.gov and the National Archives Catalog API as read-only sources first.',
       'Learn OAI-PMH as a metadata-harvesting pattern before writing scrapers.',
-      'Keep fake or de-identified data in demos until access control and audit are designed.',
+      'Use synthetic data in demos until access control, re-identification risk, retention, and audit are reviewed.',
     ],
   },
 ]
 
 const ECOSYSTEM_UPDATES = [
   {
+    title: 'PWCLI Core',
+    label: 'Intent + control plane',
+    href: 'labs/protocol-wealth-oss/pwcli-core-lab.md',
+    detail: 'Runtime-neutral schemas for intent, side effects, adapter policy, redaction, approval, provenance, and registered UI primitives.',
+  },
+  {
+    title: 'Shard Core',
+    label: 'Protected recovery',
+    href: 'labs/protocol-wealth-oss/shard-core-lab.md',
+    detail: 'Prerelease authenticated encryption and threshold recovery with explicit human ceremony; synthetic evaluation only, not independently audited.',
+  },
+  {
     title: 'Nexus Core / nexusmcp.site',
-    label: 'Public MCP + REST',
+    label: 'Capability layer',
     href: 'labs/protocol-wealth-oss/nexus-core-lab.md',
-    detail: 'Current surface includes regime signals, market data, FRED series, EMF scoring, educational options analytics, DeFi and on-chain read-only data, benchmarks, and PII-free planning tool dispatch.',
+    detail: 'Public-safe analytical engine and MCP surface. Treat live tool inventory and access posture as contract-driven, not a hardcoded promise.',
   },
   {
     title: 'PWOS Core',
-    label: 'Compliance primitives',
+    label: 'Governance primitives',
     href: 'labs/protocol-wealth-oss/pwos-core-lab.md',
-    detail: 'Current package set covers PII guardrails, hash-chained audit, MCP tool tiers, confirmation gates, webhooks, auth, cache keys, GCP helpers, ledger, holdings, CRM, document generation, workflow, and on-chain SDK primitives.',
+    detail: 'Reusable PII, audit, confirmation, tool-tier, workflow, and safety primitives; a starting point, not a turnkey compliance program.',
   },
   {
     title: 'PWPlan Core',
     label: 'Thin planning UI',
     href: 'labs/protocol-wealth-oss/pwplan-core-lab.md',
-    detail: 'Current contract exposes 16 planning tools through a PII-free schema, including Monte Carlo, glide path, Roth conversion, RMD, Social Security, FIRE, risk metrics, rebalance, and capital-market assumptions.',
+    detail: 'Current public contract covers 34 planning tools with named direct-identifier key tripwires; public learning uses synthetic inputs.',
+  },
+  {
+    title: 'System of Systems',
+    label: 'Human + technical map',
+    href: 'labs/protocol-wealth-oss/system-of-systems-lab.md',
+    detail: 'Connects public repositories to live private surfaces and named human decision rights without claiming implementation parity.',
   },
 ]
 
@@ -487,6 +532,7 @@ const MODULE_GROUPS = [
     modules: [
       ['12', 'AI-Assisted Coding in Practice', 'modules/12-ai-coding-practice/module.md'],
       ['13', 'Designing Agent Instructions', 'modules/13-agent-instructions/module.md'],
+      ['16', 'Building Agent Systems', 'modules/16-building-agent-systems/module.md'],
       ['OSS', 'Protocol Wealth OSS Labs', 'labs/protocol-wealth-oss/README.md'],
     ],
   },
@@ -554,6 +600,7 @@ function App() {
             <a href="#first-hour" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">First Hour</a>
             <a href="#levels" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Levels</a>
             <a href="#coding-agents" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Coding Agents</a>
+            <a href="#agent-systems" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Agent Systems</a>
             <a href="#best-practices" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Best Practices</a>
             <a href="#working-with-data" className="inline-flex min-h-10 items-center rounded-md border border-slate-300 px-3 font-medium text-slate-800 hover:border-slate-500">Working with Data</a>
             <a href="#tools" className="inline-flex min-h-10 items-center rounded-md bg-emerald-700 px-3 font-medium text-white hover:bg-emerald-800">Tools</a>
@@ -572,7 +619,7 @@ function App() {
               Move from prompt fluency to reviewable repo work.
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-              Pick the level that matches where you are today. The path adds GitHub, coding agents, state files, public data, MCP, and deployment only when the previous loop is stable.
+              Pick the level that matches where you are today. The path adds GitHub, coding agents, state files, public data, MCP, governed agent systems, and deployment only when the previous loop is stable.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <a
@@ -589,6 +636,14 @@ function App() {
               >
                 <BrainCircuit className="h-4 w-4" aria-hidden="true" />
                 Choose Claude / Codex
+              </a>
+              <a
+                href="#tools"
+                onClick={() => setSelected('agent-systems')}
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-sky-700 bg-white px-4 text-sm font-semibold text-sky-800 hover:bg-sky-50"
+              >
+                <Layers className="h-4 w-4" aria-hidden="true" />
+                Architect an agent system
               </a>
               <a
                 href="https://github.com/Protocol-Wealth/pw-learnai"
@@ -724,7 +779,7 @@ function App() {
             </a>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             {LEARNING_PATHS.map(path => {
               const Icon = path.icon
               return (
@@ -762,10 +817,10 @@ function App() {
               <h2 id="ecosystem-heading" className="text-2xl font-semibold text-slate-950">Current OSS Surface</h2>
             </div>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              The Protocol Wealth labs are now ordered as teaching bridges: public analytics with Nexus, compliance primitives with PWOS, and PII-free planning contracts with PWPlan. The browser tools here stay offline and simulate the patterns without calling those services.
+              The Protocol Wealth labs separate the learning, intent, runtime, capability, planning, governance, recovery, and human-accountability layers. The browser tools here stay offline and simulate patterns without calling those services.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {ECOSYSTEM_UPDATES.map(item => (
               <a key={item.title} href={item.href} className="rounded-lg border border-slate-200 bg-white p-4 hover:border-slate-400">
                 <div className="text-xs font-semibold uppercase tracking-wide text-sky-700">{item.label}</div>

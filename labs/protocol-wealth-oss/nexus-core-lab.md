@@ -19,7 +19,7 @@ The durable pattern is not "financial API." The durable pattern is a bounded too
 - Graceful degradation when optional provider keys are absent
 - Shared engine logic behind REST and MCP
 - Tool contracts that can be consumed by Claude, Codex, ChatGPT, or other MCP-compatible clients
-- A PII-free planning dispatch surface where open demos send age, balances, allocations, assumptions, and other de-identified variables rather than names, dates of birth, emails, phones, addresses, or account identities
+- A planning dispatch surface whose schema rejects named direct-identifier keys; public demos use synthetic ages, balances, allocations, and assumptions
 
 That combination lets agents call useful tools while the trust boundary remains narrow.
 
@@ -46,7 +46,7 @@ The current public schema exposes these capability areas:
 | Economic | FRED series lookup |
 | Scoring | Educational EMF 8-check durability scoring over public fundamentals |
 | Options | Black-Scholes price and Greeks, covered-call, cash-secured-put, collar, crypto options, option books, and scenario stress |
-| Planning | PII-free retirement-planning tool discovery and dispatch |
+| Planning | Synthetic retirement-planning tool discovery and direct-identifier-key tripwires |
 | On-chain | Anonymous wallet, native-chain balance, Solana token price, vault discovery, LP analytics, and benchmark return series |
 | Meta | Health and provider usage stats without keys or client data |
 
@@ -61,7 +61,7 @@ Work through three scenarios:
 | Scenario | Expected tool posture |
 |----------|-----------------------|
 | "What is the current macro regime?" | Public read-only, safe for hosted MCP |
-| "Run a retirement projection with fake ages and balances" | PII-free planning payload, safe if no identity fields are present |
+| "Run a retirement projection with synthetic ages and balances" | Synthetic planning payload; passing the key-name tripwire does not prove anonymity |
 | "Analyze a named client's full portfolio" | Not appropriate for public Nexus; route through a private authenticated layer |
 
 The point is to decide which tool sequence belongs on the public surface and which belongs behind a regulated private boundary.
@@ -85,7 +85,7 @@ Read the Nexus Core lab and the nexus-core README. Propose one browser-only lear
 - `GET /api/wallet/{address}`, `/api/chain/*`, `/api/vaults`, `/api/solana/*`, `/api/lp/*`, and `/api/benchmarks*` for public on-chain and benchmark analytics
 - `POST /mcp` for MCP-over-HTTP
 - `GET /mcp/tools` for planning contract discovery
-- `POST /mcp/tools/{tool_id}` for PII-free planning tool dispatch
+- `POST /mcp/tools/{tool_id}` for planning tool dispatch; public learning examples remain synthetic
 
 ## Hosted MCP setup
 

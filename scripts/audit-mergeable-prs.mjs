@@ -6,6 +6,8 @@ import { execFileSync } from 'node:child_process'
 
 const REPOS = [
   'Protocol-Wealth/pw-learnai',
+  'Protocol-Wealth/pwcli-core',
+  'Protocol-Wealth/shard-core',
   'Protocol-Wealth/nexus-core',
   'Protocol-Wealth/pwos-core',
   'Protocol-Wealth/pwplan-core',
