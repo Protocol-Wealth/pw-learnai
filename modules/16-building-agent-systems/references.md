@@ -34,7 +34,7 @@ The Agent SDK overview currently directs third-party applications to API-key or 
 - **Protocol Wealth.** [`pwos-core`](https://github.com/Protocol-Wealth/pwos-core). Open governance and compliance primitive packages.
 - **Protocol Wealth.** [`pwplan-core`](https://github.com/Protocol-Wealth/pwplan-core). Planning reference UI and named direct-identifier key tripwires; public learning examples use synthetic inputs.
 - **Protocol Wealth.** [`shard-core`](https://github.com/Protocol-Wealth/shard-core). Prerelease authenticated encryption and threshold-recovery utility. Its README explicitly says it has not received an independent security audit.
-- **Protocol Wealth.** [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6). Tracked implementation of governed Python and TypeScript Claude Agent SDK reference adapters.
+- **Protocol Wealth.** [`pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7) and its [Claude Agent SDK reference adapters](https://github.com/Protocol-Wealth/pwcli-core/tree/main/examples/claude-agent-sdk-adapters). Governed read-only Python and TypeScript examples with equivalent synthetic contracts, policy tests, and content-minimized receipts; mutating tools, MCP, subagents, memory, sandbox provisioning, remote access, and hosted isolation are deferred.
 
 Private implementations are intentionally excluded from the public source map. Use a provider-neutral durable-knowledge boundary unless publication is explicitly authorized.
 

@@ -33,96 +33,81 @@ execution + provenance receipt
 
 The runtime owns loops, tools, streaming, sessions, and handoffs. `pwcli-core` owns the contract that decides whether and how a runtime may be used.
 
-## Proposed Claude Agent SDK example
+## Shipped Claude Agent SDK reference adapters
 
-Tracked in [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6):
+[`pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7)
+closed [issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6)
+with equivalent governed read-only Python and TypeScript reference adapters:
 
 ```text
-examples/claude-agent-sdk/
+examples/claude-agent-sdk-adapters/
 ├── README.md
-├── docs/
-│   ├── architecture.md
-│   ├── auth.md
-│   ├── permissions-and-hooks.md
-│   ├── mcp.md
-│   ├── remote.md
-│   └── threat-model.md
-├── contracts/
-│   ├── adapter-profile.json
-│   ├── redaction-policy.json
-│   ├── synthetic-task.json
-│   └── receipt.schema.json
+├── fixtures/
+│   ├── intent-read-only-review.json
+│   ├── redaction-public-repo.json
+│   ├── run-receipt.json
+│   ├── runtime-claude-agent-sdk-python.json
+│   └── runtime-claude-agent-sdk-typescript.json
 ├── python/
 │   ├── pyproject.toml
+│   ├── sdk_contract_smoke.py
 │   ├── src/pwcli_claude_adapter/
-│   │   ├── __main__.py
-│   │   ├── cli.py
-│   │   ├── repl.py
-│   │   ├── config.py
-│   │   ├── auth.py
-│   │   ├── intent.py
-│   │   ├── policy.py
-│   │   ├── hooks.py
-│   │   ├── runtime.py
-│   │   ├── mcp.py
-│   │   ├── approvals.py
-│   │   ├── receipts.py
-│   │   ├── sessions.py
-│   │   ├── sandbox.py
-│   │   ├── remote.py
-│   │   └── observability.py
-│   └── tests/
-│       ├── test_contract_parity.py
-│       ├── test_policy_fail_closed.py
-│       ├── test_redaction.py
-│       └── test_synthetic_one_shot.py
+│   │   ├── __init__.py
+│   │   ├── adapter.py
+│   │   └── cli.py
+│   └── tests/test_adapter.py
 └── typescript/
+    ├── package-lock.json
     ├── package.json
     ├── src/
-    │   ├── index.ts
-    │   ├── cli.ts
-    │   ├── repl.ts
-    │   ├── config.ts
-    │   ├── auth.ts
-    │   ├── intent.ts
-    │   ├── policy.ts
-    │   ├── hooks.ts
-    │   ├── runtime.ts
-    │   ├── mcp.ts
-    │   ├── approvals.ts
-    │   ├── receipts.ts
-    │   ├── sessions.ts
-    │   ├── sandbox.ts
-    │   ├── remote.ts
-    │   └── observability.ts
-    └── test/
-        ├── contract-parity.test.ts
-        ├── policy-fail-closed.test.ts
-        ├── redaction.test.ts
-        └── synthetic-one-shot.test.ts
+    │   ├── adapter.ts
+    │   └── cli.ts
+    ├── tests/adapter.test.ts
+    └── tsconfig.json
 ```
 
-The two language implementations should consume equivalent synthetic contracts and emit equivalent receipts. The first milestone is a one-shot adapter; REPL, resume, MCP, sandbox, remote, and hosted-service behavior remain separate phases with their own exit evidence.
+The two implementations consume shared intent, redaction, and receipt contracts
+plus equivalent language-specific runtime profiles. They emit
+content-minimized receipts with equivalent policy evidence. Their tests use
+injected fake query functions, so validation needs no credential, SDK package,
+model call, or network access. The shipped milestone is a one-shot public-repo
+review adapter; edit/write tools, interactive approvals, REPL/resume, MCP,
+subagents, memory, sandbox provisioning, remote access, and hosted isolation
+remain deferred behind explicit exit evidence.
 
 ## Minimal runtime call
 
-The runtime adapter should remain thin:
+The SDK call remains behind the deterministic policy boundary:
 
 ```python
-async for message in query(
-    prompt=compiled_prompt,
-    options=ClaudeAgentOptions(
-        cwd=isolated_worktree,
-        allowed_tools=["Read", "Glob", "Grep"],
-        disallowed_tools=["Edit", "Write", "Bash"],
-        hooks=policy_hooks,
-        can_use_tool=approval_callback,
-    ),
-):
-    handle_message(message)
+options = ClaudeAgentOptions(
+    cwd=config.cwd,
+    tools=list(READ_ONLY_TOOLS),
+    allowed_tools=list(READ_ONLY_TOOLS),
+    disallowed_tools=list(DISALLOWED_TOOLS),
+    permission_mode="dontAsk",
+    system_prompt=UNTRUSTED_DATA_INSTRUCTION,
+    setting_sources=[],
+    max_turns=config.max_turns,
+    env={
+        **runtime_env,
+        "CLAUDE_CONFIG_DIR": transcript_dir,
+        "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
+    },
+    hooks={
+        "PreToolUse": [HookMatcher(matcher=None, hooks=[pre_tool_use])],
+        "PostToolUse": [HookMatcher(matcher=None, hooks=[post_tool_use])],
+    },
+)
+
+async for message in query(prompt=redacted_prompt, options=options):
+    collect_message(message)
 ```
 
-The exact SDK type signatures change. Verify them against the current official reference before implementation.
+See the
+[`pwcli-core` adapter source](https://github.com/Protocol-Wealth/pwcli-core/tree/main/examples/claude-agent-sdk-adapters)
+for the exact current implementation. SDK type signatures change; verify them
+against the current official reference before extending the adapter.
 
 ## Permission boundary
 
@@ -161,6 +146,11 @@ The example should treat these as separate adapters:
 | Semantic memory | Optional external side effect with provenance and deletion |
 
 An execution receipt should reference a session ID when needed, but it should not copy the full transcript.
+
+The shipped TypeScript adapter sets `persistSession: false`. The Python SDK
+always persists sessions, so the Python adapter uses a per-run temporary
+`CLAUDE_CONFIG_DIR`, disables automatic memory, and removes the directory when
+the query closes. Neither adapter puts transcript content into its receipt.
 
 ## Browser exercise
 

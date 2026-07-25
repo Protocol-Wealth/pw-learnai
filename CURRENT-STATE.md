@@ -75,7 +75,7 @@ Last reviewed: 2026-07-25.
 
 ## 2026-07-25 agent-systems session
 
-- Verified that `pwcli-core` is a control-plane specification, not an executable coding-agent runtime; implementation follow-up is tracked in [`pwcli-core` issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6).
+- Verified that `pwcli-core` remains a control-plane specification rather than a complete coding-agent product. Governed read-only Python and TypeScript Claude Agent SDK reference adapters shipped through [`pwcli-core` PR #7](https://github.com/Protocol-Wealth/pwcli-core/pull/7), closing [issue #6](https://github.com/Protocol-Wealth/pwcli-core/issues/6); edit/write tools, interactive approvals, MCP, subagents, memory, sandboxing, remote access, and hosted isolation remain explicitly deferred.
 - Verified that `shard-core` is public, prerelease, and not independently audited; its lab uses synthetic recovery exercises and keeps agents outside the recovery boundary.
 - Kept private durable-knowledge implementations out of the public curriculum and defined a provider-neutral boundary instead.
 - Grounded Agent SDK tools, permissions, hooks, sessions, MCP, subagents, hosting, security, authentication, branding, and Remote Control against current official Anthropic documentation reviewed 2026-07-25.
