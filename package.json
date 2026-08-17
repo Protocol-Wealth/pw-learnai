@@ -1,5 +1,6 @@
 {
   "name": "pw-learnai",
+  "packageManager": "pnpm@9.15.9",
   "version": "0.1.0",
   "description": "Open-source library of modules on applied AI strategy and AI-assisted coding",
   "private": true,
