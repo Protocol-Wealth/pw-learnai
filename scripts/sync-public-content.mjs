@@ -8,9 +8,6 @@ const CONTENT_DIRS = ['modules', 'labs', 'notebooklm', 'prompts']
 const ROOT_MARKDOWN_FILES = [
   'README.md',
   'CHANGELOG.md',
-  'CURRENT-STATE.md',
-  'NEXT-PROMPT.md',
-  'ROADMAP.md',
   'AGENTS.md',
   'CLAUDE.md',
   'CONTRIBUTING.md',
