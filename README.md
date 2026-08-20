@@ -54,10 +54,9 @@ For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bun
 ## Project state
 
 - [CHANGELOG.md](CHANGELOG.md) records shipped changes.
-- [CURRENT-STATE.md](CURRENT-STATE.md) records what is live and last verified.
-- [NEXT-PROMPT.md](NEXT-PROMPT.md) gives the next agent a safe starting prompt.
-- [ROADMAP.md](ROADMAP.md) lists focused follow-up work and links each active item to a GitHub issue.
-- [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues) are the canonical tracker for outstanding work. Current work is listed in `ROADMAP.md`; the agent-systems entryway shipped in [PR #55](https://github.com/Protocol-Wealth/pw-learnai/pull/55), closing [#54](https://github.com/Protocol-Wealth/pw-learnai/issues/54).
+- [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues) are the authoritative tracker for outstanding and planned work. Re-query them; no checked-in file mirrors them.
+- The estate design record, live and planned, is at [pwos.app/build](https://pwos.app/build).
+- The agent-systems entryway shipped in [PR #55](https://github.com/Protocol-Wealth/pw-learnai/pull/55), closing [#54](https://github.com/Protocol-Wealth/pw-learnai/issues/54).
 
 ## Module index
 

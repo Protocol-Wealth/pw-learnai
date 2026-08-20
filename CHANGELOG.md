@@ -2,6 +2,36 @@
 
 All notable changes to `pw-learnai` are recorded here.
 
+## 2026-08-20
+
+### Removed
+
+- Removed `CURRENT-STATE.md`, `NEXT-PROMPT.md` and `ROADMAP.md`. Each claimed to describe
+  live state and none had been updated since 2026-07-25, so all three were month-stale
+  assertions of currency. They were also **published**: `scripts/sync-public-content.mjs`
+  copied root markdown into `public/`, Vite shipped it to `dist/`, and GitHub Pages served
+  all three at HTTP 200 to anonymous readers. `CHANGELOG.md` called one of them this
+  project's "canonical current-state document" while it was a month out of date.
+- Removed those three entries from `ROOT_MARKDOWN_FILES` in
+  `scripts/sync-public-content.mjs`. The sync is `existsSync`-guarded and never prunes, so
+  deleting the source files alone would have left the stale copies in `public/`/`dist/` and
+  Vite would have kept reshipping them.
+
+### Changed
+
+- `README.md` and `CLAUDE.md` now point at [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues)
+  for outstanding work and at [pwos.app/build](https://pwos.app/build) for the design
+  record, rather than at a checked-in file. GitHub is authoritative and is re-queried; a
+  file that mirrors it goes stale silently.
+
+### Note
+
+- The curriculum still *teaches* creating a current-state document in a learner's own repo
+  (Module 00, Module 16, and the interactive builders). Those references contain no path
+  into this repo and no link broke, so they are untouched here — but a public course
+  teaching a practice this estate retired is an editorial decision worth taking
+  deliberately. `notebooklm/` is generated; edit `modules/` and run `pnpm bundle`.
+
 ## 2026-07-25
 
 ### Added
