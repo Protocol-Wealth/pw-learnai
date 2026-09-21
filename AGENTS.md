@@ -1,4 +1,8 @@
-# AGENTS.md
+# AGENTS.md — pw-learnai
+
+Engineering and regulatory standards for every agent are `~/projects/AGENTS.md`.
+Where this file conflicts with that one, that one wins. This file is only what
+is specific to this repository. It does not describe what is live.
 
 ## Non-negotiables (read first)
 
@@ -17,7 +21,7 @@
 - Build frontend: `pnpm build`
 - Preview a production build: `pnpm preview`
 - Sync content into `public/` manually: `pnpm sync:public`
-- Regenerate notebook bundles after module edits: `pnpm bundle`
+- Regenerate notebook bundles after module or lab markdown changes: `pnpm bundle`
 - Audit open PRs across the OSS surface: `pnpm pr:audit`
 - Merge only clean, check-passing PRs: `pnpm pr:mergeable`
 
@@ -28,6 +32,7 @@ CI auto-regenerates the NotebookLM bundles on push to `main` via `.github/workfl
 - GitHub issues are the canonical tracker for outstanding roadmap and future build work.
 - Before starting roadmap work, check for an existing issue and keep the PR scoped to it.
 - If you add a roadmap item, create or update the matching GitHub issue in the same closeout.
+- Update or close the relevant issue when the work ships.
 
 ## Authoring a module (contract)
 
@@ -50,6 +55,7 @@ CI auto-regenerates the NotebookLM bundles on push to `main` via `.github/workfl
 - Keep each module self-contained; do not assume readers take modules in order.
 - Keep tone direct, operator-focused, and honest about limits.
 - For fast-moving AI tooling, cite official current docs and include a reviewed date when practical.
+- When updating AI-tool guidance, prefer current OpenAI and Anthropic docs over memory.
 - If module content changes, regenerate `notebooklm/*.md` with `pnpm bundle`.
 
 ## Frontend Conventions
@@ -62,6 +68,9 @@ CI auto-regenerates the NotebookLM bundles on push to `main` via `.github/workfl
 
 ## Review Expectations
 
+- Read this file and `README.md` before audit, content, or frontend changes, and re-query [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues) for outstanding work.
+- State your plan at the top of the run before broad rewrites or frontend changes, then execute.
+- In `--dangerously-skip-permissions` runs, only stop for destructive actions.
 - Read generated or agent-written changes before finishing.
 - Run `pnpm build` after frontend changes.
 - Mention any command that could not be run.

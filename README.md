@@ -154,10 +154,7 @@ cat modules/01-*/module.md modules/02-*/module.md modules/03-*/module.md > my-st
 
 ### With Codex CLI or Claude Code
 
-Module 12 is written around practical terminal workflows for Codex CLI and Claude Code. Module 16 continues into Agent SDK adapters, MCP, memory, remote access, system boundaries, and human decision rights. This repo also includes lightweight agent guidance files:
-
-- `AGENTS.md` for Codex and other agents that read the emerging shared convention
-- `CLAUDE.md` for Claude Code, importing `AGENTS.md` so guidance stays in one place
+Module 12 is written around practical terminal workflows for Codex CLI and Claude Code. Module 16 continues into Agent SDK adapters, MCP, memory, remote access, system boundaries, and human decision rights. This repo also includes lightweight agent guidance in `AGENTS.md` for Codex, Claude Code, and other agents that read the emerging shared convention.
 
 Useful starting prompts:
 

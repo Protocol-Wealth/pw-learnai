@@ -2,6 +2,13 @@
 
 All notable changes to `pw-learnai` are recorded here.
 
+## 2026-09-21
+
+### Changed
+
+- Repository agent instructions now live in `AGENTS.md`. Root `CLAUDE.md` was
+  removed after its still-current facts moved there.
+
 ## 2026-08-20
 
 ### Removed
