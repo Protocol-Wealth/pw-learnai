@@ -17,7 +17,7 @@ const TOOLS = {
   },
   claude: {
     name: 'Claude Code',
-    memory: 'CLAUDE.md',
+    memory: 'AGENTS.md',
   },
 }
 

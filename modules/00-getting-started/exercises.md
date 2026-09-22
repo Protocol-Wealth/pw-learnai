@@ -73,11 +73,7 @@ Read README.md and first-page.html. Explain what this practice folder does and p
 Deliverable: add these files to a practice repository:
 
 - `AGENTS.md`
-- `CLAUDE.md`
-- `CURRENT-STATE.md`
 - `CHANGELOG.md`
-- `NEXT-PROMPT.md`
-- `ROADMAP.md`
 
 Each file can be short. The test is whether a new agent session can start from them without you re-explaining the project.
 
@@ -115,7 +111,7 @@ Rewrite it with:
 - review focus
 - completion format
 
-Then run the improved prompt in a read-only or plan mode first. Save the plan in `NEXT-PROMPT.md` if it is reusable.
+Then run the improved prompt in a read-only or plan mode first. Keep the plan with the task if you will reuse it.
 
 ## Exercise 6: Data source reconnaissance
 

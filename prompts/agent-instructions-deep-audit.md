@@ -1,4 +1,4 @@
-Run a diagnostic + improvement pass on this repo's CLAUDE.md/AGENTS.md. You have
+Run a diagnostic + improvement pass on this repo's AGENTS.md. You have
 filesystem access; read the file yourself, validate it against repo ground truth, score
 it, then rewrite it. Autonomous run: state the plan once, then execute; only stop for a
 destructive action.

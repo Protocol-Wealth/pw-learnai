@@ -4,7 +4,7 @@
 
 Write the project guidance file your coding agents should read before doing work.
 
-For Codex CLI, use `AGENTS.md`. For Claude Code, use `CLAUDE.md`, or import the same guidance with `@AGENTS.md`.
+Use `AGENTS.md` for Codex CLI, Claude Code, and every other coding agent.
 
 Include only durable guidance:
 
@@ -148,7 +148,6 @@ Once a quarter, audit the agent setup.
 | Codex CLI version and key workflows | | |
 | Claude Code version and key workflows | | |
 | `AGENTS.md` accuracy | | |
-| `CLAUDE.md` accuracy | | |
 | MCP servers still needed | | |
 | Hooks or permissions still appropriate | | |
 | Non-interactive scripts still bounded | | |

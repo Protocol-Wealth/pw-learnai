@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai
 License: MIT
-Generated: 2026-07-25
+Generated: 2026-09-22
 
 ## Modules included
 
@@ -345,7 +345,7 @@ Use level before tool choice:
 | Level | You are here if | Next step |
 |-------|-----------------|-----------|
 | **Beginner** | You know ChatGPT or Claude prompts, but GitHub, local files, and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and complete one harmless read-only task |
-| **Intermediate** | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
+| **Intermediate** | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CHANGELOG.md`, and a verification loop |
 | **Advanced** | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
 
 ---
@@ -371,8 +371,8 @@ Markdown is useful because it is plain text that also renders nicely on GitHub. 
 
 * `README.md` to explain what the project is.
 * `SETUP-NOTES.md` to record what was installed and what worked.
-* `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
-* `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
+* `AGENTS.md` to give every coding agent durable rules.
+* `CHANGELOG.md` to record meaningful changes so a later session does not start from memory.
 
 HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment.
 
@@ -381,7 +381,7 @@ Use them together:
 ```text
 README.md        - what this project is and how to use it
 SETUP-NOTES.md   - what you installed and what worked
-ROADMAP.md       - prioritized future work and backlog
+CHANGELOG.md     - dated history of meaningful changes
 first-page.html  - the first visible browser artifact
 ```
 
@@ -423,15 +423,11 @@ An agent does better when the repository explains itself. A small scaffold is en
 
 ```text
 README.md          - what this project is and how to run it
-AGENTS.md          - commands, constraints, and review rules for coding agents
-CLAUDE.md          - Claude-specific import or notes, often just @AGENTS.md
-CURRENT-STATE.md   - what exists now and what was last verified
+AGENTS.md          - commands, constraints, and review rules for every coding agent
 CHANGELOG.md       - dated history of meaningful changes
-NEXT-PROMPT.md     - the best starting prompt for the next session
-ROADMAP.md         - prioritized future work
 ```
 
-Keep durable instructions in `AGENTS.md` or `CLAUDE.md`. Keep learned context in memory or state files. Keep secrets out of both.
+Keep durable instructions in `AGENTS.md`. Claude Code, Codex, and every other coding agent read that one file. Do not add a second instruction file. Keep secrets out of it. A file that claims to describe what is live goes stale, so outstanding work belongs in the issue tracker and meaningful changes belong in `CHANGELOG.md`.
 
 A useful `AGENTS.md` line names a command, path, or invariant:
 
@@ -468,13 +464,13 @@ For beginners, the first hosted system should not contain private data. Ship a p
 
 Use this loop for every real task:
 
-1. Open the repo and read `README.md`, `AGENTS.md`, and `CURRENT-STATE.md`.
+1. Open the repo and read `README.md` and `AGENTS.md`.
 2. Write a task prompt with outcome, scope, constraints, verification, and finish format.
 3. Let the agent inspect before editing.
 4. Keep the change small enough to review.
 5. Run the documented check.
 6. Read the diff.
-7. Update `CHANGELOG.md`, `CURRENT-STATE.md`, or `NEXT-PROMPT.md` when the state changed.
+7. Update `CHANGELOG.md` when the work changed something a later session needs.
 
 Example prompt:
 
@@ -594,11 +590,7 @@ Read README.md and first-page.html. Explain what this practice folder does and p
 Deliverable: add these files to a practice repository:
 
 - `AGENTS.md`
-- `CLAUDE.md`
-- `CURRENT-STATE.md`
 - `CHANGELOG.md`
-- `NEXT-PROMPT.md`
-- `ROADMAP.md`
 
 Each file can be short. The test is whether a new agent session can start from them without you re-explaining the project.
 
@@ -636,7 +628,7 @@ Rewrite it with:
 - review focus
 - completion format
 
-Then run the improved prompt in a read-only or plan mode first. Save the plan in `NEXT-PROMPT.md` if it is reusable.
+Then run the improved prompt in a read-only or plan mode first. Keep the plan with the task if you will reuse it.
 
 ## Exercise 6: Data source reconnaissance
 
@@ -965,18 +957,7 @@ The specific commands change. The operating model does not.
 
 Every agentic coding session starts better when the tool can read durable project guidance before you type the task.
 
-For Codex CLI, use `AGENTS.md`. Put repository conventions, build commands, test commands, forbidden patterns, review expectations, and content style rules in the file. Codex discovers `AGENTS.md` files from the repo root down to the working directory, so nested directories can carry more specific guidance.
-
-For Claude Code, use `CLAUDE.md`. If your repo already has `AGENTS.md`, create a short `CLAUDE.md` that imports it:
-
-```md
-@AGENTS.md
-
-## Claude Code
-
-- Use plan mode for large changes before editing files.
-- Keep generated edits narrow and run the documented verification command.
-```
+Use `AGENTS.md` for Codex CLI, Claude Code, and every other coding agent. Put repository conventions, build commands, test commands, forbidden patterns, review expectations, and content style rules in that one file. Do not add a second instruction file. Nested directories can carry a more specific `AGENTS.md`.
 
 Use these files for facts the agent should always know:
 
@@ -1108,12 +1089,12 @@ Guardrails:
 
 ## Using Claude Code well
 
-Claude Code is strongest when you want an agent that can operate across the whole project, preserve project memory through `CLAUDE.md`, plan before editing, delegate research to subagents, and run parallel work in worktrees.
+Claude Code is strongest when you want an agent that can operate across the whole project, read project memory from `AGENTS.md`, plan before editing, delegate research to subagents, and run parallel work in worktrees.
 
 High-leverage patterns:
 
 - **Plan before editing:** use `claude --permission-mode plan` for broad changes. Claude reads files and proposes a plan before making edits.
-- **Project memory:** maintain `CLAUDE.md` for project conventions. If the repo also supports other agents, import `AGENTS.md` instead of duplicating guidance.
+- **Project memory:** maintain `AGENTS.md` for project conventions. Claude Code and Codex read the same file.
 - **Subagents for noisy research:** ask Claude to use a subagent when investigation would flood the main conversation with file reads, logs, or search results.
 - **Worktrees for parallelism:** use `claude --worktree <name>` when one session should edit a branch while another session works elsewhere.
 - **Non-interactive output:** use `claude -p "task"` when you want stdout-friendly output for scripts, CI, or batch processing.
@@ -1122,7 +1103,7 @@ High-leverage patterns:
 
 Guardrails:
 
-- Treat `CLAUDE.md` as context, not enforcement. If an action must be blocked, use permissions or hooks.
+- Treat `AGENTS.md` as context, not enforcement. If an action must be blocked, use permissions or hooks.
 - Keep always-loaded memory concise. Move long reference material into skills or linked docs.
 - Do not let multiple Claude sessions edit the same worktree at the same time.
 - Avoid permission bypass modes unless the environment is isolated and disposable.
@@ -1149,7 +1130,7 @@ Rules:
 
 - **Auto-accepting edits.** The agent wrote quickly; the human reviewed slowly or not at all.
 - **Prompting without scope.** The agent makes design decisions the team never agreed to.
-- **Skipping persistent guidance.** The same corrections get typed in every session instead of captured in `AGENTS.md` or `CLAUDE.md`.
+- **Skipping persistent guidance.** The same corrections get typed in every session instead of captured in `AGENTS.md`.
 - **Using non-interactive mode for vague work.** A scriptable agent is best for bounded tasks, not ambiguous product judgment.
 - **Letting context bloat.** The main session fills with logs, file dumps, and search results that should have gone to a subagent or separate run.
 - **Two agents editing one branch.** Parallelism becomes merge conflict and behavioral drift.
@@ -1181,7 +1162,7 @@ See [references.md](references.md).
 
 Write the project guidance file your coding agents should read before doing work.
 
-For Codex CLI, use `AGENTS.md`. For Claude Code, use `CLAUDE.md`, or import the same guidance with `@AGENTS.md`.
+Use `AGENTS.md` for Codex CLI, Claude Code, and every other coding agent.
 
 Include only durable guidance:
 
@@ -1325,7 +1306,6 @@ Once a quarter, audit the agent setup.
 | Codex CLI version and key workflows | | |
 | Claude Code version and key workflows | | |
 | `AGENTS.md` accuracy | | |
-| `CLAUDE.md` accuracy | | |
 | MCP servers still needed | | |
 | Hooks or permissions still appropriate | | |
 | Non-interactive scripts still bounded | | |
@@ -1352,8 +1332,8 @@ these notes into policy or automation.
 - **Anthropic.** [Claude Code getting started](https://code.claude.com/docs/en/getting-started). Current installation, platform, update, and authentication guidance.
 - **Anthropic.** [Claude Code CLI reference](https://code.claude.com/docs/en/cli-usage). Commands and flags, including `claude -p`, MCP, plugins, and permission prompt tooling.
 - **Anthropic.** [Claude Code common workflows](https://code.claude.com/docs/en/common-workflows). Practical patterns for resuming sessions, worktrees, plan mode, subagents, and non-interactive scripts.
-- **Anthropic.** [How Claude remembers your project](https://code.claude.com/docs/en/memory). `CLAUDE.md`, auto memory, project guidance, imports, and troubleshooting.
-- **Anthropic.** [Extend Claude Code](https://code.claude.com/docs/en/features-overview). When to use `CLAUDE.md`, skills, MCP, subagents, hooks, plugins, and related extension points.
+- **Anthropic.** [How Claude remembers your project](https://code.claude.com/docs/en/memory). Project memory, auto memory, and troubleshooting. This course uses `AGENTS.md` for that project memory.
+- **Anthropic.** [Extend Claude Code](https://code.claude.com/docs/en/features-overview). When to use project instructions, skills, MCP, subagents, hooks, plugins, and related extension points.
 - **Anthropic.** [Create custom subagents](https://code.claude.com/docs/en/subagents). Subagent isolation, configuration, permissions, skills, and examples.
 - **Anthropic.** [Configure permissions](https://code.claude.com/docs/en/permissions). Permissions, hooks, additional directories, and sandboxing interactions.
 

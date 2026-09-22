@@ -2,13 +2,13 @@ import React, { useMemo, useState } from 'react'
 import { Check, Copy, AlertTriangle, FileWarning } from 'lucide-react'
 
 // AgentInstructionsAuditor — companion to Module 13.
-// Deterministic, in-browser linter for a pasted CLAUDE.md / AGENTS.md.
+// Deterministic, in-browser linter for a pasted AGENTS.md.
 // No network, no LLM, no telemetry. All analysis runs synchronously on the pasted string.
 
 // The deep-audit prompt is the Copy target. It is the part this browser tool cannot do:
 // validate every command and path against a live repo. Kept verbatim with
 // prompts/agent-instructions-deep-audit.md.
-const DEEP_AUDIT_PROMPT = `Run a diagnostic + improvement pass on this repo's CLAUDE.md/AGENTS.md. You have
+const DEEP_AUDIT_PROMPT = `Run a diagnostic + improvement pass on this repo's AGENTS.md. You have
 filesystem access; read the file yourself, validate it against repo ground truth, score
 it, then rewrite it. Autonomous run: state the plan once, then execute; only stop for a
 destructive action.
@@ -38,7 +38,7 @@ CONSTRAINTS: validate before rewrite; prefer cutting over adding; anchor every f
 shorter file the agent follows beats a complete one it ignores.
 `
 
-const SAMPLE = `# CLAUDE.md
+const SAMPLE = `# AGENTS.md
 
 These guidelines produce good code when applied consistently.
 
@@ -294,13 +294,13 @@ export default function AgentInstructionsAuditor() {
       <div>
         <h2 className="text-2xl font-semibold text-slate-900">Agent Instructions Auditor</h2>
         <p className="text-slate-600 mt-1">
-          Module 13 · Score a pasted CLAUDE.md / AGENTS.md against the properties that make it followable.
+          Module 13 · Score a pasted AGENTS.md against the properties that make it followable.
         </p>
       </div>
 
       <div className="bg-white rounded-lg border border-slate-200 p-5">
         <div className="flex items-center justify-between mb-2">
-          <label className="block text-sm font-medium text-slate-700">Paste your CLAUDE.md / AGENTS.md</label>
+          <label className="block text-sm font-medium text-slate-700">Paste your AGENTS.md</label>
           <button
             onClick={() => setText(SAMPLE)}
             className="text-xs text-slate-600 hover:text-slate-900 underline"

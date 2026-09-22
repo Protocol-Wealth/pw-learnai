@@ -141,8 +141,8 @@ const TOOLS = [
     category: 'Practice',
     component: AgentInstructionsAuditor,
     href: 'modules/13-agent-instructions/module.md',
-    description: 'Score a pasted CLAUDE.md / AGENTS.md in your browser, then copy a deep-audit prompt for your repo.',
-    tags: ['CLAUDE.md', 'AGENTS.md', 'Coding agents'],
+    description: 'Score a pasted AGENTS.md in your browser, then copy a deep-audit prompt for your repo.',
+    tags: ['AGENTS.md', 'Coding agents'],
   },
   {
     id: 'prompt-agent-exercise',
@@ -299,9 +299,9 @@ const LEVEL_PATHS = [
     level: 'Intermediate',
     icon: Terminal,
     summary: 'You can work in a repo and now need repeatable agent practice instead of one-off chat sessions.',
-    outcome: 'Outcome: durable repo instructions, state files, scoped CLI tasks, and a documented verification loop.',
+    outcome: 'Outcome: durable repo instructions, scoped CLI tasks, and a documented verification loop.',
     actions: [
-      'Write or improve AGENTS.md, CLAUDE.md, CURRENT-STATE.md, CHANGELOG.md, NEXT-PROMPT.md, and ROADMAP.md.',
+      'Write or improve AGENTS.md and CHANGELOG.md.',
       'Use Codex CLI or Claude Code for small edits with explicit scope and finish format.',
       'Add evaluation notes before increasing autonomy.',
     ],
@@ -406,7 +406,7 @@ const LEARNING_PATHS = [
       ['OSS labs', 'labs/protocol-wealth-oss/README.md'],
     ],
     steps: [
-      'Use AGENTS.md and CLAUDE.md for durable repo rules.',
+      'Use AGENTS.md for durable repo rules.',
       'Keep one writer per worktree and use review mode before committing.',
       'Add MCP only when the agent needs a specific external tool or data source.',
     ],
@@ -438,7 +438,7 @@ const LEARNING_PATHS = [
       ['Prompt evaluator', 'modules/10-prompt-engineering/module.md'],
     ],
     steps: [
-      'Keep CURRENT-STATE.md and CHANGELOG.md aligned with the real project.',
+      'Record meaningful changes in CHANGELOG.md. Do not keep a separate file that claims to describe what is live.',
       'Prefer falsifiable rules over generic encouragement.',
       'Run the documented check and report anything not verified.',
     ],

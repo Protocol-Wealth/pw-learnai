@@ -4,7 +4,7 @@ Reviewed: 2026-07-25. Agent configuration changes quickly; re-check the live ven
 documentation before turning an example into policy or automation.
 
 - **Anthropic.** [How Claude remembers your project](https://code.claude.com/docs/en/memory).
-  Current `CLAUDE.md` hierarchy, imports, scoped rules, and auto-memory behavior.
+  Project memory and auto-memory behavior. This course keeps project instructions in `AGENTS.md`.
 - **Anthropic.** [Claude Code settings](https://code.claude.com/docs/en/settings).
   Current user, project, local, and managed settings locations and precedence.
 - **Anthropic.** [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices).
