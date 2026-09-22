@@ -27,7 +27,7 @@ Use level before tool choice:
 | Level | You are here if | Next step |
 |-------|-----------------|-----------|
 | **Beginner** | You know ChatGPT or Claude prompts, but GitHub, local files, and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and complete one harmless read-only task |
-| **Intermediate** | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and a verification loop |
+| **Intermediate** | You can work in a repo, but agent work still depends on re-explaining context every session | Add `AGENTS.md`, `CHANGELOG.md`, and a verification loop |
 | **Advanced** | You are ready to connect data sources, MCP tools, cloud services, or regulated workflow patterns | Write public-data source notes, keep payloads PII-free, and deploy only after rollback and verification are clear |
 
 ---
@@ -53,8 +53,8 @@ Markdown is useful because it is plain text that also renders nicely on GitHub. 
 
 * `README.md` to explain what the project is.
 * `SETUP-NOTES.md` to record what was installed and what worked.
-* `AGENTS.md` and `CLAUDE.md` to give coding agents durable rules.
-* `CURRENT-STATE.md`, `CHANGELOG.md`, and `NEXT-PROMPT.md` to keep future sessions from starting cold.
+* `AGENTS.md` to give every coding agent durable rules.
+* `CHANGELOG.md` to record meaningful changes so a later session does not start from memory.
 
 HTML is useful because it is also just a file, but it gives immediate visual feedback. A beginner can make `first-page.html`, open it in a browser, and see something real without a backend, login, database, telemetry, or deployment.
 
@@ -63,7 +63,7 @@ Use them together:
 ```text
 README.md        - what this project is and how to use it
 SETUP-NOTES.md   - what you installed and what worked
-ROADMAP.md       - prioritized future work and backlog
+CHANGELOG.md     - dated history of meaningful changes
 first-page.html  - the first visible browser artifact
 ```
 
@@ -105,15 +105,11 @@ An agent does better when the repository explains itself. A small scaffold is en
 
 ```text
 README.md          - what this project is and how to run it
-AGENTS.md          - commands, constraints, and review rules for coding agents
-CLAUDE.md          - Claude-specific import or notes, often just @AGENTS.md
-CURRENT-STATE.md   - what exists now and what was last verified
+AGENTS.md          - commands, constraints, and review rules for every coding agent
 CHANGELOG.md       - dated history of meaningful changes
-NEXT-PROMPT.md     - the best starting prompt for the next session
-ROADMAP.md         - prioritized future work
 ```
 
-Keep durable instructions in `AGENTS.md` or `CLAUDE.md`. Keep learned context in memory or state files. Keep secrets out of both.
+Keep durable instructions in `AGENTS.md`. Claude Code, Codex, and every other coding agent read that one file. Do not add a second instruction file. Keep secrets out of it. A file that claims to describe what is live goes stale, so outstanding work belongs in the issue tracker and meaningful changes belong in `CHANGELOG.md`.
 
 A useful `AGENTS.md` line names a command, path, or invariant:
 
@@ -150,13 +146,13 @@ For beginners, the first hosted system should not contain private data. Ship a p
 
 Use this loop for every real task:
 
-1. Open the repo and read `README.md`, `AGENTS.md`, and `CURRENT-STATE.md`.
+1. Open the repo and read `README.md` and `AGENTS.md`.
 2. Write a task prompt with outcome, scope, constraints, verification, and finish format.
 3. Let the agent inspect before editing.
 4. Keep the change small enough to review.
 5. Run the documented check.
 6. Read the diff.
-7. Update `CHANGELOG.md`, `CURRENT-STATE.md`, or `NEXT-PROMPT.md` when the state changed.
+7. Update `CHANGELOG.md` when the work changed something a later session needs.
 
 Example prompt:
 

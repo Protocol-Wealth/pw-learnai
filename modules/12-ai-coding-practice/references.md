@@ -13,8 +13,8 @@ these notes into policy or automation.
 - **Anthropic.** [Claude Code getting started](https://code.claude.com/docs/en/getting-started). Current installation, platform, update, and authentication guidance.
 - **Anthropic.** [Claude Code CLI reference](https://code.claude.com/docs/en/cli-usage). Commands and flags, including `claude -p`, MCP, plugins, and permission prompt tooling.
 - **Anthropic.** [Claude Code common workflows](https://code.claude.com/docs/en/common-workflows). Practical patterns for resuming sessions, worktrees, plan mode, subagents, and non-interactive scripts.
-- **Anthropic.** [How Claude remembers your project](https://code.claude.com/docs/en/memory). `CLAUDE.md`, auto memory, project guidance, imports, and troubleshooting.
-- **Anthropic.** [Extend Claude Code](https://code.claude.com/docs/en/features-overview). When to use `CLAUDE.md`, skills, MCP, subagents, hooks, plugins, and related extension points.
+- **Anthropic.** [How Claude remembers your project](https://code.claude.com/docs/en/memory). Project memory, auto memory, and troubleshooting. This course uses `AGENTS.md` for that project memory.
+- **Anthropic.** [Extend Claude Code](https://code.claude.com/docs/en/features-overview). When to use project instructions, skills, MCP, subagents, hooks, plugins, and related extension points.
 - **Anthropic.** [Create custom subagents](https://code.claude.com/docs/en/subagents). Subagent isolation, configuration, permissions, skills, and examples.
 - **Anthropic.** [Configure permissions](https://code.claude.com/docs/en/permissions). Permissions, hooks, additional directories, and sandboxing interactions.
 

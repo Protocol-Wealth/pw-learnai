@@ -5,7 +5,7 @@ const CHECKLIST_ITEMS = [
     { id: 'clone', category: 'GitHub & Security', task: 'Clone the practice/starter repository to your local machine.' },
     { id: 'desktop_agent', category: 'Agents Setup', task: 'Install and configure one desktop or IDE-based AI agent (e.g., Copilot, Claude sidebar).' },
     { id: 'cli_agent', category: 'Agents Setup', task: 'Set up one CLI-based coding agent (e.g., Codex CLI, Claude Code).' },
-    { id: 'state_files', category: 'Project Memory', task: 'Initialize core state files: README.md, SETUP-NOTES.md, and CURRENT-STATE.md.' },
+    { id: 'state_files', category: 'Project Memory', task: 'Initialize core files: README.md, AGENTS.md, and CHANGELOG.md.' },
     { id: 'build_check', category: 'Verification', task: 'Run one verified repo check and confirm `pnpm build` passes without errors.' },
 ]
 

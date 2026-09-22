@@ -96,7 +96,7 @@ const STATE_SYSTEMS = [
   {
     id: 'repo',
     label: 'Reviewed repo knowledge',
-    detail: 'AGENTS.md, CLAUDE.md, CURRENT-STATE.md, and source-cited docs.',
+    detail: 'AGENTS.md, CHANGELOG.md, and source-cited docs.',
   },
   {
     id: 'semantic',

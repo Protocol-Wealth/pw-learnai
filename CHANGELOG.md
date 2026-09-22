@@ -2,6 +2,17 @@
 
 All notable changes to `pw-learnai` are recorded here.
 
+## 2026-09-22
+
+### Removed
+
+- Removed the root `CLAUDE.md`. Coding agents read `AGENTS.md`. The course no longer
+  tells a learner to create, import, or maintain a second instruction file, and
+  `scripts/sync-public-content.mjs` no longer copies one into `public/`.
+- Stopped teaching `CURRENT-STATE.md`, `NEXT-PROMPT.md`, and `ROADMAP.md` as files
+  a learner should create. Those names describe live state and go stale. Meaningful
+  changes stay in `CHANGELOG.md`. Outstanding work stays in GitHub issues.
+
 ## 2026-08-20
 
 ### Removed

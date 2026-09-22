@@ -1,10 +1,10 @@
-# Designing Agent Instructions (CLAUDE.md / AGENTS.md)
+# Designing Agent Instructions
 
 **Core question:** What makes an agent-instructions file one a coding agent actually
 follows, instead of one that looks thorough and changes nothing?
 
-A CLAUDE.md (or AGENTS.md, or .cursorrules) is a contract the agent re-reads on every
-turn. The common failure is not that the file is missing. It is that the file is
+An `AGENTS.md` is the contract every coding agent re-reads. Claude Code, Codex, and
+other agents read that one file. The common failure is not that the file is missing. It is that the file is
 decoration: fluent, generic, and untethered to the repo it governs. A decorative file
 costs tokens every turn and changes no behavior. This module is about writing the
 other kind.

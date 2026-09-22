@@ -9,7 +9,6 @@ const ROOT_MARKDOWN_FILES = [
   'README.md',
   'CHANGELOG.md',
   'AGENTS.md',
-  'CLAUDE.md',
   'CONTRIBUTING.md',
 ]
 const ROOT_STATIC_FILES = ['first-page.html']

@@ -94,7 +94,7 @@ function buildActions(form) {
     }
 
     actions.push('Create README.md or SETUP-NOTES.md for instructions, then create first-page.html when you need a visual browser preview.')
-    actions.push('Add or review AGENTS.md, CLAUDE.md, CURRENT-STATE.md, CHANGELOG.md, NEXT-PROMPT.md, and ROADMAP.md once the repo loop works.')
+    actions.push('Add or review AGENTS.md and CHANGELOG.md once the repo loop works.')
 
     if (form.data === 'catalog') {
         actions.push('Pick one Data.gov dataset and record the catalog page, publisher, access notes, license notes, and actual data URL.')
@@ -145,7 +145,7 @@ function buildPrompt(form, actions) {
         'Constraints:',
         '- Keep work local and reviewable.',
         '- Do not use secrets, private data, paid APIs, telemetry, or a backend unless I explicitly ask.',
-        '- If editing a repo, read README.md and AGENTS.md or CLAUDE.md before changing files.',
+        '- If editing a repo, read README.md and AGENTS.md before changing files.',
         '- Use Markdown files for instructions and notes; use HTML files for visual browser practice.',
         '',
         'Verification:',

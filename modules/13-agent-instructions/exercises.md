@@ -1,6 +1,6 @@
 # Exercises — Designing Agent Instructions
 
-1. **De-generalize.** Take a CLAUDE.md (yours or a public one) that could be pasted into
+1. **De-generalize.** Take an `AGENTS.md` (yours or a public one) that could be pasted into
    any repo. Add the three highest-value facts that are true only of that repo: the exact
    test/build command, where a non-obvious thing lives, and the one rule whose violation
    makes a change wrong. Re-run a task before and after; note any behavior change.

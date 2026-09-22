@@ -227,7 +227,7 @@ A useful default progression is:
 | --- | --- | --- | --- |
 | Runtime session | Agent SDK JSONL session | Prompts, tool calls, results, responses | Sensitive transcript retention |
 | Working tree | Files changed by the agent | Actual system state | Conflicts, destructive edits |
-| Repo memory | `AGENTS.md`, `CLAUDE.md`, `CURRENT-STATE.md` | Reviewed instructions and durable project facts | Stale or decorative guidance |
+| Repo memory | `AGENTS.md`, `CHANGELOG.md` | Reviewed instructions and dated changes | Stale or decorative guidance |
 | Semantic memory | External graph or retrieval store | Selected facts and links across sessions | Poisoned, over-retained, or untraceable claims |
 
 Resuming a session restores conversation context; it does not restore the filesystem. A semantic memory write should therefore be a declared side effect with provenance, redaction, retention, and deletion rules.

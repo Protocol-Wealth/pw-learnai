@@ -30,7 +30,7 @@ The first routing decision is level, not tool:
 | Level | Use this when | Next step |
 |-------|---------------|-----------|
 | Beginner | You know ChatGPT or Claude prompts, but repositories and diffs are new | Create GitHub, clone one repo, install one desktop or IDE agent, and use the Setup Path Builder |
-| Intermediate | You can work in a repo and need repeatable agent practice | Add `AGENTS.md`, `CLAUDE.md`, state files, CLI-agent prompts, and a documented verification loop |
+| Intermediate | You can work in a repo and need repeatable agent practice | Add `AGENTS.md`, CLI-agent prompts, and a documented verification loop |
 | Advanced | You are connecting runtimes, MCP, memory, remote access, cloud, or regulated workflow patterns | Use Module 16 to map the system, study the OSS labs, and deploy only after the local loop is stable |
 
 The full beginner path is deliberately practical:
@@ -38,8 +38,8 @@ The full beginner path is deliberately practical:
 1. Get a GitHub account, enable 2FA, and learn to read a diff.
 2. Install one desktop or IDE agent such as Codex app, Claude Code, or Antigravity.
 3. Add one CLI agent such as Codex CLI or Claude Code CLI.
-4. Put durable repo guidance in `AGENTS.md` and `CLAUDE.md`.
-5. Keep `CURRENT-STATE.md`, `CHANGELOG.md`, `NEXT-PROMPT.md`, and `ROADMAP.md` aligned as work changes.
+4. Put durable repo guidance in `AGENTS.md`. Claude Code, Codex, and every other coding agent read that file. Do not add a second instruction file.
+5. Record meaningful changes in `CHANGELOG.md`. Outstanding work lives in GitHub issues.
 6. Learn public data sources with read-only examples before writing harvesters or deploying services.
 7. Use Module 15 to map untrusted content, secrets, tools, and egress.
 8. Use Module 16 to separate the runtime, control plane, capabilities, memory, recovery, remote path, and accountable humans before adding autonomy.
@@ -94,7 +94,7 @@ Each module is self-contained. Start with `00` if you are new to repository-base
 | 10 | [Prompt Engineering for Operators](modules/10-prompt-engineering/module.md) | What separates a durable prompt from a lucky one? |
 | 11 | [Evaluation Design for AI Systems](modules/11-evaluation-design/module.md) | How do you know your AI system is getting better, not just different? |
 | 12 | [AI-Assisted Coding in Practice](modules/12-ai-coding-practice/module.md) | How do you use Codex CLI, Claude Code, and coding agents without creating maintenance debt? |
-| 13 | [Designing Agent Instructions](modules/13-agent-instructions/module.md) | What makes a CLAUDE.md / AGENTS.md one a coding agent actually follows, not decoration? |
+| 13 | [Designing Agent Instructions](modules/13-agent-instructions/module.md) | What makes an `AGENTS.md` one a coding agent actually follows, not decoration? |
 | 15 | [Security & Secrets Hygiene](modules/15-security-secrets-hygiene/module.md) | How do you keep untrusted content, secrets, and excessive agency from collapsing the trust boundary? |
 | 16 | [Building Agent Systems](modules/16-building-agent-systems/module.md) | How do you reuse a mature agent loop while separating intent, tools, permissions, memory, recovery, remote access, and human accountability? |
 
@@ -156,8 +156,7 @@ cat modules/01-*/module.md modules/02-*/module.md modules/03-*/module.md > my-st
 
 Module 12 is written around practical terminal workflows for Codex CLI and Claude Code. Module 16 continues into Agent SDK adapters, MCP, memory, remote access, system boundaries, and human decision rights. This repo also includes lightweight agent guidance files:
 
-- `AGENTS.md` for Codex and other agents that read the emerging shared convention
-- `CLAUDE.md` for Claude Code, importing `AGENTS.md` so guidance stays in one place
+- `AGENTS.md` for Claude Code, Codex, and every other coding agent
 
 Useful starting prompts:
 

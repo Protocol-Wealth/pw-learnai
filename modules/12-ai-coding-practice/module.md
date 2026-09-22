@@ -33,18 +33,7 @@ The specific commands change. The operating model does not.
 
 Every agentic coding session starts better when the tool can read durable project guidance before you type the task.
 
-For Codex CLI, use `AGENTS.md`. Put repository conventions, build commands, test commands, forbidden patterns, review expectations, and content style rules in the file. Codex discovers `AGENTS.md` files from the repo root down to the working directory, so nested directories can carry more specific guidance.
-
-For Claude Code, use `CLAUDE.md`. If your repo already has `AGENTS.md`, create a short `CLAUDE.md` that imports it:
-
-```md
-@AGENTS.md
-
-## Claude Code
-
-- Use plan mode for large changes before editing files.
-- Keep generated edits narrow and run the documented verification command.
-```
+Use `AGENTS.md` for Codex CLI, Claude Code, and every other coding agent. Put repository conventions, build commands, test commands, forbidden patterns, review expectations, and content style rules in that one file. Do not add a second instruction file. Nested directories can carry a more specific `AGENTS.md`.
 
 Use these files for facts the agent should always know:
 
@@ -176,12 +165,12 @@ Guardrails:
 
 ## Using Claude Code well
 
-Claude Code is strongest when you want an agent that can operate across the whole project, preserve project memory through `CLAUDE.md`, plan before editing, delegate research to subagents, and run parallel work in worktrees.
+Claude Code is strongest when you want an agent that can operate across the whole project, read project memory from `AGENTS.md`, plan before editing, delegate research to subagents, and run parallel work in worktrees.
 
 High-leverage patterns:
 
 - **Plan before editing:** use `claude --permission-mode plan` for broad changes. Claude reads files and proposes a plan before making edits.
-- **Project memory:** maintain `CLAUDE.md` for project conventions. If the repo also supports other agents, import `AGENTS.md` instead of duplicating guidance.
+- **Project memory:** maintain `AGENTS.md` for project conventions. Claude Code and Codex read the same file.
 - **Subagents for noisy research:** ask Claude to use a subagent when investigation would flood the main conversation with file reads, logs, or search results.
 - **Worktrees for parallelism:** use `claude --worktree <name>` when one session should edit a branch while another session works elsewhere.
 - **Non-interactive output:** use `claude -p "task"` when you want stdout-friendly output for scripts, CI, or batch processing.
@@ -190,7 +179,7 @@ High-leverage patterns:
 
 Guardrails:
 
-- Treat `CLAUDE.md` as context, not enforcement. If an action must be blocked, use permissions or hooks.
+- Treat `AGENTS.md` as context, not enforcement. If an action must be blocked, use permissions or hooks.
 - Keep always-loaded memory concise. Move long reference material into skills or linked docs.
 - Do not let multiple Claude sessions edit the same worktree at the same time.
 - Avoid permission bypass modes unless the environment is isolated and disposable.
@@ -217,7 +206,7 @@ Rules:
 
 - **Auto-accepting edits.** The agent wrote quickly; the human reviewed slowly or not at all.
 - **Prompting without scope.** The agent makes design decisions the team never agreed to.
-- **Skipping persistent guidance.** The same corrections get typed in every session instead of captured in `AGENTS.md` or `CLAUDE.md`.
+- **Skipping persistent guidance.** The same corrections get typed in every session instead of captured in `AGENTS.md`.
 - **Using non-interactive mode for vague work.** A scriptable agent is best for bounded tasks, not ambiguous product judgment.
 - **Letting context bloat.** The main session fills with logs, file dumps, and search results that should have gone to a subagent or separate run.
 - **Two agents editing one branch.** Parallelism becomes merge conflict and behavioral drift.
