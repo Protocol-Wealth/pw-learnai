@@ -40,7 +40,7 @@ The full beginner path is deliberately practical:
 1. Get a GitHub account, enable 2FA, and learn to read a diff.
 2. Install one desktop or IDE agent such as Codex app, Claude Code, or Antigravity.
 3. Add one CLI agent such as Codex CLI or Claude Code CLI.
-4. Put durable repo guidance in `AGENTS.md`. Claude Code, Codex, and every other coding agent read that file. Do not add a second instruction file.
+4. Put durable repo guidance in `AGENTS.md`. Check that your coding agent loads it; do not maintain a second, divergent instruction file.
 5. Record meaningful changes in `CHANGELOG.md`. Outstanding work lives in GitHub issues.
 6. Learn public data sources with read-only examples before writing harvesters or deploying services.
 7. Use Module 15 to map untrusted content, secrets, tools, and egress.
@@ -158,7 +158,7 @@ cat modules/01-*/module.md modules/02-*/module.md modules/03-*/module.md > my-st
 
 Module 12 is written around practical terminal workflows for Codex CLI and Claude Code. Module 16 continues into Agent SDK adapters, MCP, memory, remote access, system boundaries, and human decision rights. This repo also includes lightweight agent guidance files:
 
-- `AGENTS.md` for Claude Code, Codex, and every other coding agent
+- `AGENTS.md` as the shared project guidance for coding agents
 
 Useful starting prompts:
 
