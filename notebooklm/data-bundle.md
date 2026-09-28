@@ -2,9 +2,9 @@
 
 > Public dataset discovery, National Archives Catalog API constraints, OAI-PMH metadata harvesting, and source-note discipline before implementation.
 
-Source: https://github.com/Protocol-Wealth/pw-learnai
+Source: https://github.com/Protocol-Wealth/pw-learnai-core
 License: MIT
-Generated: 2026-09-22
+Generated: 2026-09-28
 
 ## Modules included
 

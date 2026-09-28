@@ -2,9 +2,9 @@
 
 > Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, security, and governed agent-system architecture.
 
-Source: https://github.com/Protocol-Wealth/pw-learnai
+Source: https://github.com/Protocol-Wealth/pw-learnai-core
 License: MIT
-Generated: 2026-09-22
+Generated: 2026-09-28
 
 ## Modules included
 
@@ -2785,7 +2785,7 @@ The Agent SDK overview currently directs third-party applications to API-key or 
 
 ## Protocol Wealth open-source references
 
-- **Protocol Wealth.** [`pw-learnai`](https://github.com/Protocol-Wealth/pw-learnai). Learning entryway and client-only tools.
+- **Protocol Wealth.** [`pw-learnai`](https://github.com/Protocol-Wealth/pw-learnai-core). Learning entryway and client-only tools.
 - **Protocol Wealth.** [`pwcli-core`](https://github.com/Protocol-Wealth/pwcli-core). Intent, runtime-adapter, approval, redaction, and provenance control-plane specification.
 - **Protocol Wealth.** [`nexus-core`](https://github.com/Protocol-Wealth/nexus-core). Public-safe analytical engine and MCP capability layer.
 - **Protocol Wealth.** [`pwos-core`](https://github.com/Protocol-Wealth/pwos-core). Open governance and compliance primitive packages.

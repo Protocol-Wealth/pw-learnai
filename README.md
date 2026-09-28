@@ -1,6 +1,8 @@
-# pw-learnai
+# pw-learnai-core
 
 A modular, open-source library of ideas, frameworks, and interactive tools for applied AI strategy and AI-assisted software development. Built by [Protocol Wealth LLC](https://protocolwealthllc.com). MIT-licensed. No certificate. No paywall. No marketing funnel.
+
+The repository is named `pw-learnai-core`; the learning library and its private frontend package retain the `pw-learnai` name.
 
 ## What this is
 
@@ -54,9 +56,9 @@ For AI notebooks, upload [`notebooklm/starter-bundle.md`](notebooklm/starter-bun
 ## Project state
 
 - [CHANGELOG.md](CHANGELOG.md) records shipped changes.
-- [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai/issues) are the authoritative tracker for outstanding and planned work. Re-query them; no checked-in file mirrors them.
+- [GitHub issues](https://github.com/Protocol-Wealth/pw-learnai-core/issues) are the authoritative tracker for outstanding and planned work. Re-query them; no checked-in file mirrors them.
 - The estate design record, live and planned, is at [pwos.app/build](https://pwos.app/build).
-- The agent-systems entryway shipped in [PR #55](https://github.com/Protocol-Wealth/pw-learnai/pull/55), closing [#54](https://github.com/Protocol-Wealth/pw-learnai/issues/54).
+- The agent-systems entryway shipped in [PR #55](https://github.com/Protocol-Wealth/pw-learnai-core/pull/55), closing [#54](https://github.com/Protocol-Wealth/pw-learnai-core/issues/54).
 
 ## Module index
 
@@ -126,8 +128,8 @@ Public material treats durable semantic memory as a provider-neutral boundary an
 Clone the repo or read the files on GitHub. Each `module.md` is complete on its own.
 
 ```bash
-git clone https://github.com/Protocol-Wealth/pw-learnai.git
-cd pw-learnai
+git clone https://github.com/Protocol-Wealth/pw-learnai-core.git
+cd pw-learnai-core
 ```
 
 ### With NotebookLM (or Claude Projects, or a custom GPT)
@@ -176,7 +178,7 @@ For concrete Python and TypeScript Claude Agent SDK reference adapters, read the
 
 ### PR hygiene across the OSS surface
 
-Audit open PRs across `pw-learnai`, `pwcli-core`, `shard-core`, `nexus-core`, `pwos-core`, and `pwplan-core`:
+Audit open PRs across `pw-learnai-core`, `pwcli-core`, `shard-core`, `nexus-core`, `pwos-core`, and `pwplan-core`:
 
 ```bash
 pnpm pr:audit
@@ -192,7 +194,7 @@ pnpm pr:mergeable
 
 **Use them in your browser** — no install required:
 
-→ **https://protocol-wealth.github.io/pw-learnai/**
+→ **https://protocol-wealth.github.io/pw-learnai-core/**
 
 The interactive tools (including the setup path builder, Agent Systems Architect, MCP planner, PII guard simulator, confirmation gate simulator, planning contract validator, CLI coding playbook, prompt evaluator, and agent-instructions auditor) run client-side. No login. No telemetry. No external API calls. Each session evaporates when you close the tab — fill in, copy or screenshot if useful, leave.
 
@@ -212,7 +214,7 @@ Fork the repo. Edit the modules to fit your industry. Submit a PR if you want yo
 ## Structure
 
 ```
-pw-learnai/
+pw-learnai-core/
 ├── modules/            # Self-contained learning units
 │   └── NN-name/
 │       ├── module.md           # The content

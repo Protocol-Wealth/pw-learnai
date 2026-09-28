@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/pw-learnai/',
+  base: '/pw-learnai-core/',
   server: { port: 5173 }
 })
