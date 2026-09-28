@@ -2,9 +2,9 @@
 
 > Disruption diagnosis, the AI advantage matrix, value destruction patterns, platform economics, AI judgment under uncertainty.
 
-Source: https://github.com/Protocol-Wealth/pw-learnai
+Source: https://github.com/Protocol-Wealth/pw-learnai-core
 License: MIT
-Generated: 2026-09-22
+Generated: 2026-09-28
 
 ## Modules included
 

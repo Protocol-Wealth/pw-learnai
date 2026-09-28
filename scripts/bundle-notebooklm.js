@@ -132,7 +132,7 @@ function buildBundle(name, spec) {
     '',
     `> ${spec.description}`,
     '',
-    `Source: https://github.com/Protocol-Wealth/pw-learnai`,
+    `Source: https://github.com/Protocol-Wealth/pw-learnai-core`,
     `License: MIT`,
     `Generated: ${new Date().toISOString().slice(0, 10)}`,
     '',

@@ -646,7 +646,7 @@ function App() {
                 Architect an agent system
               </a>
               <a
-                href="https://github.com/Protocol-Wealth/pw-learnai"
+                href="https://github.com/Protocol-Wealth/pw-learnai-core"
                 className="inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-800 hover:border-slate-500"
               >
                 <Github className="h-4 w-4" aria-hidden="true" />
