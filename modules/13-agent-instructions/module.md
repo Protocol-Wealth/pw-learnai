@@ -3,11 +3,12 @@
 **Core question:** What makes an agent-instructions file one a coding agent actually
 follows, instead of one that looks thorough and changes nothing?
 
-An `AGENTS.md` is the contract every coding agent re-reads. Claude Code, Codex, and
-other agents read that one file. The common failure is not that the file is missing. It is that the file is
-decoration: fluent, generic, and untethered to the repo it governs. A decorative file
-costs tokens every turn and changes no behavior. This module is about writing the
-other kind.
+Use `AGENTS.md` as the shared project contract, and verify that each agent you use
+loads it. Codex discovers it directly; recent Claude Code versions read it when
+no `CLAUDE.md` takes precedence. The common failure is not that the file is
+missing. It is that the file is decoration: fluent, generic, and untethered to
+the repo it governs. A decorative file costs tokens every turn and changes no
+behavior. This module is about writing the other kind.
 
 ## The claim: encode what the agent cannot infer
 
@@ -50,6 +51,23 @@ whether an agent that ignored it would produce worse output. If not, cut it.
 Generic coding philosophy the model already knows ("don't introduce bugs," "write
 tests") is the first thing to cut. It reads as filler and dilutes the lines that are
 actually load-bearing.
+
+## Measure the effect of moving instructions
+
+**Claim:** A shorter `AGENTS.md` is useful only if agents still reach the guidance
+when the task needs it. **Test:** save a small set of real, de-identified tasks and
+their outcomes before editing the file. After moving a situational procedure into
+a skill or linked document, run those tasks again. Check whether the agent opened
+the right guidance in time, completed the task, and avoided the old failure. Count
+the always-loaded tokens as a cost measure, not as the success measure.
+
+Keep commands and boundaries needed on nearly every task in `AGENTS.md`. Put a
+long procedure behind a clear trigger when only some tasks need it. If an agent
+repeatedly misses that trigger, restore a short pointer in `AGENTS.md` or improve
+the trigger; the procedure's new location alone does not make it available in
+practice. A case study from FirstMate used session transcripts to propose edits
+and then checked behavior after pruning. Its reported token reduction is evidence
+for that repo, not a target for yours.
 
 ## Tell the agent what to do, not just what to avoid
 

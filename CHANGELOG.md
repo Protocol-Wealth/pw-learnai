@@ -2,6 +2,15 @@
 
 All notable changes to `pw-learnai` are recorded here.
 
+## 2026-09-28
+
+### Changed
+
+- Added an evidence-based check for moving situational agent guidance from
+  `AGENTS.md` into skills, with representative tasks and trigger timing as the
+  success measure. Updated the Claude Code loading note and regenerated the
+  affected NotebookLM bundles.
+
 ## 2026-09-22
 
 ### Removed
