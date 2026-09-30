@@ -22,7 +22,7 @@ Organizational design for continuous change, disciplined experimentation, stakeh
 
 ### `practice-bundle.md`
 
-Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, security, and governed agent-system architecture.
+Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, security, governed agent-system architecture, and model, effort, and cost choices.
 
 ### `ai-deep-dive.md`
 

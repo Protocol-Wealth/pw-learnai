@@ -533,6 +533,7 @@ const MODULE_GROUPS = [
       ['12', 'AI-Assisted Coding in Practice', 'modules/12-ai-coding-practice/module.md'],
       ['13', 'Designing Agent Instructions', 'modules/13-agent-instructions/module.md'],
       ['16', 'Building Agent Systems', 'modules/16-building-agent-systems/module.md'],
+      ['17', 'Models, Effort and Cost', 'modules/17-models-effort-and-cost/module.md'],
       ['OSS', 'Protocol Wealth OSS Labs', 'labs/protocol-wealth-oss/README.md'],
     ],
   },

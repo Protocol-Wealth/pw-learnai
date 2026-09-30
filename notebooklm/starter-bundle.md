@@ -4,7 +4,7 @@
 
 Source: https://github.com/Protocol-Wealth/pw-learnai-core
 License: MIT
-Generated: 2026-09-28
+Generated: 2026-09-30
 
 ## Modules included
 
@@ -747,8 +747,29 @@ Different agent modes solve different problems.
 | Keep broad research out of the main context | Ask for subagents when enabled | Ask Claude to use a subagent |
 | Work in parallel without edit collisions | Codex cloud tasks or separate worktrees | `claude --worktree <name>` or separate worktrees |
 | Connect external systems | `codex mcp` or `config.toml` MCP servers | `claude mcp` or project/user MCP settings |
+| Set effort for a scripted run | `codex exec -c model_reasoning_effort=high "task"` | `claude -p --effort high "task"` |
+| Pin the model in automation | `codex exec -m <full-model-id> "task"` | `claude -p --model <full-model-id> "task"` |
 
 The safest default for implementation work is local, interactive, workspace-scoped editing. Use non-interactive automation only when the task is well specified and the environment is controlled.
+
+In anything that runs unattended, set effort and the full model ID explicitly. A default or an alias can change on a CLI update, and the pipeline's cost and behavior change with it while the repository shows no diff. Module 17 covers how to choose the values.
+
+### Where guidance belongs: AGENTS.md, skills, MCP, hooks
+
+Four mechanisms, four jobs. Putting guidance in the wrong one is the most common cause of an agent that "ignores" an instruction.
+
+| Layer | Loaded | Use it for | Do not use it for |
+|---|---|---|---|
+| `AGENTS.md` | Every session | Rules that are always true in this repo: build and test commands, boundaries, style | Long procedures that matter for one task in twenty |
+| Skills | When a task matches the skill's description | Situational procedures: a release checklist, a migration recipe, a domain reference | Rules that must hold on every task |
+| MCP servers | When connected | Reaching external systems: issue trackers, docs, databases, browsers | Instructions; a server is a capability grant, not guidance |
+| Hooks and permissions | On events, enforced by the harness | Anything that must be blocked or must always run, whatever the model decides | Advice the model may reasonably override |
+
+If an instruction must never be violated, it belongs in a hook or permission rule, not in text. If it matters only sometimes, it belongs in a skill, and you should check that the skill actually triggers on representative prompts.
+
+### Choose model and effort per stage
+
+When work fans out to subagents, each stage can run at its own model and effort. Mechanical stages (search, extraction, formatting) can run on a cheaper tier at low effort. Reviewers, verifiers, and judges should run high, because a lenient reviewer inflates every pass rate downstream. Claude Code subagent definitions accept a model setting (see references); check your own tool's subagent configuration, and set the model per stage rather than inheriting the most expensive one everywhere.
 
 ### Loop 3: Frame the task tightly
 
@@ -902,7 +923,7 @@ Rules:
 
 ## What this module does not cover
 
-- Detailed pricing, entitlement, and model availability for specific vendors. Those change too quickly.
+- Detailed pricing, entitlement, and model availability for specific vendors. Those change too quickly; Module 17 covers how to reason about model, effort, and cost, and keeps a dated table in its references.
 - Security review for AI-generated code in regulated systems. The practices here reduce risk but do not replace secure development lifecycle controls.
 - Full CI/CD automation patterns. Start with local interactive use, then automate only the workflows that have become boring and repeatable.
 
@@ -1082,8 +1103,10 @@ The goal is not to chase every new feature. The goal is to remove stale assumpti
 
 # 12 - References
 
-Tool-specific guidance reviewed on 2026-07-25. Re-check vendor docs before turning
-these notes into policy or automation.
+Tool-specific guidance reviewed on 2026-07-25. The effort, model-pinning, layering,
+and per-stage sources were added and read on 2026-09-30; the other entries were not
+re-reviewed then. Re-check vendor docs before turning these notes into policy or
+automation.
 
 ## Current CLI documentation
 
@@ -1099,6 +1122,9 @@ these notes into policy or automation.
 - **Anthropic.** [Extend Claude Code](https://code.claude.com/docs/en/features-overview). When to use project instructions, skills, MCP, subagents, hooks, plugins, and related extension points.
 - **Anthropic.** [Create custom subagents](https://code.claude.com/docs/en/subagents). Subagent isolation, configuration, permissions, skills, and examples.
 - **Anthropic.** [Configure permissions](https://code.claude.com/docs/en/permissions). Permissions, hooks, additional directories, and sandboxing interactions.
+- **Anthropic.** [Agent Skills in Claude Code](https://code.claude.com/docs/en/skills). Skill structure, discovery, and when a skill loads. Read 2026-09-30.
+- **OpenAI.** [Codex configuration reference](https://developers.openai.com/codex/config-reference). Includes `model_reasoning_effort` and model selection. Read 2026-09-30.
+- **Replit.** [Free the models](https://replit.com/blog/free-the-models). Describes a main agent choosing the model tier and effort for each subagent it dispatches [BELIEVED; the reported gains are vendor numbers on a benchmark that independent reviewers have flagged].
 
 ## On code review for AI-generated code
 
@@ -1436,6 +1462,45 @@ Using one model to evaluate another model's output is widely practiced and usefu
 
 **Discipline when using:** the rubric the judge applies must be specific. "Is this answer high-quality?" produces noise. "Does this answer cite the relevant policy section?" produces signal. The more specific the rubric, the more reliable the judgment.
 
+## Hillclimbing without fooling yourself
+
+Once a harness exists, the temptation is to change the prompt, rerun, keep what scores
+higher, and repeat. That loop, hillclimbing, works, and it overfits fast. Five rules
+keep the score honest:
+
+- **Split train and test.** Iterate against one set of cases; report against a held-out
+  set you did not look at while iterating. A gain that appears only on the train set is
+  a gain on those cases, not on the task.
+- **Measure noise before comparing.** Run the unchanged system on the same cases two or
+  three times. The spread between those runs is your noise floor. A change smaller than
+  the noise floor is not a result.
+- **Grade twice.** Have a second grader (a person, or a judge with a different rubric
+  phrasing) score a sample. Where the two disagree, the rubric is ambiguous, and the
+  score on those cases is not yet a measurement.
+- **Prove a failure can be detected.** Before trusting a passing run, plant a known
+  defect (a wrong answer, a missing field, a broken output) and confirm the harness
+  fails it. A check that cannot fail cannot tell you anything by passing.
+- **Never paste test failures into the prompt.** Copying a held-out failure into the
+  instructions turns the test set into training data. The score rises; the task
+  performance does not.
+
+## Public benchmarks are a lead, not evidence
+
+A public benchmark score says how a model did on someone else's tasks, in someone
+else's harness, at a setting you may not know. Some widely cited benchmarks have
+published flaws: ambiguous items, broken graders, or leaked answers. Before a score
+drives a choice, check whether independent reviewers have flagged the benchmark (Epoch
+AI publishes benchmark reviews; see references), and ask which harness, which effort
+setting, and which version produced the number. Then run your own task eval. A
+benchmark that disagrees with your task eval loses.
+
+## The harness moves results more than the model
+
+The same model can score very differently depending on the scaffold around it: the
+tools it is given, the retry policy, the context it sees, the effort setting, and the
+grader. When comparing two models, hold the harness fixed and change only the model.
+When a vendor number and your number disagree, the harness is the first suspect.
+
 ## Common failure modes
 
 - **Shipping without evaluation.** The most common failure mode. The team trusts demo results. Production failures are discovered by customers.
@@ -1444,6 +1509,8 @@ Using one model to evaluate another model's output is widely practiced and usefu
 - **Test set written by the prompt author.** The author tests the cases the author thought of. The cases the author did not think of go untested until production.
 - **Ignoring drift.** Quality changes between runs are dismissed as noise. By the time the trend is undeniable, the system has degraded substantially.
 - **Confusing fluency with accuracy.** AI outputs sound confident regardless of whether they are correct. Evaluation must check accuracy specifically, not let fluency substitute for it.
+- **Climbing the test set.** Prompt changes are kept or discarded by their score on the same cases used to report results, so the reported gain is overfit.
+- **Choosing by leaderboard.** A model is picked on a public benchmark score that was never checked against your own tasks or against published reviews of that benchmark.
 
 ## What this module does not cover
 
@@ -1527,7 +1594,8 @@ The discipline is to make this an explicit decision rather than an ambient drift
 
 Reviewed: 2026-07-25. Model-as-judge behavior, vendor red-teaming guidance, and
 regulatory requirements change; pin the model and rubric used for every recorded
-evaluation.
+evaluation. The hillclimbing and public-benchmark sources below were added and read
+on 2026-09-30; the rest of this file was not re-reviewed then.
 
 ## Primary sources
 
@@ -1555,6 +1623,20 @@ evaluation.
 - **Google DeepMind.** [Model cards](https://deepmind.google/models/model-cards/).
   Official model-specific evaluation, safety, and limitation evidence.
 - **AI Village at DEF CON.** Annual public red-teaming work. Useful for understanding what real adversarial testing looks like.
+
+## On hillclimbing and public benchmarks
+
+- **Anthropic.** [Automating eval design and hillclimbing](https://claude.dev/blog/automating-eval-design-and-hillclimbing/).
+  Train and test splits, noise measurement, and keeping an automated improvement loop
+  from overfitting its own test set. Read 2026-09-30.
+- **Epoch AI.** [Benchmarks](https://epoch.ai/benchmarks). Independent reviews of
+  public AI benchmarks, including which ones have known flaws. At launch the reviews
+  verified 4 benchmarks and flagged 9, including SWE-Bench Verified and Terminal-Bench
+  [BELIEVED; the list was not re-read on 2026-09-30]. Check the current list before
+  citing a score.
+- **rivendale.** [`hsi-operator` `docs/eval-and-hillclimb.md`](https://github.com/rivendale/hsi-operator/blob/main/docs/eval-and-hillclimb.md)
+  and [`docs/planted-defect-evals.md`](https://github.com/rivendale/hsi-operator/blob/main/docs/planted-defect-evals.md).
+  Practice notes on hillclimbing and on planting known defects to prove a check can fail.
 
 ## On the limits of evaluation
 
@@ -1931,6 +2013,37 @@ A secret in the prompt is a secret one injection away from exfiltration, and a s
 
 Draw the boundary explicitly: list each surface (input, data-in-context, tool, output), tag its trust level, and check which boundaries untrusted content crosses. A boundary you did not write down is a boundary you are trusting by accident. The companion **Trust-Boundary Auditor** makes you enumerate the surfaces and tells you when the three legs co-occur.
 
+### Your agent's supply chain
+
+The trifecta describes what happens at runtime. It says nothing about what you
+installed before the run started. An agent's supply chain has three parts that
+ordinary dependency scanning does not see:
+
+- **Skills are instructions that run with your agent's authority.** An Agent Skill is
+  a folder of instructions and scripts the agent loads when a task matches. A skill
+  that says "also send the diff to this URL" is obeyed with whatever tools and
+  credentials the agent holds. Pin every third-party skill to a reviewed commit, never
+  to a branch; tracking `main` means a future push changes your agent's behavior with
+  no review on your side.
+- **An MCP server is code plus a capability grant.** Connecting a server gives the
+  agent new tools and gives the server's author a channel into the agent's context
+  through tool descriptions and results. Before connecting, review its transport, its
+  authentication, and the side-effect level of every tool it exposes (read, propose,
+  or execute), the same way you would review a new service account. Module 16 lists
+  what each server should declare.
+- **Any intermediary between you and the model can read and rewrite tool calls.**
+  Routers, proxies, and "unified" gateways that sit between your agent and the model
+  provider see every prompt, every tool call, and every result, and can alter them in
+  transit. Published measurements of malicious intermediaries (see references) show
+  this is a practical attack, not a theoretical one. Prefer the provider's direct
+  endpoint; where an intermediary is required, treat it as part of the trust boundary
+  and put it in the trifecta map as a surface.
+
+Agent-driven review can help on your own code as well: whole-repository security
+harnesses now use agents to find candidate issues and then revalidate each finding
+before reporting it. Treat their output as candidates for a human to confirm, in the
+spirit of Module 16's "subagents are reviewers, not automatic truth."
+
 ## Practical guidance
 
 - Enumerate the trifecta for every AI feature before shipping it. If all three legs are present, treat "remove a leg" as the primary task, not an optimization.
@@ -1938,6 +2051,7 @@ Draw the boundary explicitly: list each surface (input, data-in-context, tool, o
 - Keep untrusted-input processing and private-data access in separate contexts wherever the workflow allows.
 - Validate model output against a schema before any downstream use; escape it before rendering.
 - Never ship a secret to the client and never place one in a prompt; scope and rotate credentials.
+- Pin installed skills to a reviewed commit, review each MCP server before connecting it, and send model traffic to the provider's direct endpoint unless an intermediary is itself reviewed and mapped.
 - Log tool calls and their approvals so an incident is reconstructable — without logging the secrets or the sensitive payloads themselves.
 
 ## What this module does not cover
@@ -2002,6 +2116,16 @@ Craft a document, email, or web snippet that your feature would ingest, and hide
 
 Record: did the model follow the injected instruction, partly follow it, or ignore it? Try three phrasings before concluding it is safe. The point is not to prove your system is broken — it is to see, empirically, that filtering is not a guarantee, and to decide which trifecta leg you will remove so the outcome does not matter.
 
+## Exercise 6: Supply-chain inventory
+
+List everything installed into one agent that you did not write: skills, plugins, MCP servers, and any router, proxy, or gateway between the agent and the model provider.
+
+| Item | Kind (skill / MCP server / intermediary) | Pinned to a commit or version? | Who reviewed it, and when? | Side effects it can cause | Direct endpoint or intermediary? |
+|------|------------------------------------------|--------------------------------|----------------------------|---------------------------|----------------------------------|
+| | | | | | |
+
+For every row that is unpinned or unreviewed, either pin and review it or remove it. The artifact is the table with no empty cells in the pinned and reviewed columns.
+
 ---
 
 
@@ -2011,7 +2135,8 @@ Record: did the model follow the injected instruction, partly follow it, or igno
 
 Reviewed: 2026-07-25. AI security guidance moves quickly; treat dated items as
 starting points and check current vendor and standards-body docs before relying on any
-specific control.
+specific control. The supply-chain sources below were added and read on 2026-09-30;
+the rest of this file was not re-reviewed then.
 
 ## On prompt injection and the lethal trifecta
 
@@ -2035,6 +2160,23 @@ specific control.
   local-server privileges, sandboxing, and scope minimization. Review the labs in this
   repo (`labs/protocol-wealth-oss/`) as local examples, not as a substitute.
 - **Excessive agency.** The failure mode where an agent is given broader tool access than the task requires. Scope tools to the minimum; gate the consequential ones.
+
+## Agent supply chain
+
+- **Hanzhi Liu et al.** [Your Agent Is Mine: Measuring Malicious Intermediary Attacks on the LLM Supply Chain](https://arxiv.org/abs/2604.08407)
+  (arXiv 2604.08407, 2026). Formalizes payload-injection and secret-exfiltration attacks
+  by third-party API routers, which see every tool-calling request in plaintext, and
+  measures them across paid and free routers found in the wild.
+- **Anthropic.** [Agent Skills in Claude Code](https://code.claude.com/docs/en/skills).
+  How skills are structured, discovered, and loaded.
+- **Agent Skills.** [Open format](https://agentskills.io). Cross-tool skill convention.
+- **Model Context Protocol.** [Authorization](https://modelcontextprotocol.io/specification/latest/basic/authorization).
+  The specification's authorization flow for remote servers.
+- **Vercel Labs.** [deepsec](https://github.com/vercel-labs/deepsec). An example of an
+  agent-driven whole-repository security harness that revalidates findings before
+  reporting them.
+- **OWASP GenAI Security Project.** [Top 10 for LLM and GenAI applications](https://genai.owasp.org/llm-top-10/).
+  Includes supply-chain risk as a named category.
 
 ## Standards and governance
 
@@ -2301,6 +2443,13 @@ Every connected server should declare:
 - expected source and provenance fields;
 - timeout, rate-limit, and failure behavior;
 - which human owns an exception.
+
+For a remote server, authentication should default to the authorization flow in the MCP specification, which is OAuth-based, rather than a long-lived shared key pasted into client configuration. The flow gives each client its own scoped, revocable grant, and it makes "who connected this agent to that system" an answerable question.
+
+Two newer developments are worth tracking without building on yet:
+
+- **WebMCP** is an emerging pattern in which a web page exposes its own tools to a browser agent, so the agent calls a declared function instead of reading screenshots or driving the DOM. The published benchmark (49 tasks, reporting 2.5 to 7.5 times faster completion) is run by a party with a stake in the pattern; treat the numbers as a claim to re-measure, not a result.
+- **Vendor-specific MCP extensions** exist. A server meant to work across clients should stick to the core specification and treat an extension as a dependency on one vendor.
 
 `nexus-core` is useful as a capability-layer reference because it separates public analytical contracts from identity-bearing production workflows. Planning schemas that reject named direct-identifier keys are tripwires, not proof of anonymity: ages, balances, allocations, and filing status may still be sensitive or indirectly identifying. Public learning paths use synthetic values. Any real derived data needs a separate re-identification, source-rights, retention, provider-terms, and approval review.
 
@@ -2597,6 +2746,19 @@ Fast-moving tool and repository references reviewed on 2026-07-25. Re-check them
 ### Authentication note
 
 The Agent SDK overview currently directs third-party applications to API-key or documented cloud-provider authentication and says third-party developers may not offer claude.ai login or subscription rate limits without prior approval. Official Claude Code subscription login and Remote Control are different product paths. This module therefore does not cite or recommend credential extraction or unofficial subscription proxies.
+
+## Model Context Protocol
+
+Added and read on 2026-09-30.
+
+- **Model Context Protocol.** [Specification](https://modelcontextprotocol.io/specification/latest)
+  and [Authorization](https://modelcontextprotocol.io/specification/latest/basic/authorization).
+  Core protocol and the OAuth-based authorization flow for remote servers.
+- **WebMCP.** [Benchmark](https://webmcp.com/benchmark). WindTunnel: 49 tasks, run by
+  the publisher of the pattern, reporting 2.5 to 7.5 times faster completion than
+  screenshot or DOM driving. Vendor-run; re-measure before relying on it.
+- **OpenAI.** [MCP extensions](https://github.com/openai/mcp-extensions). An example of
+  vendor-specific extensions beyond the core specification.
 
 ## Remote access
 

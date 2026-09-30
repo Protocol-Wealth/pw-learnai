@@ -249,6 +249,13 @@ Every connected server should declare:
 - timeout, rate-limit, and failure behavior;
 - which human owns an exception.
 
+For a remote server, authentication should default to the authorization flow in the MCP specification, which is OAuth-based, rather than a long-lived shared key pasted into client configuration. The flow gives each client its own scoped, revocable grant, and it makes "who connected this agent to that system" an answerable question.
+
+Two newer developments are worth tracking without building on yet:
+
+- **WebMCP** is an emerging pattern in which a web page exposes its own tools to a browser agent, so the agent calls a declared function instead of reading screenshots or driving the DOM. The published benchmark (49 tasks, reporting 2.5 to 7.5 times faster completion) is run by a party with a stake in the pattern; treat the numbers as a claim to re-measure, not a result.
+- **Vendor-specific MCP extensions** exist. A server meant to work across clients should stick to the core specification and treat an extension as a dependency on one vendor.
+
 `nexus-core` is useful as a capability-layer reference because it separates public analytical contracts from identity-bearing production workflows. Planning schemas that reject named direct-identifier keys are tripwires, not proof of anonymity: ages, balances, allocations, and filing status may still be sensitive or indirectly identifying. Public learning paths use synthetic values. Any real derived data needs a separate re-identification, source-rights, retention, provider-terms, and approval review.
 
 ## Subagents are reviewers, not automatic truth

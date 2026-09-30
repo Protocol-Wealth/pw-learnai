@@ -60,8 +60,29 @@ Different agent modes solve different problems.
 | Keep broad research out of the main context | Ask for subagents when enabled | Ask Claude to use a subagent |
 | Work in parallel without edit collisions | Codex cloud tasks or separate worktrees | `claude --worktree <name>` or separate worktrees |
 | Connect external systems | `codex mcp` or `config.toml` MCP servers | `claude mcp` or project/user MCP settings |
+| Set effort for a scripted run | `codex exec -c model_reasoning_effort=high "task"` | `claude -p --effort high "task"` |
+| Pin the model in automation | `codex exec -m <full-model-id> "task"` | `claude -p --model <full-model-id> "task"` |
 
 The safest default for implementation work is local, interactive, workspace-scoped editing. Use non-interactive automation only when the task is well specified and the environment is controlled.
+
+In anything that runs unattended, set effort and the full model ID explicitly. A default or an alias can change on a CLI update, and the pipeline's cost and behavior change with it while the repository shows no diff. Module 17 covers how to choose the values.
+
+### Where guidance belongs: AGENTS.md, skills, MCP, hooks
+
+Four mechanisms, four jobs. Putting guidance in the wrong one is the most common cause of an agent that "ignores" an instruction.
+
+| Layer | Loaded | Use it for | Do not use it for |
+|---|---|---|---|
+| `AGENTS.md` | Every session | Rules that are always true in this repo: build and test commands, boundaries, style | Long procedures that matter for one task in twenty |
+| Skills | When a task matches the skill's description | Situational procedures: a release checklist, a migration recipe, a domain reference | Rules that must hold on every task |
+| MCP servers | When connected | Reaching external systems: issue trackers, docs, databases, browsers | Instructions; a server is a capability grant, not guidance |
+| Hooks and permissions | On events, enforced by the harness | Anything that must be blocked or must always run, whatever the model decides | Advice the model may reasonably override |
+
+If an instruction must never be violated, it belongs in a hook or permission rule, not in text. If it matters only sometimes, it belongs in a skill, and you should check that the skill actually triggers on representative prompts.
+
+### Choose model and effort per stage
+
+When work fans out to subagents, each stage can run at its own model and effort. Mechanical stages (search, extraction, formatting) can run on a cheaper tier at low effort. Reviewers, verifiers, and judges should run high, because a lenient reviewer inflates every pass rate downstream. Claude Code subagent definitions accept a model setting (see references); check your own tool's subagent configuration, and set the model per stage rather than inheriting the most expensive one everywhere.
 
 ### Loop 3: Frame the task tightly
 
@@ -215,7 +236,7 @@ Rules:
 
 ## What this module does not cover
 
-- Detailed pricing, entitlement, and model availability for specific vendors. Those change too quickly.
+- Detailed pricing, entitlement, and model availability for specific vendors. Those change too quickly; Module 17 covers how to reason about model, effort, and cost, and keeps a dated table in its references.
 - Security review for AI-generated code in regulated systems. The practices here reduce risk but do not replace secure development lifecycle controls.
 - Full CI/CD automation patterns. Start with local interactive use, then automate only the workflows that have become boring and repeatable.
 

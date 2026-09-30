@@ -36,13 +36,13 @@ const BUNDLES = {
   },
   'practice-bundle.md': {
     title: 'pw-learnai — Practice (AI tools, prompts, evals, coding)',
-    description: 'Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, security, and governed agent-system architecture.',
-    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '14-working-with-public-data', '15-security-secrets-hygiene', '16-building-agent-systems']
+    description: 'Getting started, decision artifacts, prompt engineering, evaluation design, AI-assisted coding, agent-instructions design, public-data source discipline, security, governed agent-system architecture, and model, effort, and cost choices.',
+    modules: ['00-getting-started', '04-decision-artifacts', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '14-working-with-public-data', '15-security-secrets-hygiene', '16-building-agent-systems', '17-models-effort-and-cost']
   },
   'ai-deep-dive.md': {
     title: 'pw-learnai — AI Focus',
     description: 'For someone who only wants the AI-specific modules.',
-    modules: ['00-getting-started', '02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '15-security-secrets-hygiene', '16-building-agent-systems']
+    modules: ['00-getting-started', '02-ai-advantage-matrix', '03-ai-value-destruction', '09-ai-judgment', '10-prompt-engineering', '11-evaluation-design', '12-ai-coding-practice', '13-agent-instructions', '15-security-secrets-hygiene', '16-building-agent-systems', '17-models-effort-and-cost']
   },
   'data-bundle.md': {
     title: 'pw-learnai — Working with Public Data',

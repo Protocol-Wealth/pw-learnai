@@ -62,6 +62,37 @@ A secret in the prompt is a secret one injection away from exfiltration, and a s
 
 Draw the boundary explicitly: list each surface (input, data-in-context, tool, output), tag its trust level, and check which boundaries untrusted content crosses. A boundary you did not write down is a boundary you are trusting by accident. The companion **Trust-Boundary Auditor** makes you enumerate the surfaces and tells you when the three legs co-occur.
 
+### Your agent's supply chain
+
+The trifecta describes what happens at runtime. It says nothing about what you
+installed before the run started. An agent's supply chain has three parts that
+ordinary dependency scanning does not see:
+
+- **Skills are instructions that run with your agent's authority.** An Agent Skill is
+  a folder of instructions and scripts the agent loads when a task matches. A skill
+  that says "also send the diff to this URL" is obeyed with whatever tools and
+  credentials the agent holds. Pin every third-party skill to a reviewed commit, never
+  to a branch; tracking `main` means a future push changes your agent's behavior with
+  no review on your side.
+- **An MCP server is code plus a capability grant.** Connecting a server gives the
+  agent new tools and gives the server's author a channel into the agent's context
+  through tool descriptions and results. Before connecting, review its transport, its
+  authentication, and the side-effect level of every tool it exposes (read, propose,
+  or execute), the same way you would review a new service account. Module 16 lists
+  what each server should declare.
+- **Any intermediary between you and the model can read and rewrite tool calls.**
+  Routers, proxies, and "unified" gateways that sit between your agent and the model
+  provider see every prompt, every tool call, and every result, and can alter them in
+  transit. Published measurements of malicious intermediaries (see references) show
+  this is a practical attack, not a theoretical one. Prefer the provider's direct
+  endpoint; where an intermediary is required, treat it as part of the trust boundary
+  and put it in the trifecta map as a surface.
+
+Agent-driven review can help on your own code as well: whole-repository security
+harnesses now use agents to find candidate issues and then revalidate each finding
+before reporting it. Treat their output as candidates for a human to confirm, in the
+spirit of Module 16's "subagents are reviewers, not automatic truth."
+
 ## Practical guidance
 
 - Enumerate the trifecta for every AI feature before shipping it. If all three legs are present, treat "remove a leg" as the primary task, not an optimization.
@@ -69,6 +100,7 @@ Draw the boundary explicitly: list each surface (input, data-in-context, tool, o
 - Keep untrusted-input processing and private-data access in separate contexts wherever the workflow allows.
 - Validate model output against a schema before any downstream use; escape it before rendering.
 - Never ship a secret to the client and never place one in a prompt; scope and rotate credentials.
+- Pin installed skills to a reviewed commit, review each MCP server before connecting it, and send model traffic to the provider's direct endpoint unless an intermediary is itself reviewed and mapped.
 - Log tool calls and their approvals so an incident is reconstructable — without logging the secrets or the sensitive payloads themselves.
 
 ## What this module does not cover
