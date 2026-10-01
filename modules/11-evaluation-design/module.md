@@ -77,6 +77,45 @@ Using one model to evaluate another model's output is widely practiced and usefu
 
 **Discipline when using:** the rubric the judge applies must be specific. "Is this answer high-quality?" produces noise. "Does this answer cite the relevant policy section?" produces signal. The more specific the rubric, the more reliable the judgment.
 
+## Hillclimbing without fooling yourself
+
+Once a harness exists, the temptation is to change the prompt, rerun, keep what scores
+higher, and repeat. That loop, hillclimbing, works, and it overfits fast. Five rules
+keep the score honest:
+
+- **Split train and test.** Iterate against one set of cases; report against a held-out
+  set you did not look at while iterating. A gain that appears only on the train set is
+  a gain on those cases, not on the task.
+- **Measure noise before comparing.** Run the unchanged system on the same cases two or
+  three times. The spread between those runs is your noise floor. A change smaller than
+  the noise floor is not a result.
+- **Grade twice.** Have a second grader (a person, or a judge with a different rubric
+  phrasing) score a sample. Where the two disagree, the rubric is ambiguous, and the
+  score on those cases is not yet a measurement.
+- **Prove a failure can be detected.** Before trusting a passing run, plant a known
+  defect (a wrong answer, a missing field, a broken output) and confirm the harness
+  fails it. A check that cannot fail cannot tell you anything by passing.
+- **Never paste test failures into the prompt.** Copying a held-out failure into the
+  instructions turns the test set into training data. The score rises; the task
+  performance does not.
+
+## Public benchmarks are a lead, not evidence
+
+A public benchmark score says how a model did on someone else's tasks, in someone
+else's harness, at a setting you may not know. Some widely cited benchmarks have
+published flaws: ambiguous items, broken graders, or leaked answers. Before a score
+drives a choice, check whether independent reviewers have flagged the benchmark (Epoch
+AI publishes benchmark reviews; see references), and ask which harness, which effort
+setting, and which version produced the number. Then run your own task eval. A
+benchmark that disagrees with your task eval loses.
+
+## The harness moves results more than the model
+
+The same model can score very differently depending on the scaffold around it: the
+tools it is given, the retry policy, the context it sees, the effort setting, and the
+grader. When comparing two models, hold the harness fixed and change only the model.
+When a vendor number and your number disagree, the harness is the first suspect.
+
 ## Common failure modes
 
 - **Shipping without evaluation.** The most common failure mode. The team trusts demo results. Production failures are discovered by customers.
@@ -85,6 +124,8 @@ Using one model to evaluate another model's output is widely practiced and usefu
 - **Test set written by the prompt author.** The author tests the cases the author thought of. The cases the author did not think of go untested until production.
 - **Ignoring drift.** Quality changes between runs are dismissed as noise. By the time the trend is undeniable, the system has degraded substantially.
 - **Confusing fluency with accuracy.** AI outputs sound confident regardless of whether they are correct. Evaluation must check accuracy specifically, not let fluency substitute for it.
+- **Climbing the test set.** Prompt changes are kept or discarded by their score on the same cases used to report results, so the reported gain is overfit.
+- **Choosing by leaderboard.** A model is picked on a public benchmark score that was never checked against your own tasks or against published reviews of that benchmark.
 
 ## What this module does not cover
 

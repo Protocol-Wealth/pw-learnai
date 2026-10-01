@@ -2,7 +2,8 @@
 
 Reviewed: 2026-07-25. AI security guidance moves quickly; treat dated items as
 starting points and check current vendor and standards-body docs before relying on any
-specific control.
+specific control. The supply-chain sources below were added and read on 2026-09-30;
+the rest of this file was not re-reviewed then.
 
 ## On prompt injection and the lethal trifecta
 
@@ -26,6 +27,23 @@ specific control.
   local-server privileges, sandboxing, and scope minimization. Review the labs in this
   repo (`labs/protocol-wealth-oss/`) as local examples, not as a substitute.
 - **Excessive agency.** The failure mode where an agent is given broader tool access than the task requires. Scope tools to the minimum; gate the consequential ones.
+
+## Agent supply chain
+
+- **Hanzhi Liu et al.** [Your Agent Is Mine: Measuring Malicious Intermediary Attacks on the LLM Supply Chain](https://arxiv.org/abs/2604.08407)
+  (arXiv 2604.08407, 2026). Formalizes payload-injection and secret-exfiltration attacks
+  by third-party API routers, which see every tool-calling request in plaintext, and
+  measures them across paid and free routers found in the wild.
+- **Anthropic.** [Agent Skills in Claude Code](https://code.claude.com/docs/en/skills).
+  How skills are structured, discovered, and loaded.
+- **Agent Skills.** [Open format](https://agentskills.io). Cross-tool skill convention.
+- **Model Context Protocol.** [Authorization](https://modelcontextprotocol.io/specification/latest/basic/authorization).
+  The specification's authorization flow for remote servers.
+- **Vercel Labs.** [deepsec](https://github.com/vercel-labs/deepsec). An example of an
+  agent-driven whole-repository security harness that revalidates findings before
+  reporting them.
+- **OWASP GenAI Security Project.** [Top 10 for LLM and GenAI applications](https://genai.owasp.org/llm-top-10/).
+  Includes supply-chain risk as a named category.
 
 ## Standards and governance
 

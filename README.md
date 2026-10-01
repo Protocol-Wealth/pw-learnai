@@ -99,6 +99,7 @@ Each module is self-contained. Start with `00` if you are new to repository-base
 | 13 | [Designing Agent Instructions](modules/13-agent-instructions/module.md) | What makes an `AGENTS.md` one a coding agent actually follows, not decoration? |
 | 15 | [Security & Secrets Hygiene](modules/15-security-secrets-hygiene/module.md) | How do you keep untrusted content, secrets, and excessive agency from collapsing the trust boundary? |
 | 16 | [Building Agent Systems](modules/16-building-agent-systems/module.md) | How do you reuse a mature agent loop while separating intent, tools, permissions, memory, recovery, remote access, and human accountability? |
+| 17 | [Models, Effort and Cost](modules/17-models-effort-and-cost/module.md) | Which model and effort should each stage run at, and what does a completed task actually cost? |
 
 ### Working with data
 

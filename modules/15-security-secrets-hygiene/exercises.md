@@ -50,4 +50,14 @@ Craft a document, email, or web snippet that your feature would ingest, and hide
 
 Record: did the model follow the injected instruction, partly follow it, or ignore it? Try three phrasings before concluding it is safe. The point is not to prove your system is broken — it is to see, empirically, that filtering is not a guarantee, and to decide which trifecta leg you will remove so the outcome does not matter.
 
+## Exercise 6: Supply-chain inventory
+
+List everything installed into one agent that you did not write: skills, plugins, MCP servers, and any router, proxy, or gateway between the agent and the model provider.
+
+| Item | Kind (skill / MCP server / intermediary) | Pinned to a commit or version? | Who reviewed it, and when? | Side effects it can cause | Direct endpoint or intermediary? |
+|------|------------------------------------------|--------------------------------|----------------------------|---------------------------|----------------------------------|
+| | | | | | |
+
+For every row that is unpinned or unreviewed, either pin and review it or remove it. The artifact is the table with no empty cells in the pinned and reviewed columns.
+
 ---

@@ -2,6 +2,28 @@
 
 All notable changes to `pw-learnai` are recorded here.
 
+## 2026-09-30
+
+### Added
+
+- Module 17, Models, Effort and Cost: pinning full model IDs in automation, effort as
+  a dial with a per-model default, cost per completed task instead of per token, and
+  prompt-cache economics. Model names and prices appear only in its dated
+  `references.md` table. Added to the practice and AI-focus NotebookLM bundles.
+
+### Changed
+
+- Module 11: hillclimbing discipline (train/test split, noise floor, grading twice,
+  planted defects, no test failures in the prompt), public benchmarks as a lead rather
+  than evidence, and the harness as a larger source of variance than the model.
+- Module 12: effort and model-pinning rows in the execution-mode table, a layering
+  table for `AGENTS.md`, skills, MCP, and hooks, and per-stage model and effort for
+  subagents.
+- Module 15: an agent supply-chain section (pinned skills, MCP servers as capability
+  grants, intermediary routers) and a supply-chain inventory exercise.
+- Module 16: OAuth-based MCP authorization as the default for remote servers, WebMCP
+  as an emerging pattern with a vendor-run benchmark, and vendor-specific extensions.
+
 ## 2026-09-28
 
 ### Changed

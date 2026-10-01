@@ -22,6 +22,19 @@ Fast-moving tool and repository references reviewed on 2026-07-25. Re-check them
 
 The Agent SDK overview currently directs third-party applications to API-key or documented cloud-provider authentication and says third-party developers may not offer claude.ai login or subscription rate limits without prior approval. Official Claude Code subscription login and Remote Control are different product paths. This module therefore does not cite or recommend credential extraction or unofficial subscription proxies.
 
+## Model Context Protocol
+
+Added and read on 2026-09-30.
+
+- **Model Context Protocol.** [Specification](https://modelcontextprotocol.io/specification/latest)
+  and [Authorization](https://modelcontextprotocol.io/specification/latest/basic/authorization).
+  Core protocol and the OAuth-based authorization flow for remote servers.
+- **WebMCP.** [Benchmark](https://webmcp.com/benchmark). WindTunnel: 49 tasks, run by
+  the publisher of the pattern, reporting 2.5 to 7.5 times faster completion than
+  screenshot or DOM driving. Vendor-run; re-measure before relying on it.
+- **OpenAI.** [MCP extensions](https://github.com/openai/mcp-extensions). An example of
+  vendor-specific extensions beyond the core specification.
+
 ## Remote access
 
 - **Tailscale.** [Tailscale SSH](https://tailscale.com/docs/features/tailscale-ssh). Identity-based SSH authorization, WireGuard transport, access policies, check mode, session recording, and limitations. Last validated by Tailscale on 2026-01-05 when reviewed.

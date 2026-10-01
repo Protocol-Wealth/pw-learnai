@@ -2,7 +2,8 @@
 
 Reviewed: 2026-07-25. Model-as-judge behavior, vendor red-teaming guidance, and
 regulatory requirements change; pin the model and rubric used for every recorded
-evaluation.
+evaluation. The hillclimbing and public-benchmark sources below were added and read
+on 2026-09-30; the rest of this file was not re-reviewed then.
 
 ## Primary sources
 
@@ -30,6 +31,20 @@ evaluation.
 - **Google DeepMind.** [Model cards](https://deepmind.google/models/model-cards/).
   Official model-specific evaluation, safety, and limitation evidence.
 - **AI Village at DEF CON.** Annual public red-teaming work. Useful for understanding what real adversarial testing looks like.
+
+## On hillclimbing and public benchmarks
+
+- **Anthropic.** [Automating eval design and hillclimbing](https://claude.dev/blog/automating-eval-design-and-hillclimbing/).
+  Train and test splits, noise measurement, and keeping an automated improvement loop
+  from overfitting its own test set. Read 2026-09-30.
+- **Epoch AI.** [Benchmarks](https://epoch.ai/benchmarks). Independent reviews of
+  public AI benchmarks, including which ones have known flaws. At launch the reviews
+  verified 4 benchmarks and flagged 9, including SWE-Bench Verified and Terminal-Bench
+  [BELIEVED; the list was not re-read on 2026-09-30]. Check the current list before
+  citing a score.
+- **rivendale.** [`hsi-operator` `docs/eval-and-hillclimb.md`](https://github.com/rivendale/hsi-operator/blob/main/docs/eval-and-hillclimb.md)
+  and [`docs/planted-defect-evals.md`](https://github.com/rivendale/hsi-operator/blob/main/docs/planted-defect-evals.md).
+  Practice notes on hillclimbing and on planting known defects to prove a check can fail.
 
 ## On the limits of evaluation
 

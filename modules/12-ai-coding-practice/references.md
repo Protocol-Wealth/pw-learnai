@@ -1,7 +1,9 @@
 # 12 - References
 
-Tool-specific guidance reviewed on 2026-07-25. Re-check vendor docs before turning
-these notes into policy or automation.
+Tool-specific guidance reviewed on 2026-07-25. The effort, model-pinning, layering,
+and per-stage sources were added and read on 2026-09-30; the other entries were not
+re-reviewed then. Re-check vendor docs before turning these notes into policy or
+automation.
 
 ## Current CLI documentation
 
@@ -17,6 +19,9 @@ these notes into policy or automation.
 - **Anthropic.** [Extend Claude Code](https://code.claude.com/docs/en/features-overview). When to use project instructions, skills, MCP, subagents, hooks, plugins, and related extension points.
 - **Anthropic.** [Create custom subagents](https://code.claude.com/docs/en/subagents). Subagent isolation, configuration, permissions, skills, and examples.
 - **Anthropic.** [Configure permissions](https://code.claude.com/docs/en/permissions). Permissions, hooks, additional directories, and sandboxing interactions.
+- **Anthropic.** [Agent Skills in Claude Code](https://code.claude.com/docs/en/skills). Skill structure, discovery, and when a skill loads. Read 2026-09-30.
+- **OpenAI.** [Codex configuration reference](https://developers.openai.com/codex/config-reference). Includes `model_reasoning_effort` and model selection. Read 2026-09-30.
+- **Replit.** [Free the models](https://replit.com/blog/free-the-models). Describes a main agent choosing the model tier and effort for each subagent it dispatches [BELIEVED; the reported gains are vendor numbers on a benchmark that independent reviewers have flagged].
 
 ## On code review for AI-generated code
 
