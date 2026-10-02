@@ -3,8 +3,8 @@
 > Applied labs connecting learning, intent, capabilities, planning, governance, recovery, and human accountability across the Protocol Wealth public OSS surface.
 
 Source: https://github.com/Protocol-Wealth/pw-learnai-core
-License: MIT
-Generated: 2026-09-30
+License: MIT-0 OR Apache-2.0
+Generated: 2026-10-02
 
 ## Labs included
 

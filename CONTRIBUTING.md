@@ -105,4 +105,4 @@ Maintainers review on a best-effort basis. Expect a response within two weeks. R
 
 ## License
 
-All contributions are under the repo's MIT license. By submitting a PR you confirm you have the right to license the content under those terms.
+By contributing, you agree that your contribution is licensed under `MIT-0 OR Apache-2.0`. By submitting a PR you confirm you have the right to license the content under those terms.
