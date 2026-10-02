@@ -1,6 +1,6 @@
 # pw-learnai-core
 
-A modular, open-source library of ideas, frameworks, and interactive tools for applied AI strategy and AI-assisted software development. Built by [Protocol Wealth LLC](https://protocolwealthllc.com). MIT-licensed. No certificate. No paywall. No marketing funnel.
+A modular, open-source library of ideas, frameworks, and interactive tools for applied AI strategy and AI-assisted software development. Built by [Protocol Wealth LLC](https://protocolwealthllc.com). Licensed `MIT-0 OR Apache-2.0`. No certificate. No paywall. No marketing funnel.
 
 The repository is named `pw-learnai-core`; the learning library and its private frontend package retain the `pw-learnai` name.
 
@@ -210,7 +210,7 @@ Or copy any `.jsx` file in `components/interactive/` into your own project. They
 
 ### As a remix target
 
-Fork the repo. Edit the modules to fit your industry. Submit a PR if you want your work upstreamed, or keep it in your fork — that's what MIT is for.
+Fork the repo. Edit the modules to fit your industry. Submit a PR if you want your work upstreamed, or keep it in your fork — that's what the permissive license is for.
 
 ## Structure
 
@@ -243,7 +243,14 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the submission template and review cr
 
 ## License
 
-[MIT](LICENSE). Use commercially, fork it, rename it, strip our name off. The only ask: if the module helped you, send a PR with what you learned.
+Licensed under either MIT-0 or Apache-2.0, at your option.
+
+- MIT No Attribution: [LICENSE-MIT-0](LICENSE-MIT-0)
+- Apache License 2.0: [LICENSE-APACHE](LICENSE-APACHE)
+
+SPDX-License-Identifier: `MIT-0 OR Apache-2.0`
+
+Use commercially, fork it, rename it. The only ask: if the module helped you, send a PR with what you learned.
 
 ## Who built this and why
 

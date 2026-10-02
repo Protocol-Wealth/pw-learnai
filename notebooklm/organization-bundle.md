@@ -3,8 +3,8 @@
 > Organizational design for continuous change, disciplined experimentation, stakeholder buy-in through evidence.
 
 Source: https://github.com/Protocol-Wealth/pw-learnai-core
-License: MIT
-Generated: 2026-09-30
+License: MIT-0 OR Apache-2.0
+Generated: 2026-10-02
 
 ## Modules included
 

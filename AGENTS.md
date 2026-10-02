@@ -8,7 +8,7 @@
 
 ## Project
 
-`pw-learnai` is an MIT-licensed library of self-contained applied AI strategy modules and browser-only React tools. Keep changes focused on the modules, exercises, references, interactive components, and generated notebook bundles implied by the task.
+`pw-learnai` is a `MIT-0 OR Apache-2.0` dual-licensed library of self-contained applied AI strategy modules and browser-only React tools. Keep changes focused on the modules, exercises, references, interactive components, and generated notebook bundles implied by the task.
 
 ## Commands
 
